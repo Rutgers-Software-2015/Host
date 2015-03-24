@@ -1,6 +1,7 @@
-package	HostandBusboy;
-import ADT.EmployeeHandler;
-import HostDefinitions.*;
+package	Host;
+import ADT.*;
+import Busboy.BusboyProject;
+import Login.LoginWindow;
 
 import java.awt.EventQueue;
 
@@ -34,8 +35,8 @@ import javax.swing.JSpinner;
 import javax.swing.JProgressBar;
 
 import java.awt.SystemColor;
-import javax.swing.Timer;
 
+import javax.swing.Timer;
 import javax.swing.UIManager;
 
 @SuppressWarnings("unused")
@@ -71,12 +72,14 @@ public class Host_GUI extends JFrame implements ActionListener{
 	/**
 	 * Launch the application.
 	 */
+	
+	/*
 	public static void main(String[] args) {
 		
 					Host_GUI window = new Host_GUI();
 					window.frame.setVisible(true);
 				
-	}
+	} */
 
 	/**
 	 * Create the application.
@@ -84,7 +87,9 @@ public class Host_GUI extends JFrame implements ActionListener{
 	
 	
 	public Host_GUI() {
+		//Host_GUI window = new Host_GUI();
 		initialize();
+		this.frame.setVisible(true);
 	}
 
 	/**
@@ -103,6 +108,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		timer.start();
 		
 		busboy=new BusboyProject();
+		busboy.frame.setVisible(false);
 		//System.out.println("In host: ");
 		//System.out.println(busboy.table1_v.Table_Status);
 		System.out.println("---------------------------------------------");
@@ -115,7 +121,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
 		
-		JPanel Host_GUI = new JPanel();
+		final JPanel Host_GUI = new JPanel();
 		Host_GUI.setBackground(UIManager.getColor("Panel.background"));
 		frame.getContentPane().add(Host_GUI, "name_270639079158101");
 		Host_GUI.setLayout(null);
@@ -163,42 +169,42 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Previous_WS.setBounds(51, 28, 180, 74);
 		Waiter_Status.add(Previous_WS);
 		
-		JButton Table1_w = new JButton("");
+		final JButton Table1_w = new JButton("");
 		Table1_w.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Table1_w.setEnabled(false);
 		Table1_w.setBackground(Color.RED);
 		Table1_w.setBounds(51, 255, 180, 25);
 		Waiter_Status.add(Table1_w);
 		
-		JButton Table2_w = new JButton("");
+		final JButton Table2_w = new JButton("");
 		Table2_w.setEnabled(false);
 		Table2_w.setBackground(Color.RED);
 		Table2_w.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Table2_w.setBounds(355, 255, 180, 25);
 		Waiter_Status.add(Table2_w);
 		
-		JButton Table3_w = new JButton("");
+		final JButton Table3_w = new JButton("");
 		Table3_w.setEnabled(false);
 		Table3_w.setBackground(Color.RED);
 		Table3_w.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Table3_w.setBounds(652, 255, 180, 25);
 		Waiter_Status.add(Table3_w);
 		
-		JButton Table4_w = new JButton("");
+		final JButton Table4_w = new JButton("");
 		Table4_w.setEnabled(false);
 		Table4_w.setBackground(Color.RED);
 		Table4_w.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Table4_w.setBounds(51, 391, 180, 25);
 		Waiter_Status.add(Table4_w);
 		
-		JButton Table5_w = new JButton("");
+		final JButton Table5_w = new JButton("");
 		Table5_w.setEnabled(false);
 		Table5_w.setBackground(Color.RED);
 		Table5_w.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Table5_w.setBounds(355, 391, 180, 25);
 		Waiter_Status.add(Table5_w);
 		
-		JButton Table6_w = new JButton("");
+		final JButton Table6_w = new JButton("");
 		Table6_w.setEnabled(false);
 		Table6_w.setBackground(Color.RED);
 
@@ -211,32 +217,32 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Help_w.setBounds(196, 448, 180, 74);
 		Waiter_Status.add(Help_w);
 
-		JToggleButton toggle_w_1 = new JToggleButton("Table 1");
+		final JToggleButton toggle_w_1 = new JToggleButton("Table 1");
 		toggle_w_1.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		toggle_w_1.setBounds(51, 185, 180, 74);
 		Waiter_Status.add(toggle_w_1);
 		
-		JToggleButton toggle_w_2 = new JToggleButton("Table 2");
+		final JToggleButton toggle_w_2 = new JToggleButton("Table 2");
 		toggle_w_2.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		toggle_w_2.setBounds(355, 185, 180, 74);
 		Waiter_Status.add(toggle_w_2);
 		
-		JToggleButton toggle_w_3 = new JToggleButton("Table 3");
+		final JToggleButton toggle_w_3 = new JToggleButton("Table 3");
 		toggle_w_3.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		toggle_w_3.setBounds(652, 185, 180, 74);
 		Waiter_Status.add(toggle_w_3);
 		
-		JToggleButton toggle_w_4 = new JToggleButton("Table 4");
+		final JToggleButton toggle_w_4 = new JToggleButton("Table 4");
 		toggle_w_4.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		toggle_w_4.setBounds(51, 319, 180, 74);
 		Waiter_Status.add(toggle_w_4);
 		
-		JToggleButton toggle_w_5 = new JToggleButton("Table 5");
+		final JToggleButton toggle_w_5 = new JToggleButton("Table 5");
 		toggle_w_5.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		toggle_w_5.setBounds(355, 319, 180, 74);
 		Waiter_Status.add(toggle_w_5);
 		
-		JToggleButton toggle_w_6 = new JToggleButton("Table 6");
+		final JToggleButton toggle_w_6 = new JToggleButton("Table 6");
 		toggle_w_6.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		toggle_w_6.setBounds(652, 319, 180, 82);
 		Waiter_Status.add(toggle_w_6);
@@ -286,14 +292,14 @@ public class Host_GUI extends JFrame implements ActionListener{
 		frame.getContentPane().add(Customer_Status, "name_270645762121747");
 		Customer_Status.setLayout(null);
 		
-		JLabel Customer_status_title = new JLabel("Customer Status");
+		final JLabel Customer_status_title = new JLabel("Customer Status");
 		Customer_status_title.setForeground(Color.BLUE);
 		Customer_status_title.setHorizontalAlignment(SwingConstants.CENTER);
 		Customer_status_title.setFont(new Font("Segoe Print", Font.BOLD, 36));
 		Customer_status_title.setBounds(285, 45, 325, 44);
 		Customer_Status.add(Customer_status_title);
 		
-		JButton Table_1_c = new JButton("");
+		final JButton Table_1_c = new JButton("");
 		Table_1_c.setEnabled(false);
 		Table_1_c.setBackground(new Color(255, 51, 0));
 		Table_1_c.setForeground(new Color(255, 51, 0));
@@ -301,122 +307,122 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table_1_c.setBounds(43, 203, 180, 25);
 		Customer_Status.add(Table_1_c);
 		
-		JButton Table_2_c = new JButton("");
+		final JButton Table_2_c = new JButton("");
 		Table_2_c.setEnabled(false);
 		Table_2_c.setBackground(new Color(255, 51, 0));
 		Table_2_c.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Table_2_c.setBounds(345, 203, 180, 25);
 		Customer_Status.add(Table_2_c);
 		
-		JButton Table_3_c = new JButton("");
+		final JButton Table_3_c = new JButton("");
 		Table_3_c.setEnabled(false);
 		Table_3_c.setBackground(new Color(255, 51, 0));
 		Table_3_c.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Table_3_c.setBounds(638, 204, 180, 25);
 		Customer_Status.add(Table_3_c);
 		
-		JButton Table_4_c = new JButton("");
+		final JButton Table_4_c = new JButton("");
 		Table_4_c.setEnabled(false);
 		Table_4_c.setBackground(new Color(255, 51, 0));
 		Table_4_c.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Table_4_c.setBounds(43, 340, 180, 25);
 		Customer_Status.add(Table_4_c);
 		
-		JButton Table_5_c = new JButton("");
+		final JButton Table_5_c = new JButton("");
 		Table_5_c.setEnabled(false);
 		Table_5_c.setBackground(new Color(255, 51, 0));
 		Table_5_c.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Table_5_c.setBounds(345, 339, 180, 25);
 		Customer_Status.add(Table_5_c);
 		
-		JButton Table_6_c = new JButton("");
+		final JButton Table_6_c = new JButton("");
 		Table_6_c.setEnabled(false);
 		Table_6_c.setBackground(new Color(255, 51, 0));
 		Table_6_c.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Table_6_c.setBounds(638, 339, 180, 25);
 		Customer_Status.add(Table_6_c);
 		
-		JButton Help_CS = new JButton("Help");
+		final JButton Help_CS = new JButton("Help");
 		Help_CS.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Help_CS.setBounds(187, 426, 180, 74);
 		Customer_Status.add(Help_CS);
 		
-		JButton Return_CS = new JButton("Return");
+		final JButton Return_CS = new JButton("Return");
 		Return_CS.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Return_CS.setBounds(471, 426, 180, 74);
 		Customer_Status.add(Return_CS);
 		
-		JButton Previous_CS = new JButton("<- Previous");
+		final JButton Previous_CS = new JButton("<- Previous");
 		Previous_CS.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Previous_CS.setBounds(43, 29, 180, 74);
 		Customer_Status.add(Previous_CS);
 		
-		JButton Next_CS = new JButton("Next ->");
+		final JButton Next_CS = new JButton("Next ->");
 		Next_CS.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Next_CS.setBounds(638, 29, 180, 74);
 		Customer_Status.add(Next_CS);
 		
-		JToggleButton toggle_c_1 = new JToggleButton("Table 1");
+		final JToggleButton toggle_c_1 = new JToggleButton("Table 1");
 		toggle_c_1.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		toggle_c_1.setBounds(43, 132, 180, 74);
 		Customer_Status.add(toggle_c_1);
 		
-		JToggleButton toggle_c_2 = new JToggleButton("Table 2");
+		final JToggleButton toggle_c_2 = new JToggleButton("Table 2");
 		toggle_c_2.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		toggle_c_2.setBounds(345, 132, 180, 74);
 		Customer_Status.add(toggle_c_2);
 		
-		JToggleButton toggle_c_3 = new JToggleButton("Table 3");
+		final JToggleButton toggle_c_3 = new JToggleButton("Table 3");
 		toggle_c_3.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		toggle_c_3.setBounds(638, 132, 180, 74);
 		Customer_Status.add(toggle_c_3);
 		
-		JToggleButton toggle_c_4 = new JToggleButton("Table 4");
+		final JToggleButton toggle_c_4 = new JToggleButton("Table 4");
 		toggle_c_4.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		toggle_c_4.setBounds(43, 263, 180, 80);
 		Customer_Status.add(toggle_c_4);
 		
-		JToggleButton toggle_c_5 = new JToggleButton("Table 5");
+		final JToggleButton toggle_c_5 = new JToggleButton("Table 5");
 		toggle_c_5.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		toggle_c_5.setBounds(345, 263, 180, 80);
 		Customer_Status.add(toggle_c_5);
 		
-		JToggleButton toggle_c_6 = new JToggleButton("Table 6");
+		final JToggleButton toggle_c_6 = new JToggleButton("Table 6");
 		toggle_c_6.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		toggle_c_6.setBounds(638, 263, 180, 80);
 		Customer_Status.add(toggle_c_6);
 		
-		JButton INDICATOR_G_CS_1 = new JButton("");
+		final JButton INDICATOR_G_CS_1 = new JButton("");
 		INDICATOR_G_CS_1.setEnabled(false);
 		INDICATOR_G_CS_1.setBackground(Color.GREEN);
 		INDICATOR_G_CS_1.setBounds(43, 203, 180, 25);
 		Customer_Status.add(INDICATOR_G_CS_1);
 		
-		JButton INDICATOR_G_CS_2 = new JButton("");
+		final JButton INDICATOR_G_CS_2 = new JButton("");
 		INDICATOR_G_CS_2.setEnabled(false);
 		INDICATOR_G_CS_2.setBackground(Color.GREEN);
 		INDICATOR_G_CS_2.setBounds(345, 203, 180, 25);
 		Customer_Status.add(INDICATOR_G_CS_2);
 		
-		JButton INDICATOR_G_CS_3 = new JButton("");
+		final JButton INDICATOR_G_CS_3 = new JButton("");
 		INDICATOR_G_CS_3.setEnabled(false);
 		INDICATOR_G_CS_3.setBackground(Color.GREEN);
 		INDICATOR_G_CS_3.setBounds(638, 203, 180, 25);
 		Customer_Status.add(INDICATOR_G_CS_3);
 		
-		JButton INDICATOR_G_CS_4 = new JButton("");
+		final JButton INDICATOR_G_CS_4 = new JButton("");
 		INDICATOR_G_CS_4.setEnabled(false);
 		INDICATOR_G_CS_4.setBackground(Color.GREEN);
 		INDICATOR_G_CS_4.setBounds(43, 339, 180, 25);
 		Customer_Status.add(INDICATOR_G_CS_4);
 		
-		JButton INDICATOR_G_CS_5 = new JButton("");
+		final JButton INDICATOR_G_CS_5 = new JButton("");
 		INDICATOR_G_CS_5.setEnabled(false);
 		INDICATOR_G_CS_5.setBackground(Color.GREEN);
 		INDICATOR_G_CS_5.setBounds(345, 338, 180, 25);
 		Customer_Status.add(INDICATOR_G_CS_5);
 		
-		JButton INDICATOR_G_CS_6 = new JButton("");
+		final JButton INDICATOR_G_CS_6 = new JButton("");
 		INDICATOR_G_CS_6.setEnabled(false);
 		INDICATOR_G_CS_6.setBackground(Color.GREEN);
 		INDICATOR_G_CS_6.setBounds(638, 340, 180, 24);
@@ -426,7 +432,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		frame.getContentPane().add(Customer_status_at_table, "name_270647812657070");
 		Customer_status_at_table.setLayout(null);
 		
-		JLabel Title_CSAT = new JLabel("Customer status at table");
+		final JLabel Title_CSAT = new JLabel("Customer status at table");
 		Title_CSAT.setForeground(Color.BLUE);
 		Title_CSAT.setBackground(Color.BLUE);
 		Title_CSAT.setHorizontalAlignment(SwingConstants.CENTER);
@@ -460,72 +466,72 @@ public class Host_GUI extends JFrame implements ActionListener{
 		lblSelectWaiterTo.setBounds(143, 40, 606, 44);
 		Select_waiter_to_occupy_table_1.add(lblSelectWaiterTo);
 		
-		JButton Returnkey_1 = new JButton("Return");
+		final JButton Returnkey_1 = new JButton("Return");
 		Returnkey_1.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Returnkey_1.setBounds(187, 382, 200, 74);
 		Select_waiter_to_occupy_table_1.add(Returnkey_1);
 		
-		JToggleButton WaiterT_1_1 = new JToggleButton("Waiter 1");
+		final JToggleButton WaiterT_1_1 = new JToggleButton("Waiter 1");
 		WaiterT_1_1.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		WaiterT_1_1.setBounds(42, 199, 180, 74);
 		Select_waiter_to_occupy_table_1.add(WaiterT_1_1);
 		
-		JToggleButton WaiterT_1_2 = new JToggleButton("Waiter 2");
+		final JToggleButton WaiterT_1_2 = new JToggleButton("Waiter 2");
 		WaiterT_1_2.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		WaiterT_1_2.setBounds(345, 199, 180, 74);
 		Select_waiter_to_occupy_table_1.add(WaiterT_1_2);
 		
-		JToggleButton WaiterT_1_3 = new JToggleButton("Waiter 3");
+		final JToggleButton WaiterT_1_3 = new JToggleButton("Waiter 3");
 		WaiterT_1_3.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		WaiterT_1_3.setBounds(639, 199, 180, 74);
 		Select_waiter_to_occupy_table_1.add(WaiterT_1_3);
 		
-		JButton Waiter_1_toggle_1 = new JButton("");
+		final JButton Waiter_1_toggle_1 = new JButton("");
 		Waiter_1_toggle_1.setEnabled(false);
 		Waiter_1_toggle_1.setBackground(Color.RED);
 		Waiter_1_toggle_1.setBounds(42, 273, 180, 25);
 		Select_waiter_to_occupy_table_1.add(Waiter_1_toggle_1);
 		
-		JButton Waiter_2_toggle_1 = new JButton("");
+		final JButton Waiter_2_toggle_1 = new JButton("");
 		Waiter_2_toggle_1.setEnabled(false);
 		Waiter_2_toggle_1.setBackground(Color.RED);
 		Waiter_2_toggle_1.setBounds(345, 273, 180, 25);
 		Select_waiter_to_occupy_table_1.add(Waiter_2_toggle_1);
 		
-		JButton Waiter_3_toggle_1 = new JButton("");
+		final JButton Waiter_3_toggle_1 = new JButton("");
 		Waiter_3_toggle_1.setEnabled(false);
 		Waiter_3_toggle_1.setBackground(Color.RED);
 		Waiter_3_toggle_1.setBounds(639, 273, 180, 25);
 		Select_waiter_to_occupy_table_1.add(Waiter_3_toggle_1);
 		
-		JButton Previouskey_1 = new JButton("<- Previous");
+		final JButton Previouskey_1 = new JButton("<- Previous");
 		Previouskey_1.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Previouskey_1.setBounds(22, 29, 181, 74);
 		Select_waiter_to_occupy_table_1.add(Previouskey_1);
 		
-		JButton Nextkey_1 = new JButton("Next ->");
+		final JButton Nextkey_1 = new JButton("Next ->");
 		Nextkey_1.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Nextkey_1.setBounds(698, 29, 161, 74);
 		Select_waiter_to_occupy_table_1.add(Nextkey_1);
 		
-		JButton Helpkey_1 = new JButton("Help");
+		final JButton Helpkey_1 = new JButton("Help");
 		Helpkey_1.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Helpkey_1.setBounds(506, 382, 200, 74);
 		Select_waiter_to_occupy_table_1.add(Helpkey_1);
 		
-		JButton Green1a = new JButton("");
+		final JButton Green1a = new JButton("");
 		Green1a.setEnabled(false);
 		Green1a.setBackground(Color.GREEN);
 		Green1a.setBounds(42, 273, 180, 25);
 		Select_waiter_to_occupy_table_1.add(Green1a);
 		
-		JButton Green1b = new JButton("");
+		final JButton Green1b = new JButton("");
 		Green1b.setEnabled(false);
 		Green1b.setBackground(Color.GREEN);
 		Green1b.setBounds(345, 273, 180, 25);
 		Select_waiter_to_occupy_table_1.add(Green1b);
 		
-		JButton Green1c = new JButton("");
+		final JButton Green1c = new JButton("");
 		Green1c.setEnabled(false);
 		Green1c.setBackground(Color.GREEN);
 		Green1c.setBounds(639, 273, 180, 25);
@@ -542,72 +548,72 @@ public class Host_GUI extends JFrame implements ActionListener{
 		lblSelectWaiterTable.setBounds(143, 40, 606, 44);
 		Select_waiter_to_occupy_table_2.add(lblSelectWaiterTable);
 		
-		JButton Returnkey_2 = new JButton("Return");
+		final JButton Returnkey_2 = new JButton("Return");
 		Returnkey_2.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Returnkey_2.setBounds(187, 382, 200, 74);
 		Select_waiter_to_occupy_table_2.add(Returnkey_2);
 		
-		JToggleButton WaiterT_2_1 = new JToggleButton("Waiter 1");
+		final JToggleButton WaiterT_2_1 = new JToggleButton("Waiter 1");
 		WaiterT_2_1.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		WaiterT_2_1.setBounds(42, 199, 180, 74);
 		Select_waiter_to_occupy_table_2.add(WaiterT_2_1);
 		
-		JToggleButton WaiterT_2_2 = new JToggleButton("Waiter 2");
+		final JToggleButton WaiterT_2_2 = new JToggleButton("Waiter 2");
 		WaiterT_2_2.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		WaiterT_2_2.setBounds(345, 199, 180, 74);
 		Select_waiter_to_occupy_table_2.add(WaiterT_2_2);
 		
-		JToggleButton WaiterT_2_3 = new JToggleButton("Waiter 3");
+		final JToggleButton WaiterT_2_3 = new JToggleButton("Waiter 3");
 		WaiterT_2_3.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		WaiterT_2_3.setBounds(639, 199, 180, 74);
 		Select_waiter_to_occupy_table_2.add(WaiterT_2_3);
 		
-		JButton Waiter_1_toggle_2 = new JButton("");
+		final JButton Waiter_1_toggle_2 = new JButton("");
 		Waiter_1_toggle_2.setEnabled(false);
 		Waiter_1_toggle_2.setBackground(Color.RED);
 		Waiter_1_toggle_2.setBounds(42, 273, 180, 25);
 		Select_waiter_to_occupy_table_2.add(Waiter_1_toggle_2);
 		
-		JButton Waiter_2_toggle_2 = new JButton("");
+		final JButton Waiter_2_toggle_2 = new JButton("");
 		Waiter_2_toggle_2.setEnabled(false);
 		Waiter_2_toggle_2.setBackground(Color.RED);
 		Waiter_2_toggle_2.setBounds(345, 273, 180, 25);
 		Select_waiter_to_occupy_table_2.add(Waiter_2_toggle_2);
 		
-		JButton Waiter_3_toggle_2 = new JButton("");
+		final JButton Waiter_3_toggle_2 = new JButton("");
 		Waiter_3_toggle_2.setEnabled(false);
 		Waiter_3_toggle_2.setBackground(Color.RED);
 		Waiter_3_toggle_2.setBounds(639, 273, 180, 25);
 		Select_waiter_to_occupy_table_2.add(Waiter_3_toggle_2);
 		
-		JButton Previouskey_2 = new JButton("<- Previous");
+		final JButton Previouskey_2 = new JButton("<- Previous");
 		Previouskey_2.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Previouskey_2.setBounds(22, 29, 180, 74);
 		Select_waiter_to_occupy_table_2.add(Previouskey_2);
 		
-		JButton Nextkey_2 = new JButton("Next ->");
+		final JButton Nextkey_2 = new JButton("Next ->");
 		Nextkey_2.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Nextkey_2.setBounds(698, 29, 161, 74);
 		Select_waiter_to_occupy_table_2.add(Nextkey_2);
 		
-		JButton Helpkey_2 = new JButton("Help");
+		final JButton Helpkey_2 = new JButton("Help");
 		Helpkey_2.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Helpkey_2.setBounds(506, 382, 200, 74);
 		Select_waiter_to_occupy_table_2.add(Helpkey_2);
 		
-		JButton Green2a = new JButton("");
+		final JButton Green2a = new JButton("");
 		Green2a.setEnabled(false);
 		Green2a.setBackground(Color.GREEN);
 		Green2a.setBounds(42, 273, 180, 25);
 		Select_waiter_to_occupy_table_2.add(Green2a);
 		
-		JButton Green2b = new JButton("");
+		final JButton Green2b = new JButton("");
 		Green2b.setEnabled(false);
 		Green2b.setBackground(Color.GREEN);
 		Green2b.setBounds(345, 273, 180, 25);
 		Select_waiter_to_occupy_table_2.add(Green2b);
 		
-		JButton Green2c = new JButton("");
+		final JButton Green2c = new JButton("");
 		Green2c.setEnabled(false);
 		Green2c.setBackground(Color.GREEN);
 		Green2c.setBounds(639, 273, 180, 25);
@@ -617,79 +623,79 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Select_waiter_to_occupy_table_3.setLayout(null);
 		frame.getContentPane().add(Select_waiter_to_occupy_table_3, "name_322747318582867");
 		
-		JLabel lblSelectWaiterTable_1 = new JLabel("Select Waiter: Table 3");
+		final JLabel lblSelectWaiterTable_1 = new JLabel("Select Waiter: Table 3");
 		lblSelectWaiterTable_1.setForeground(Color.BLUE);
 		lblSelectWaiterTable_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSelectWaiterTable_1.setFont(new Font("Segoe Print", Font.BOLD, 36));
 		lblSelectWaiterTable_1.setBounds(143, 40, 606, 44);
 		Select_waiter_to_occupy_table_3.add(lblSelectWaiterTable_1);
 		
-		JButton Returnkey_3 = new JButton("Return");
+		final JButton Returnkey_3 = new JButton("Return");
 		Returnkey_3.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Returnkey_3.setBounds(187, 382, 200, 74);
 		Select_waiter_to_occupy_table_3.add(Returnkey_3);
 		
-		JToggleButton Waiter_T_3_1 = new JToggleButton("Waiter 1");
+		final JToggleButton Waiter_T_3_1 = new JToggleButton("Waiter 1");
 		Waiter_T_3_1.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Waiter_T_3_1.setBounds(42, 199, 180, 74);
 		Select_waiter_to_occupy_table_3.add(Waiter_T_3_1);
 		
-		JToggleButton Waiter_T_3_2 = new JToggleButton("Waiter 2");
+		final JToggleButton Waiter_T_3_2 = new JToggleButton("Waiter 2");
 		Waiter_T_3_2.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Waiter_T_3_2.setBounds(345, 199, 180, 74);
 		Select_waiter_to_occupy_table_3.add(Waiter_T_3_2);
 		
-		JToggleButton Waiter_T_3_3 = new JToggleButton("Waiter 3");
+		final JToggleButton Waiter_T_3_3 = new JToggleButton("Waiter 3");
 		Waiter_T_3_3.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Waiter_T_3_3.setBounds(639, 199, 180, 74);
 		Select_waiter_to_occupy_table_3.add(Waiter_T_3_3);
 		
-		JButton Waiter_1_toggle_3 = new JButton("");
+		final JButton Waiter_1_toggle_3 = new JButton("");
 		Waiter_1_toggle_3.setEnabled(false);
 		Waiter_1_toggle_3.setBackground(Color.RED);
 		Waiter_1_toggle_3.setBounds(42, 273, 180, 25);
 		Select_waiter_to_occupy_table_3.add(Waiter_1_toggle_3);
 		
-		JButton Waiter_2_toggle_3 = new JButton("");
+		final JButton Waiter_2_toggle_3 = new JButton("");
 		Waiter_2_toggle_3.setEnabled(false);
 		Waiter_2_toggle_3.setBackground(Color.RED);
 		Waiter_2_toggle_3.setBounds(345, 273, 180, 25);
 		Select_waiter_to_occupy_table_3.add(Waiter_2_toggle_3);
 		
-		JButton Waiter_3_toggle_3 = new JButton("");
+		final JButton Waiter_3_toggle_3 = new JButton("");
 		Waiter_3_toggle_3.setEnabled(false);
 		Waiter_3_toggle_3.setBackground(Color.RED);
 		Waiter_3_toggle_3.setBounds(639, 273, 180, 25);
 		Select_waiter_to_occupy_table_3.add(Waiter_3_toggle_3);
 		
-		JButton Previouskey_3 = new JButton("<- Previous");
+		final JButton Previouskey_3 = new JButton("<- Previous");
 		Previouskey_3.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Previouskey_3.setBounds(22, 29, 180, 74);
 		Select_waiter_to_occupy_table_3.add(Previouskey_3);
 		
-		JButton Nextkey_3 = new JButton("Next ->");
+		final JButton Nextkey_3 = new JButton("Next ->");
 		Nextkey_3.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Nextkey_3.setBounds(698, 29, 161, 74);
 		Select_waiter_to_occupy_table_3.add(Nextkey_3);
 		
-		JButton Helpkey_3 = new JButton("Help");
+		final JButton Helpkey_3 = new JButton("Help");
 		Helpkey_3.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Helpkey_3.setBounds(506, 382, 200, 74);
 		Select_waiter_to_occupy_table_3.add(Helpkey_3);
 		
-		JButton Green3a = new JButton("");
+		final JButton Green3a = new JButton("");
 		Green3a.setEnabled(false);
 		Green3a.setBackground(Color.GREEN);
 		Green3a.setBounds(42, 273, 180, 25);
 		Select_waiter_to_occupy_table_3.add(Green3a);
 		
-		JButton Green3b = new JButton("");
+		final JButton Green3b = new JButton("");
 		Green3b.setEnabled(false);
 		Green3b.setBackground(Color.GREEN);
 		Green3b.setBounds(345, 273, 180, 25);
 		Select_waiter_to_occupy_table_3.add(Green3b);
 		
-		JButton Green3c = new JButton("");
+		final JButton Green3c = new JButton("");
 		Green3c.setEnabled(false);
 		Green3c.setBackground(Color.GREEN);
 		Green3c.setBounds(639, 273, 180, 25);
@@ -699,79 +705,79 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Select_waiter_to_occupy_table_4.setLayout(null);
 		frame.getContentPane().add(Select_waiter_to_occupy_table_4, "name_322839590812485");
 		
-		JLabel lblSelectWaiterTable_2 = new JLabel("Select Waiter: Table 4");
+		final JLabel lblSelectWaiterTable_2 = new JLabel("Select Waiter: Table 4");
 		lblSelectWaiterTable_2.setForeground(Color.BLUE);
 		lblSelectWaiterTable_2.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSelectWaiterTable_2.setFont(new Font("Segoe Print", Font.BOLD, 36));
 		lblSelectWaiterTable_2.setBounds(143, 40, 606, 44);
 		Select_waiter_to_occupy_table_4.add(lblSelectWaiterTable_2);
 		
-		JButton Returnkey_4 = new JButton("Return");
+		final JButton Returnkey_4 = new JButton("Return");
 		Returnkey_4.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Returnkey_4.setBounds(187, 382, 200, 74);
 		Select_waiter_to_occupy_table_4.add(Returnkey_4);
 		
-		JToggleButton WaiterT_4_1 = new JToggleButton("Waiter 1");
+		final JToggleButton WaiterT_4_1 = new JToggleButton("Waiter 1");
 		WaiterT_4_1.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		WaiterT_4_1.setBounds(42, 199, 180, 74);
 		Select_waiter_to_occupy_table_4.add(WaiterT_4_1);
 		
-		JToggleButton WaiterT_4_2 = new JToggleButton("Waiter 2");
+		final JToggleButton WaiterT_4_2 = new JToggleButton("Waiter 2");
 		WaiterT_4_2.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		WaiterT_4_2.setBounds(345, 199, 180, 74);
 		Select_waiter_to_occupy_table_4.add(WaiterT_4_2);
 		
-		JToggleButton WaiterT_4_3 = new JToggleButton("Waiter 3");
+		final JToggleButton WaiterT_4_3 = new JToggleButton("Waiter 3");
 		WaiterT_4_3.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		WaiterT_4_3.setBounds(639, 199, 180, 74);
 		Select_waiter_to_occupy_table_4.add(WaiterT_4_3);
 		
-		JButton Waiter_1_toggle_4 = new JButton("");
+		final JButton Waiter_1_toggle_4 = new JButton("");
 		Waiter_1_toggle_4.setEnabled(false);
 		Waiter_1_toggle_4.setBackground(Color.RED);
 		Waiter_1_toggle_4.setBounds(42, 273, 180, 25);
 		Select_waiter_to_occupy_table_4.add(Waiter_1_toggle_4);
 		
-		JButton Waiter_2_toggle_4 = new JButton("");
+		final JButton Waiter_2_toggle_4 = new JButton("");
 		Waiter_2_toggle_4.setEnabled(false);
 		Waiter_2_toggle_4.setBackground(Color.RED);
 		Waiter_2_toggle_4.setBounds(345, 273, 180, 25);
 		Select_waiter_to_occupy_table_4.add(Waiter_2_toggle_4);
 		
-		JButton Waiter_3_toggle_4 = new JButton("");
+		final JButton Waiter_3_toggle_4 = new JButton("");
 		Waiter_3_toggle_4.setEnabled(false);
 		Waiter_3_toggle_4.setBackground(Color.RED);
 		Waiter_3_toggle_4.setBounds(639, 273, 180, 25);
 		Select_waiter_to_occupy_table_4.add(Waiter_3_toggle_4);
 		
-		JButton Previouskey_4 = new JButton("<- Previous");
+		final JButton Previouskey_4 = new JButton("<- Previous");
 		Previouskey_4.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Previouskey_4.setBounds(22, 29, 180, 74);
 		Select_waiter_to_occupy_table_4.add(Previouskey_4);
 		
-		JButton Nextkey_4 = new JButton("Next ->");
+		final JButton Nextkey_4 = new JButton("Next ->");
 		Nextkey_4.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Nextkey_4.setBounds(698, 29, 161, 74);
 		Select_waiter_to_occupy_table_4.add(Nextkey_4);
 		
-		JButton Helpkey_4 = new JButton("Help");
+		final JButton Helpkey_4 = new JButton("Help");
 		Helpkey_4.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Helpkey_4.setBounds(506, 382, 200, 74);
 		Select_waiter_to_occupy_table_4.add(Helpkey_4);
 		
-		JButton Green4a = new JButton("");
+		final JButton Green4a = new JButton("");
 		Green4a.setEnabled(false);
 		Green4a.setBackground(Color.GREEN);
 		Green4a.setBounds(42, 273, 180, 25);
 		Select_waiter_to_occupy_table_4.add(Green4a);
 		
-		JButton Green4b = new JButton("");
+		final JButton Green4b = new JButton("");
 		Green4b.setEnabled(false);
 		Green4b.setBackground(Color.GREEN);
 		Green4b.setBounds(345, 273, 180, 25);
 		Select_waiter_to_occupy_table_4.add(Green4b);
 		
-		JButton Green4c = new JButton("");
+		final JButton Green4c = new JButton("");
 		Green4c.setEnabled(false);
 		Green4c.setBackground(Color.GREEN);
 		Green4c.setBounds(639, 273, 180, 25);
@@ -788,72 +794,72 @@ public class Host_GUI extends JFrame implements ActionListener{
 		lblSelectWaiterTable_3.setBounds(143, 40, 606, 44);
 		Select_waiter_to_occupy_table_5.add(lblSelectWaiterTable_3);
 		
-		JButton Returnkey_5 = new JButton("Return");
+		final JButton Returnkey_5 = new JButton("Return");
 		Returnkey_5.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Returnkey_5.setBounds(187, 382, 200, 74);
 		Select_waiter_to_occupy_table_5.add(Returnkey_5);
 		
-		JToggleButton Waiter_T_5_1 = new JToggleButton("Waiter 1");
+		final JToggleButton Waiter_T_5_1 = new JToggleButton("Waiter 1");
 		Waiter_T_5_1.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Waiter_T_5_1.setBounds(42, 199, 180, 74);
 		Select_waiter_to_occupy_table_5.add(Waiter_T_5_1);
 		
-		JToggleButton Waiter_T_5_2 = new JToggleButton("Waiter 2");
+		final JToggleButton Waiter_T_5_2 = new JToggleButton("Waiter 2");
 		Waiter_T_5_2.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Waiter_T_5_2.setBounds(345, 199, 180, 74);
 		Select_waiter_to_occupy_table_5.add(Waiter_T_5_2);
 		
-		JToggleButton Waiter_T_5_3 = new JToggleButton("Waiter 3");
+		final JToggleButton Waiter_T_5_3 = new JToggleButton("Waiter 3");
 		Waiter_T_5_3.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Waiter_T_5_3.setBounds(639, 199, 180, 74);
 		Select_waiter_to_occupy_table_5.add(Waiter_T_5_3);
 		
-		JButton Waiter_1_toggle_5 = new JButton("");
+		final JButton Waiter_1_toggle_5 = new JButton("");
 		Waiter_1_toggle_5.setEnabled(false);
 		Waiter_1_toggle_5.setBackground(Color.RED);
 		Waiter_1_toggle_5.setBounds(42, 273, 180, 25);
 		Select_waiter_to_occupy_table_5.add(Waiter_1_toggle_5);
 		
-		JButton Waiter_2_toggle_5 = new JButton("");
+		final JButton Waiter_2_toggle_5 = new JButton("");
 		Waiter_2_toggle_5.setEnabled(false);
 		Waiter_2_toggle_5.setBackground(Color.RED);
 		Waiter_2_toggle_5.setBounds(345, 273, 180, 25);
 		Select_waiter_to_occupy_table_5.add(Waiter_2_toggle_5);
 		
-		JButton Waiter_3_toggle_5 = new JButton("");
+		final JButton Waiter_3_toggle_5 = new JButton("");
 		Waiter_3_toggle_5.setEnabled(false);
 		Waiter_3_toggle_5.setBackground(Color.RED);
 		Waiter_3_toggle_5.setBounds(639, 273, 180, 25);
 		Select_waiter_to_occupy_table_5.add(Waiter_3_toggle_5);
 		
-		JButton Previouskey_5 = new JButton("<- Previous");
+		final JButton Previouskey_5 = new JButton("<- Previous");
 		Previouskey_5.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Previouskey_5.setBounds(22, 29, 180, 74);
 		Select_waiter_to_occupy_table_5.add(Previouskey_5);
 		
-		JButton Nextkey_5 = new JButton("Next ->");
+		final JButton Nextkey_5 = new JButton("Next ->");
 		Nextkey_5.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Nextkey_5.setBounds(698, 29, 161, 74);
 		Select_waiter_to_occupy_table_5.add(Nextkey_5);
 		
-		JButton Helpkey_5 = new JButton("Help");
+		final JButton Helpkey_5 = new JButton("Help");
 		Helpkey_5.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Helpkey_5.setBounds(506, 382, 200, 74);
 		Select_waiter_to_occupy_table_5.add(Helpkey_5);
 		
-		JButton Green5a = new JButton("");
+		final JButton Green5a = new JButton("");
 		Green5a.setEnabled(false);
 		Green5a.setBackground(Color.GREEN);
 		Green5a.setBounds(42, 273, 180, 25);
 		Select_waiter_to_occupy_table_5.add(Green5a);
 		
-		JButton Green5b = new JButton("");
+		final JButton Green5b = new JButton("");
 		Green5b.setEnabled(false);
 		Green5b.setBackground(Color.GREEN);
 		Green5b.setBounds(345, 273, 180, 25);
 		Select_waiter_to_occupy_table_5.add(Green5b);
 		
-		JButton Green5c = new JButton("");
+		final JButton Green5c = new JButton("");
 		Green5c.setEnabled(false);
 		Green5c.setBackground(Color.GREEN);
 		Green5c.setBounds(639, 273, 180, 25);
@@ -870,72 +876,72 @@ public class Host_GUI extends JFrame implements ActionListener{
 		lblSelectWaiterTable_4.setBounds(143, 40, 606, 44);
 		Select_waiter_to_occupy_table_6.add(lblSelectWaiterTable_4);
 		
-		JButton Returnkey_6 = new JButton("Return");
+		final JButton Returnkey_6 = new JButton("Return");
 		Returnkey_6.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Returnkey_6.setBounds(187, 382, 200, 74);
 		Select_waiter_to_occupy_table_6.add(Returnkey_6);
 		
-		JToggleButton WaiterT_6_1 = new JToggleButton("Waiter 1");
+		final JToggleButton WaiterT_6_1 = new JToggleButton("Waiter 1");
 		WaiterT_6_1.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		WaiterT_6_1.setBounds(42, 199, 180, 74);
 		Select_waiter_to_occupy_table_6.add(WaiterT_6_1);
 		
-		JToggleButton WaiterT_6_2 = new JToggleButton("Waiter 2");
+		final JToggleButton WaiterT_6_2 = new JToggleButton("Waiter 2");
 		WaiterT_6_2.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		WaiterT_6_2.setBounds(345, 199, 180, 74);
 		Select_waiter_to_occupy_table_6.add(WaiterT_6_2);
 		
-		JToggleButton WaiterT_6_3 = new JToggleButton("Waiter 3");
+		final JToggleButton WaiterT_6_3 = new JToggleButton("Waiter 3");
 		WaiterT_6_3.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		WaiterT_6_3.setBounds(639, 199, 180, 74);
 		Select_waiter_to_occupy_table_6.add(WaiterT_6_3);
 		
-		JButton Waiter_1_toggle_6 = new JButton("");
+		final JButton Waiter_1_toggle_6 = new JButton("");
 		Waiter_1_toggle_6.setEnabled(false);
 		Waiter_1_toggle_6.setBackground(Color.RED);
 		Waiter_1_toggle_6.setBounds(42, 273, 180, 25);
 		Select_waiter_to_occupy_table_6.add(Waiter_1_toggle_6);
 		
-		JButton Waiter_2_toggle_6 = new JButton("");
+		final JButton Waiter_2_toggle_6 = new JButton("");
 		Waiter_2_toggle_6.setEnabled(false);
 		Waiter_2_toggle_6.setBackground(Color.RED);
 		Waiter_2_toggle_6.setBounds(345, 273, 180, 25);
 		Select_waiter_to_occupy_table_6.add(Waiter_2_toggle_6);
 		
-		JButton Waiter_3_toggle_6 = new JButton("");
+		final JButton Waiter_3_toggle_6 = new JButton("");
 		Waiter_3_toggle_6.setEnabled(false);
 		Waiter_3_toggle_6.setBackground(Color.RED);
 		Waiter_3_toggle_6.setBounds(639, 273, 180, 25);
 		Select_waiter_to_occupy_table_6.add(Waiter_3_toggle_6);
 		
-		JButton Previouskey_6 = new JButton("<- Previous");
+		final JButton Previouskey_6 = new JButton("<- Previous");
 		Previouskey_6.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Previouskey_6.setBounds(22, 29, 180, 74);
 		Select_waiter_to_occupy_table_6.add(Previouskey_6);
 		
-		JButton Nextkey_6 = new JButton("Next ->");
+		final JButton Nextkey_6 = new JButton("Next ->");
 		Nextkey_6.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Nextkey_6.setBounds(698, 29, 161, 74);
 		Select_waiter_to_occupy_table_6.add(Nextkey_6);
 		
-		JButton Helpkey_6 = new JButton("Help");
+		final JButton Helpkey_6 = new JButton("Help");
 		Helpkey_6.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Helpkey_6.setBounds(506, 382, 200, 74);
 		Select_waiter_to_occupy_table_6.add(Helpkey_6);
 		
-		JButton Green6a = new JButton("");
+		final JButton Green6a = new JButton("");
 		Green6a.setEnabled(false);
 		Green6a.setBackground(Color.GREEN);
 		Green6a.setBounds(42, 273, 180, 25);
 		Select_waiter_to_occupy_table_6.add(Green6a);
 		
-		JButton Green6b = new JButton("");
+		final JButton Green6b = new JButton("");
 		Green6b.setEnabled(false);
 		Green6b.setBackground(Color.GREEN);
 		Green6b.setBounds(345, 273, 180, 25);
 		Select_waiter_to_occupy_table_6.add(Green6b);
 		
-		JButton Green6c = new JButton("");
+		final JButton Green6c = new JButton("");
 		Green6c.setEnabled(false);
 		Green6c.setBackground(Color.GREEN);
 		Green6c.setBounds(639, 273, 180, 25);
@@ -946,6 +952,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 					/// INITIAL VALUUES ///
 		/*************************************************/
 		/*************************************************/
+		/*
 		if (busboy.table1_v.Table_enable == false){
 			toggle_w_1.setEnabled(false);
 			toggle_c_1.setEnabled(false);
@@ -971,6 +978,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 			toggle_c_6.setEnabled(false);
 		}
 		
+		*/
 		System.out.println("INITIAL STATUSES OF TABLES, CUSTOMERS, AND WAITERS");
 		System.out.println("");
 		if (Table_1_c.isVisible()){
@@ -1807,7 +1815,9 @@ public class Host_GUI extends JFrame implements ActionListener{
 						}else{System.out.println("Waiter 3 does not occupy Table 6");}
 						System.out.println("------------------------");
 						System.out.println("RUN END");
-								System.exit(0);
+						new LoginWindow();
+						busboy.frame.dispose();
+						frame.dispose();
 					}
 				});		
 				
@@ -1967,6 +1977,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 					EmployeeHandler.RemoveWaiterFromTable(3,6);
 				}
 				
+				
 	}
 	
 	// Fixing problem where if 1 waiter was reselected for a table, the table status would be unoccupied (even though other waiters still occupy the table)
@@ -1994,12 +2005,12 @@ public class Host_GUI extends JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Object a = e.getSource();
 		if(a==timer){
-			busboy.updateTables();
-			UPDATEHOSTBUTTONS();
+			//busboy.updateTables();
+			//UPDATEHOSTBUTTONS();
 		}
 		
 	}
-	
+	/*
 	public void UPDATEHOSTBUTTONS(){
 		if (busboy.tablehandler.check(1)==0){
 			toggle_w_1.setEnabled(false);
@@ -2025,5 +2036,5 @@ public class Host_GUI extends JFrame implements ActionListener{
 			toggle_w_6.setEnabled(false);
 			toggle_c_6.setEnabled(false);
 		}
-	}
+	} */
 }
