@@ -161,12 +161,12 @@ public class Host_GUI extends JFrame implements ActionListener{
 		
 		JButton Next_WS = new JButton("Next ->");
 		Next_WS.setFont(new Font("Segoe Print", Font.BOLD, 26));
-		Next_WS.setBounds(652, 28, 180, 74);
+		Next_WS.setBounds(633, 28, 199, 74);
 		Waiter_Status.add(Next_WS);
 		
 		JButton Previous_WS = new JButton("<- Previous");
 		Previous_WS.setFont(new Font("Segoe Print", Font.BOLD, 26));
-		Previous_WS.setBounds(51, 28, 180, 74);
+		Previous_WS.setBounds(51, 28, 199, 74);
 		Waiter_Status.add(Previous_WS);
 		
 		final JButton Table1_w = new JButton("");
@@ -296,7 +296,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Customer_status_title.setForeground(Color.BLUE);
 		Customer_status_title.setHorizontalAlignment(SwingConstants.CENTER);
 		Customer_status_title.setFont(new Font("Segoe Print", Font.BOLD, 36));
-		Customer_status_title.setBounds(285, 45, 325, 44);
+		Customer_status_title.setBounds(269, 40, 325, 44);
 		Customer_Status.add(Customer_status_title);
 		
 		final JButton Table_1_c = new JButton("");
@@ -354,12 +354,12 @@ public class Host_GUI extends JFrame implements ActionListener{
 		
 		final JButton Previous_CS = new JButton("<- Previous");
 		Previous_CS.setFont(new Font("Segoe Print", Font.BOLD, 26));
-		Previous_CS.setBounds(43, 29, 180, 74);
+		Previous_CS.setBounds(43, 29, 194, 74);
 		Customer_Status.add(Previous_CS);
 		
 		final JButton Next_CS = new JButton("Next ->");
 		Next_CS.setFont(new Font("Segoe Print", Font.BOLD, 26));
-		Next_CS.setBounds(638, 29, 180, 74);
+		Next_CS.setBounds(617, 29, 201, 74);
 		Customer_Status.add(Next_CS);
 		
 		final JToggleButton toggle_c_1 = new JToggleButton("Table 1");
@@ -442,12 +442,12 @@ public class Host_GUI extends JFrame implements ActionListener{
 		
 		JButton Occupied_Customer = new JButton("Table occupied by customer");
 		Occupied_Customer.setFont(new Font("Segoe Print", Font.BOLD, 26));
-		Occupied_Customer.setBounds(234, 182, 401, 74);
+		Occupied_Customer.setBounds(224, 182, 433, 74);
 		Customer_status_at_table.add(Occupied_Customer);
 		
 		JButton Unoccupied_Customer = new JButton("Table unoccupied by customer");
 		Unoccupied_Customer.setFont(new Font("Segoe Print", Font.BOLD, 26));
-		Unoccupied_Customer.setBounds(234, 309, 423, 74);
+		Unoccupied_Customer.setBounds(224, 309, 433, 74);
 		Customer_status_at_table.add(Unoccupied_Customer);
 		
 		JButton Return_cst = new JButton("Return");
@@ -506,12 +506,12 @@ public class Host_GUI extends JFrame implements ActionListener{
 		
 		final JButton Previouskey_1 = new JButton("<- Previous");
 		Previouskey_1.setFont(new Font("Segoe Print", Font.BOLD, 26));
-		Previouskey_1.setBounds(22, 29, 181, 74);
+		Previouskey_1.setBounds(22, 29, 200, 74);
 		Select_waiter_to_occupy_table_1.add(Previouskey_1);
 		
 		final JButton Nextkey_1 = new JButton("Next ->");
 		Nextkey_1.setFont(new Font("Segoe Print", Font.BOLD, 26));
-		Nextkey_1.setBounds(698, 29, 161, 74);
+		Nextkey_1.setBounds(679, 29, 180, 74);
 		Select_waiter_to_occupy_table_1.add(Nextkey_1);
 		
 		final JButton Helpkey_1 = new JButton("Help");
@@ -588,12 +588,12 @@ public class Host_GUI extends JFrame implements ActionListener{
 		
 		final JButton Previouskey_2 = new JButton("<- Previous");
 		Previouskey_2.setFont(new Font("Segoe Print", Font.BOLD, 26));
-		Previouskey_2.setBounds(22, 29, 180, 74);
+		Previouskey_2.setBounds(22, 29, 200, 74);
 		Select_waiter_to_occupy_table_2.add(Previouskey_2);
 		
 		final JButton Nextkey_2 = new JButton("Next ->");
 		Nextkey_2.setFont(new Font("Segoe Print", Font.BOLD, 26));
-		Nextkey_2.setBounds(698, 29, 161, 74);
+		Nextkey_2.setBounds(679, 29, 180, 74);
 		Select_waiter_to_occupy_table_2.add(Nextkey_2);
 		
 		final JButton Helpkey_2 = new JButton("Help");
@@ -670,12 +670,12 @@ public class Host_GUI extends JFrame implements ActionListener{
 		
 		final JButton Previouskey_3 = new JButton("<- Previous");
 		Previouskey_3.setFont(new Font("Segoe Print", Font.BOLD, 26));
-		Previouskey_3.setBounds(22, 29, 180, 74);
+		Previouskey_3.setBounds(22, 29, 200, 74);
 		Select_waiter_to_occupy_table_3.add(Previouskey_3);
 		
 		final JButton Nextkey_3 = new JButton("Next ->");
 		Nextkey_3.setFont(new Font("Segoe Print", Font.BOLD, 26));
-		Nextkey_3.setBounds(698, 29, 161, 74);
+		Nextkey_3.setBounds(679, 29, 180, 74);
 		Select_waiter_to_occupy_table_3.add(Nextkey_3);
 		
 		final JButton Helpkey_3 = new JButton("Help");
@@ -752,12 +752,12 @@ public class Host_GUI extends JFrame implements ActionListener{
 		
 		final JButton Previouskey_4 = new JButton("<- Previous");
 		Previouskey_4.setFont(new Font("Segoe Print", Font.BOLD, 26));
-		Previouskey_4.setBounds(22, 29, 180, 74);
+		Previouskey_4.setBounds(22, 29, 200, 74);
 		Select_waiter_to_occupy_table_4.add(Previouskey_4);
 		
 		final JButton Nextkey_4 = new JButton("Next ->");
 		Nextkey_4.setFont(new Font("Segoe Print", Font.BOLD, 26));
-		Nextkey_4.setBounds(698, 29, 161, 74);
+		Nextkey_4.setBounds(679, 29, 180, 74);
 		Select_waiter_to_occupy_table_4.add(Nextkey_4);
 		
 		final JButton Helpkey_4 = new JButton("Help");
@@ -834,12 +834,12 @@ public class Host_GUI extends JFrame implements ActionListener{
 		
 		final JButton Previouskey_5 = new JButton("<- Previous");
 		Previouskey_5.setFont(new Font("Segoe Print", Font.BOLD, 26));
-		Previouskey_5.setBounds(22, 29, 180, 74);
+		Previouskey_5.setBounds(22, 29, 200, 74);
 		Select_waiter_to_occupy_table_5.add(Previouskey_5);
 		
 		final JButton Nextkey_5 = new JButton("Next ->");
 		Nextkey_5.setFont(new Font("Segoe Print", Font.BOLD, 26));
-		Nextkey_5.setBounds(698, 29, 161, 74);
+		Nextkey_5.setBounds(685, 29, 174, 74);
 		Select_waiter_to_occupy_table_5.add(Nextkey_5);
 		
 		final JButton Helpkey_5 = new JButton("Help");
@@ -916,12 +916,12 @@ public class Host_GUI extends JFrame implements ActionListener{
 		
 		final JButton Previouskey_6 = new JButton("<- Previous");
 		Previouskey_6.setFont(new Font("Segoe Print", Font.BOLD, 26));
-		Previouskey_6.setBounds(22, 29, 180, 74);
+		Previouskey_6.setBounds(22, 29, 200, 74);
 		Select_waiter_to_occupy_table_6.add(Previouskey_6);
 		
 		final JButton Nextkey_6 = new JButton("Next ->");
 		Nextkey_6.setFont(new Font("Segoe Print", Font.BOLD, 26));
-		Nextkey_6.setBounds(698, 29, 161, 74);
+		Nextkey_6.setBounds(679, 29, 180, 74);
 		Select_waiter_to_occupy_table_6.add(Nextkey_6);
 		
 		final JButton Helpkey_6 = new JButton("Help");
@@ -952,11 +952,11 @@ public class Host_GUI extends JFrame implements ActionListener{
 					/// INITIAL VALUUES ///
 		/*************************************************/
 		/*************************************************/
-		/*
-		if (busboy.table1_v.Table_enable == false){
+		
 			toggle_w_1.setEnabled(false);
 			toggle_c_1.setEnabled(false);
-		}
+		
+		/*
 		if (busboy.table2_v.Table_enable == false){
 			toggle_w_2.setEnabled(false);
 			toggle_c_2.setEnabled(false);
