@@ -1,4 +1,5 @@
 package	Host;
+// The imports show which libraries will be used for creating the swing application, such as Jbuttons, JPanels, and JFrames.
 import ADT.*;
 import Busboy.BusboyProject;
 import Login.LoginWindow;
@@ -42,6 +43,8 @@ import javax.swing.UIManager;
 @SuppressWarnings("unused")
 public class Host_GUI extends JFrame implements ActionListener{
 	
+// Here I declared a new frame to place all of my buttons and panels upon, and new buttons, as well as panels. They we declared here so that they could be
+// reused by other classes throughout my code.
 	private JFrame frame;
 	private JPanel Waiter_status_at_table;
 	private JPanel Customer_status_at_table;
@@ -69,35 +72,17 @@ public class Host_GUI extends JFrame implements ActionListener{
 	private JButton toggle_c_6;
 	private Timer timer;
 	public BusboyProject busboy;
-	/**
-	 * Launch the application.
-	 */
 	
-	/*
-	public static void main(String[] args) {
-		
-					Host_GUI window = new Host_GUI();
-					window.frame.setVisible(true);
-				
-	} */
-
-	/**
-	 * Create the application.
-	 */
-	
-	
+// I created this class so that my GUI would be able to be initialzied in other classes outside of my code, such as the login file.
 	public Host_GUI() {
 		//Host_GUI window = new Host_GUI();
 		initialize();
 		this.frame.setVisible(true);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	
-	
-	
+
+// Here I begin the bulk of my coding. There are many different button declarations here, along with their descriptions. By descriptions I mean their specific
+// placement on the panel, their color, their visibility status, and many other things to make them function.
 	private void initialize() {
 		
 		//Create a timer to update the clock
@@ -111,9 +96,14 @@ public class Host_GUI extends JFrame implements ActionListener{
 		busboy.frame.setVisible(false);
 		//System.out.println("In host: ");
 		//System.out.println(busboy.table1_v.Table_Status);
+		// I used the following line "New run for host" to make sure that when buttons are pressed, changes are made to different aspects of my program. For
+		// example, if a table is set to have a waiter occupy it, I wanted to make sure that the console would print that statement.
 		System.out.println("---------------------------------------------");
 		System.out.println("NEW RUN FOR HOST");
 		System.out.println("---------------------------------------------");
+		
+		// Here there is a declaration of a new frame with its specifications, such as the size, what happens when it closes, and what sort of layout it has
+		// I chose the card layout for the frame so that it would be easy to flip between different parts of the program while each window's state is saved.
 		frame = new JFrame();
 		frame.setBounds(100, 100, 750, 637);
 		frame.setSize(900,600);
@@ -121,11 +111,15 @@ public class Host_GUI extends JFrame implements ActionListener{
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(new CardLayout(0, 0));
 		
+		// This is a declaration of a panel, and a similar format will be done throughout the code for new panels. I also changed its color, and added it to the
+		// frame. 
 		final JPanel Host_GUI = new JPanel();
 		Host_GUI.setBackground(UIManager.getColor("Panel.background"));
 		frame.getContentPane().add(Host_GUI, "name_270639079158101");
 		Host_GUI.setLayout(null);
 		
+		// This is a declaration of a new Label. It will be done several times throughout the code for different labels. As you can see, there are different
+		// font declarations, font styles, bonds to display where it would be placed on the panel, and a statement which adds the actual label to the panel.
 		JLabel TITLE_OF_PROGRAM = new JLabel("Host Interface");
 		TITLE_OF_PROGRAM.setForeground(Color.BLUE);
 		TITLE_OF_PROGRAM.setFont(new Font("SketchFlow Print", Font.BOLD, 40));
@@ -133,6 +127,8 @@ public class Host_GUI extends JFrame implements ActionListener{
 		TITLE_OF_PROGRAM.setBounds(259, 13, 354, 113);
 		Host_GUI.add(TITLE_OF_PROGRAM);
 		
+		// Here is a new button declaration. It contains a name, text style, location of the button, as well as its placement on the panel. This type of 
+		// declaration will be done many times throughout the code.
 		JButton Place_Customer = new JButton("Place Customer");
 		Place_Customer.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Place_Customer.setBounds(279, 184, 320, 74);
@@ -216,7 +212,9 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Help_w.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		Help_w.setBounds(196, 448, 180, 74);
 		Waiter_Status.add(Help_w);
-
+		
+		// Here is a sample JToggle button declaration. A JToggle button is similar to an actual button, but it can be toggled on or off. I used this feature
+		// to transition to other panels (if the button was toggled on, then the other panel of information would come on)
 		final JToggleButton toggle_w_1 = new JToggleButton("Table 1");
 		toggle_w_1.setFont(new Font("Segoe Print", Font.BOLD, 26));
 		toggle_w_1.setBounds(51, 185, 180, 74);
@@ -953,6 +951,10 @@ public class Host_GUI extends JFrame implements ActionListener{
 		/*************************************************/
 		/*************************************************/
 		
+		// Initial values from the database would go here. Specifically, after the busboy would set the status of a table, it would be visible here. If the
+		// status was unclean, the table would be disabled for use for the host. If it was clean, it was enabled. Here, a sample desclaration of a disabled
+		// table is displayed (The table for customer status changes, and waiter status changes).
+		
 			toggle_w_1.setEnabled(false);
 			toggle_c_1.setEnabled(false);
 		
@@ -977,6 +979,9 @@ public class Host_GUI extends JFrame implements ActionListener{
 			toggle_w_6.setEnabled(false);
 			toggle_c_6.setEnabled(false);
 		}
+		
+		// For testing, here are the initial statuses of tables printed out through the console to monitor changes made throughout the use of the program, in
+		// order to make sure things we working as intended.
 		
 		*/
 		System.out.println("INITIAL STATUSES OF TABLES, CUSTOMERS, AND WAITERS");
@@ -1025,6 +1030,9 @@ public class Host_GUI extends JFrame implements ActionListener{
 				
 		/////////////HOST GUI PANEL (PANEL 1)/////////////
 		
+		// Here we have action listeners, which basically listen to a click made to a button, and follow through with a set of commands. For example,
+		// If a button was pressed by the host which read "Place customer", the place customer panel would be visible, and the "Host GUI" window would 
+		// temporarily be invisible for the user (that is, untl he/she returns to the host GUI window.
 		
 		// Place Customer
 		Place_Customer.addActionListener(new ActionListener() {
@@ -1046,6 +1054,8 @@ public class Host_GUI extends JFrame implements ActionListener{
 		
 		/////////////Waiter Status (PANEL 2)/////////////
 		
+		// Here are more action listeners for the next panel, displaying what would happen if certan buttons were to be pressed.
+		
 		// Previous
 		Previous_WS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1059,6 +1069,9 @@ public class Host_GUI extends JFrame implements ActionListener{
 				JOptionPane.showMessageDialog(frame,"No more tables present!");
 			}
 		});
+		
+		// Here we can see that when certain table buttons are pressed, panels specific for that button would come up, showing the waiter status at that 
+		// table. From there one could select a waiter or several waiters to occupy that table.
 		
 		// Table 1
 		toggle_w_1.addActionListener(new ActionListener() {
@@ -1127,6 +1140,8 @@ public class Host_GUI extends JFrame implements ActionListener{
 		
 		/////////////Customer Status (PANEL 3)/////////////
 
+		// More action listeners for the buttons of the customer status window. These buttons simply switch between panels once pressed
+		
 		// Previous
 		Previous_CS.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1208,6 +1223,10 @@ public class Host_GUI extends JFrame implements ActionListener{
 		});
 		
 		/////////////Customer Status at a table (PANEL 4)/////////////
+		
+		// More action listeners for the buttons of the customer status window. The buttons activate the green and red buttons on the customer status window 
+		// once  a customer has been placed to a table. For instance if we select "Place customer to table" then the table status will light green. Else, it 
+		// will light red.
 		
 		//Return
 		Return_cst.addActionListener(new ActionListener() {
@@ -1347,6 +1366,9 @@ public class Host_GUI extends JFrame implements ActionListener{
 			}
 		});
 		
+		// Here, several things occur for the waiter button. Once a waiter button is pressed, the waiter occupancy for said table glows green, meaning that
+		// it is occupied by a waiter. Also, a print statement is made for testing, to make sure that the button pressed lights up the correct table status
+		
 		//Waiter 1
 		WaiterT_1_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1413,6 +1435,9 @@ public class Host_GUI extends JFrame implements ActionListener{
 					}
 				});
 
+		// Same concept applies here and for the rest of the tables: If a waiter or more is selected, then the table status would light up green indicating that
+		// a waiter occupies said table, and the waiters indicator would light up green displaying that the waiter is now occupied.
+				
 		//Waiter 1
 		WaiterT_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1708,6 +1733,9 @@ public class Host_GUI extends JFrame implements ActionListener{
 		
 		//LOGOUTS
 		
+		// Here, the final testing is done, where after the user logs out, the console prints out all of the final statuses of the table after
+		// the program has been used, to make sure that the buttons did as they were told and statuses updated accordingly.
+		
 		// Logout Initial Panel
 				Logout.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -1816,41 +1844,23 @@ public class Host_GUI extends JFrame implements ActionListener{
 						System.out.println("------------------------");
 						System.out.println("RUN END");
 						new LoginWindow();
+						
+						// Once the frame is disposed, then the login screen will be displayed again to go to a different program, as shown by the following code:
 						busboy.frame.dispose();
 						frame.dispose();
 					}
 				});		
 				
 		
-		// FINAL OUTPUTS
-				// Update customer status	
-				if (Table_1_c.isVisible()){
-					//Table 1 is not occupied by a customer
-				}else{/*Table 1 is occupied by a customer)*/}
-				
-				if (Table_2_c.isVisible()){
-					//Table 2 is not occupied by a customer
-				}else{/*Table 2 is occupied by a customer)*/}
-				
-				if (Table_3_c.isVisible()){
-					//Table 3 is not occupied by a customer
-				}else{/*Table 3 is occupied by a customer)*/}
-				
-				if (Table_4_c.isVisible()){
-					//Table 4 is not occupied by a customer
-				}else{/*Table 4 is occupied by a customer)*/}
-				
-				if (Table_5_c.isVisible()){
-					//Table 5 is not occupied by a customer
-				}else{/*Table 5 is occupied by a customer)*/}
-				
-				if (Table_6_c.isVisible()){
-					//Table 6 is not occupied by a customer
-				}else{/*Table 6 is occupied by a customer)*/}
+		
 				
 				
 					
 				// Update waiter status
+				
+				// The following commands are set in place to update handlers as the program runs to update the other interfaces with the new table statuses. 
+				// Unfortunately, they did not work properly, so they handlers were not updated. However, these will be place holders for database instructions 
+				// for the newer implementation (They can be ignored for now).
 				if (Waiter_1_toggle_1.isVisible()==false){
 					//Waiter 1 occupies Table 1
 					EmployeeHandler.AssignWaiterToTable(1,1);
@@ -1989,7 +1999,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 	}
 	
 	
-	// Turns a table as occupied if a waiter occupies it, turns a table unoccupied if a waiter unoccupies it.
+	// Turns a table as occupied if a waiter occupies it, turns a table unoccupied if a waiter un-occupies it.
 	
 	public void TableStatusUpdate(JButton WaiterToggle,JButton TableToggle){
 		if(WaiterToggle.isVisible() == false){
@@ -2002,6 +2012,9 @@ public class Host_GUI extends JFrame implements ActionListener{
 	}
 	
 	@Override
+	
+	// Will be used to update a clock which will be later implemented into the interface.
+	
 	public void actionPerformed(ActionEvent e) {
 		Object a = e.getSource();
 		if(a==timer){
@@ -2010,31 +2023,5 @@ public class Host_GUI extends JFrame implements ActionListener{
 		}
 		
 	}
-	/*
-	public void UPDATEHOSTBUTTONS(){
-		if (busboy.tablehandler.check(1)==0){
-			toggle_w_1.setEnabled(false);
-			toggle_c_1.setEnabled(false);
-		}
-		if (busboy.tablehandler.check(2)==0){
-			toggle_w_2.setEnabled(false);
-			toggle_c_2.setEnabled(false);
-		}
-		if (busboy.tablehandler.check(3)==0){
-			toggle_w_3.setEnabled(false);
-			toggle_c_3.setEnabled(false);
-		}
-		if (busboy.tablehandler.check(4)==0){
-			toggle_w_4.setEnabled(false);
-			toggle_c_4.setEnabled(false);
-		}
-		if (busboy.tablehandler.check(5)==0){
-			toggle_w_5.setEnabled(false);
-			toggle_c_5.setEnabled(false);
-		}
-		if (busboy.tablehandler.check(6)==0){
-			toggle_w_6.setEnabled(false);
-			toggle_c_6.setEnabled(false);
-		}
-	} */
+	
 }
