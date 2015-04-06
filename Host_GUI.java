@@ -177,11 +177,13 @@ public class Host_GUI extends JFrame implements ActionListener{
 		TableStatus.add(Assign_Waiters);
 		
 		Assign = new JButton("Assign");
+		Assign.addActionListener(this);
 		Assign.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Assign.setBounds(55, 223, 172, 68);
 		TableStatus.add(Assign);
 		
 		Unassign = new JButton("Unassign");
+		Unassign.addActionListener(this);
 		Unassign.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Unassign.setBounds(55, 330, 175, 68);
 		TableStatus.add(Unassign);
@@ -538,7 +540,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		UIManager.put("ToggleButton.select", Color.GREEN);
 		
 		Help = new GradientButton("HELP");
-		
+		Help.addActionListener(this);
 		Help.setText("HELP");
 		Help.setFont(Help.getFont().deriveFont(16f));
 		Help.setFocusPainted(false);
@@ -553,43 +555,6 @@ public class Host_GUI extends JFrame implements ActionListener{
 		MainPanel.add(Message);
 		
 		logoutButton.addActionListener(this);
-		
-		Help.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(rootPanel, "Select a table to toggle its status. Red = Unclean, Green = Clean");
-			}
-		});
-		/*
-		combo.addItemListener(new ItemListener(){
-
-	        public void itemStateChanged(ItemEvent e){
-	            int ind = combo.getSelectedIndex();
-	            System.out.println(ind); 
-	            fontSize = Integer.parseInt(fontSizes[ind]);
-	            editArea.setFont(new Font("Sans Serif",Font.PLAIN,fontSize));
-	        }
-	    });
-	*/
-		
-		// Customer Combobox action listener
-		
-		combobox_customer.addItemListener(new ItemListener(){
-	        public void itemStateChanged(ItemEvent event){
-	        	int ind = combobox_customer.getSelectedIndex();
-	        	// Start registering that something is selected
-	        	if(event.getStateChange() == ItemEvent.SELECTED ) {
-	        		if(ind == 0){ //In the event that the first table is selected
-	        			System.out.println("Table 1");
-	        			if (Assign.isSelected()){ // and if assign is selected
-	        				System.out.println("Assign");
-	        				Table1.setVisible(false); // set the Table 1 button to invisible
-	        			}
-	        		}
-	        		
-	        	}
-	        }
-	    });
-		
 		
 		MainPanel.setVisible(true);
 	}
@@ -658,9 +623,23 @@ public class Host_GUI extends JFrame implements ActionListener{
 		{
 			updateClock();
 		}
-	if(a == Message)
+	if(a == Help)
 		{
-	
+			JOptionPane.showMessageDialog(rootPanel, "Select a table to toggle its status. Red = Unclean, Green = Clean");
+		}
+	if(a == Assign)
+		{
+			String s = (String)combobox_customer.getSelectedItem();
+			if(s == "Table 1"){
+				Table1.setBackground(Color.green);
+			}
+		}
+	if(a == Unassign)
+		{
+			String s = (String)combobox_customer.getSelectedItem();
+			if(s == "Table 1"){
+				Table1.setBackground(Color.red);
+			}
 		}
 	/*
 	if(combobox_customer.getSelectedItem().equals("Table 1")){
