@@ -750,7 +750,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		}
 	if(a == Help)
 		{
-			JOptionPane.showMessageDialog(rootPanel, "For customer: Select assign to assign a customer to a table, unassign to unassign a customer from a table. For waiter: Select a waiter to occupy a waiter. Indicators underneath the table display which waiter occupied the table (left = waiter 1, right = waiter 5");
+			JOptionPane.showMessageDialog(rootPanel, "<htmL>For customer: Select assign to assign a customer to a table, unassign to unassign a customer from a table. <br><br>For waiter: Select a waiter to occupy a waiter. Indicators underneath the table display which waiter occupied the table (left = waiter 1, right = waiter 5<br></html>");
 		}
 	if(a == Assign)
 		{
