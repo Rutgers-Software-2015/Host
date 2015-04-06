@@ -58,7 +58,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 			//Other Variables
 			private Timer timer;
 			private JPanel TableStatus;
-			public JButton Waiter1,Waiter2,Waiter3,Waiter4,Waiter5;
+			public GradientButton Waiter1,Waiter2,Waiter3,Waiter4,Waiter5;
 			public JButton Table1,Table2,Table3,Table4,Table5,Table6,Table7,Table8,Table9,Table10;
 			public JButton t1w1,t1w2,t1w3,t1w4,t1w5;
 			public JButton t2w1,t2w2,t2w3,t2w4,t2w5;
@@ -204,27 +204,27 @@ public class Host_GUI extends JFrame implements ActionListener{
 		//combobox_waiter.setSelectedIndex(0);
 		Render(combobox_waiter);
 		
-		Waiter1 = new JButton("Waiter 1");
+		Waiter1 = new GradientButton("Waiter 1");
 		Waiter1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Waiter1.setBounds(980, 166, 151, 45);
 		TableStatus.add(Waiter1);
 		
-		Waiter2 = new JButton("Waiter 2");
+		Waiter2 = new GradientButton("Waiter 2");
 		Waiter2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Waiter2.setBounds(980, 224, 151, 45);
 		TableStatus.add(Waiter2);
 		
-		Waiter3 = new JButton("Waiter 3");
+		Waiter3 = new GradientButton("Waiter 3");
 		Waiter3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Waiter3.setBounds(980, 282, 151, 45);
 		TableStatus.add(Waiter3);
 		
-		Waiter4 = new JButton("Waiter 4");
+		Waiter4 = new GradientButton("Waiter 4");
 		Waiter4.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Waiter4.setBounds(980, 341, 151, 45);
 		TableStatus.add(Waiter4);
 		
-		Waiter5 = new JButton("Waiter 5");
+		Waiter5 = new GradientButton("Waiter 5");
 		Waiter5.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Waiter5.setBounds(980, 399, 151, 45);
 		TableStatus.add(Waiter5);
@@ -633,6 +633,33 @@ public class Host_GUI extends JFrame implements ActionListener{
 			if(s == "Table 1"){
 				Table1.setBackground(Color.green);
 			}
+			if(s == "Table 2"){
+				Table2.setBackground(Color.green);
+			}
+			if(s == "Table 3"){
+				Table3.setBackground(Color.green);
+			}
+			if(s == "Table 4"){
+				Table4.setBackground(Color.green);
+			}
+			if(s == "Table 5"){
+				Table5.setBackground(Color.green);
+			}
+			if(s == "Table 6"){
+				Table6.setBackground(Color.green);
+			}
+			if(s == "Table 7"){
+				Table7.setBackground(Color.green);
+			}
+			if(s == "Table 8"){
+				Table8.setBackground(Color.green);
+			}
+			if(s == "Table 9"){
+				Table9.setBackground(Color.green);
+			}
+			if(s == "Table 10"){
+				Table10.setBackground(Color.green);
+			}
 		}
 	if(a == Unassign)
 		{
@@ -640,14 +667,69 @@ public class Host_GUI extends JFrame implements ActionListener{
 			if(s == "Table 1"){
 				Table1.setBackground(Color.red);
 			}
+			if(s == "Table 2"){
+				Table2.setBackground(Color.red);
+			}
+			if(s == "Table 3"){
+				Table3.setBackground(Color.red);
+			}
+			if(s == "Table 4"){
+				Table4.setBackground(Color.red);
+			}
+			if(s == "Table 5"){
+				Table5.setBackground(Color.red);
+			}
+			if(s == "Table 6"){
+				Table6.setBackground(Color.red);
+			}
+			if(s == "Table 7"){
+				Table7.setBackground(Color.red);
+			}
+			if(s == "Table 8"){
+				Table8.setBackground(Color.red);
+			}
+			if(s == "Table 9"){
+				Table9.setBackground(Color.red);
+			}
+			if(s == "Table 10"){
+				Table10.setBackground(Color.red);
+			}
 		}
-	/*
-	if(combobox_customer.getSelectedItem().equals("Table 1")){
-		if(Assign.isSelected()){
-			Table1.setBackground(Color.green);
+	if(a == Waiter1)
+	{
+		String s = (String)combobox_waiter.getSelectedItem();
+		if(s == "Table 1"){
+			t1w1.setBackground(Color.red);
+		}
+		if(s == "Table 2"){
+			t2w1.setBackground(Color.red);
+		}
+		if(s == "Table 3"){
+			t3w1.setBackground(Color.red);
+		}
+		if(s == "Table 4"){
+			t4w1.setBackground(Color.red);
+		}
+		if(s == "Table 5"){
+			t5w1.setBackground(Color.red);
+		}
+		if(s == "Table 6"){
+			t6w1.setBackground(Color.red);
+		}
+		if(s == "Table 7"){
+			t7w1.setBackground(Color.red);
+		}
+		if(s == "Table 8"){
+			t8w1.setBackground(Color.red);
+		}
+		if(s == "Table 9"){
+			t9w1.setBackground(Color.red);
+		}
+		if(s == "Table 10"){
+			t10w1.setBackground(Color.red);
 		}
 	}
-	*/
+
 	}
 	
 	
