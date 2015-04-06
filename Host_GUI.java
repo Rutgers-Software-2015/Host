@@ -697,36 +697,9 @@ public class Host_GUI extends JFrame implements ActionListener{
 		}
 	if(a == Waiter1)
 	{
-		String s = (String)combobox_waiter.getSelectedItem();
-		if(s == "Table 1"){
+		String x = (String)combobox_waiter.getSelectedItem();
+		if(x == "Table 1"){
 			t1w1.setBackground(Color.red);
-		}
-		if(s == "Table 2"){
-			t2w1.setBackground(Color.red);
-		}
-		if(s == "Table 3"){
-			t3w1.setBackground(Color.red);
-		}
-		if(s == "Table 4"){
-			t4w1.setBackground(Color.red);
-		}
-		if(s == "Table 5"){
-			t5w1.setBackground(Color.red);
-		}
-		if(s == "Table 6"){
-			t6w1.setBackground(Color.red);
-		}
-		if(s == "Table 7"){
-			t7w1.setBackground(Color.red);
-		}
-		if(s == "Table 8"){
-			t8w1.setBackground(Color.red);
-		}
-		if(s == "Table 9"){
-			t9w1.setBackground(Color.red);
-		}
-		if(s == "Table 10"){
-			t10w1.setBackground(Color.red);
 		}
 	}
 
