@@ -576,12 +576,13 @@ public class Host_GUI extends JFrame implements ActionListener{
 		combobox_customer.addItemListener(new ItemListener(){
 	        public void itemStateChanged(ItemEvent event){
 	        	int ind = combobox_customer.getSelectedIndex();
+	        	// Start registering that something is selected
 	        	if(event.getStateChange() == ItemEvent.SELECTED ) {
-	        		if(ind == 0){
+	        		if(ind == 0){ //In the event that the first table is selected
 	        			System.out.println("Table 1");
-	        			if (Assign.isSelected()){
+	        			if (Assign.isSelected()){ // and if assign is selected
 	        				System.out.println("Assign");
-	        				Table1.setVisible(false);
+	        				Table1.setVisible(false); // set the Table 1 button to invisible
 	        			}
 	        		}
 	        		
