@@ -26,6 +26,7 @@ import java.awt.Rectangle;
 import java.awt.SystemColor;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.DefaultListCellRenderer;
@@ -44,6 +45,8 @@ import Shared.Gradients.GradientPanel;
 
 import javax.swing.JSeparator;
 import javax.swing.JComboBox;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 @SuppressWarnings("unused")
 
 public class Host_GUI extends JFrame implements ActionListener{
@@ -56,22 +59,25 @@ public class Host_GUI extends JFrame implements ActionListener{
 			//private GradientButton logoutButton;
 			private JLabel titleLabel,dateAndTime;
 			//Other Variables
-			private Timer timer;
-			private JPanel TableStatus;
-			public GradientButton Waiter1,Waiter2,Waiter3,Waiter4,Waiter5;
+			public Timer timer;
+			public JPanel TableStatus;
+			public GradientButton AssignWaiter,UnassignWaiter;
 			public JButton Table1,Table2,Table3,Table4,Table5,Table6,Table7,Table8,Table9,Table10;
-			public JButton t1w1,t1w2,t1w3,t1w4,t1w5;
-			public JButton t2w1,t2w2,t2w3,t2w4,t2w5;
-			public JButton t3w1,t3w2,t3w3,t3w4,t3w5;
-			public JButton t4w1,t4w2,t4w3,t4w4,t4w5;
-			public JButton t5w1,t5w2,t5w3,t5w4,t5w5;
-			public JButton t6w1,t6w2,t6w3,t6w4,t6w5;
-			public JButton t7w1,t7w2,t7w3,t7w4,t7w5;
-			public JButton t8w1,t8w2,t8w3,t8w4,t8w5;
-			public JButton t9w1,t9w2,t9w3,t9w4,t9w5;
-			public JButton t10w1,t10w2,t10w3,t10w4,t10w5;
 			public GradientButton Assign,Unassign;
-			public JComboBox combobox_customer,combobox_waiter;
+			public JComboBox combobox_customer,combobox_waiter, WaiterList;
+			public JComboBox Waiters_for_Table_2;
+			public JComboBox Waiters_for_Table_4;
+			public JComboBox Waiters_for_Table_7;
+			public JComboBox Waiters_for_Table_1;
+			public JComboBox Waiters_for_Table_5;
+			public JComboBox Waiters_for_Table_8;
+			public JComboBox Waiters_for_Table_10;
+			public JComboBox Waiters_for_Table_3;
+			public JComboBox Waiters_for_Table_6;
+			public JComboBox Waiters_for_Table_9;
+			public JButton W_1,W_2,W_3,W_4,W_5,W_6,W_7,W_8,W_9,W_10;
+			public Vector<String> Waiter_List;
+			
 	public Host_GUI() {
 		
 		super();
@@ -81,7 +87,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 
 	
 	private void initialize() {
-		this.setTitle("Your GUI");
+		this.setTitle("Host GUI");
 		this.setVisible(false);
 		this.setResizable(true);
 		this.setSize(1200,700);
@@ -147,11 +153,17 @@ public class Host_GUI extends JFrame implements ActionListener{
 		
 		TableStatus.setOpaque(false);
 		
+		
 		// ************************************
 		// ************************************
 		// Main definitions (ignore)
 		// ************************************
 		// ************************************
+		
+		// Borders for buttons):
+		Border border = new LineBorder(Color.BLUE,2);
+		
+		//
 		
 		JLabel Title_Status = new JLabel("Change Table Status");
 		Title_Status.setFont(new Font("Tahoma", Font.PLAIN, 28));
@@ -173,7 +185,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		JLabel Assign_Waiters = new JLabel("Assign Waiters");
 		Assign_Waiters.setHorizontalAlignment(SwingConstants.CENTER);
 		Assign_Waiters.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		Assign_Waiters.setBounds(909, 13, 279, 58);
+		Assign_Waiters.setBounds(930, 13, 258, 58);
 		TableStatus.add(Assign_Waiters);
 		
 		Assign = new GradientButton("Assign");
@@ -199,461 +211,227 @@ public class Host_GUI extends JFrame implements ActionListener{
 		String[] Tables_for_waiter = {"Table 1","Table 2", "Table 3", "Table 4", "Table 5", "Table 6","Table 7","Table 8","Table 9","Table 10"};
 		combobox_waiter = new JComboBox(Tables_for_waiter);
 		combobox_waiter.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		combobox_waiter.setBounds(980, 87, 151, 51);
+		combobox_waiter.setBounds(990, 121, 151, 51);
 		TableStatus.add(combobox_waiter);
 		//combobox_waiter.setSelectedIndex(0);
 		Render(combobox_waiter);
 		
-		Waiter1 = new GradientButton("Waiter 1");
-		Waiter1.addActionListener(this);
-		Waiter1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Waiter1.setBounds(980, 166, 151, 45);
-		TableStatus.add(Waiter1);
+		Waiter_List=new Vector<String>();
+		WaiterList = new JComboBox(Waiter_List);
+		WaiterList.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		WaiterList.setBounds(990, 220, 151, 51);
+		TableStatus.add(WaiterList);
+		TableStatus.setVisible(true);
+		Render(WaiterList);
 		
-		Waiter2 = new GradientButton("Waiter 2");
-		Waiter2.addActionListener(this);
-		Waiter2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Waiter2.setBounds(980, 224, 151, 45);
-		TableStatus.add(Waiter2);
+		AssignWaiter = new GradientButton("Waiter 1");
+		AssignWaiter.setText("Assign Waiter");
+		AssignWaiter.addActionListener(this);
+		AssignWaiter.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		AssignWaiter.setBounds(974, 312, 187, 45);
+		TableStatus.add(AssignWaiter);
 		
-		Waiter3 = new GradientButton("Waiter 3");
-		Waiter3.addActionListener(this);
-		Waiter3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Waiter3.setBounds(980, 282, 151, 45);
-		TableStatus.add(Waiter3);
+		UnassignWaiter = new GradientButton("Waiter 2");
+		UnassignWaiter.setText("UnassignWaiter");
+		UnassignWaiter.addActionListener(this);
+		UnassignWaiter.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		UnassignWaiter.setBounds(974, 384, 187, 45);
+		TableStatus.add(UnassignWaiter);
 		
-		Waiter4 = new GradientButton("Waiter 4");
-		Waiter4.addActionListener(this);
-		Waiter4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Waiter4.setBounds(980, 341, 151, 45);
-		TableStatus.add(Waiter4);
+		Waiters_for_Table_1 = new JComboBox();
+		Waiters_for_Table_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Waiters_for_Table_1.setBounds(266, 170, 186, 37);
+		TableStatus.add(Waiters_for_Table_1);
+		Render(Waiters_for_Table_1);
 		
-		Waiter5 = new GradientButton("Waiter 5");
-		Waiter5.addActionListener(this);
-		Waiter5.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Waiter5.setBounds(980, 399, 151, 45);
-		TableStatus.add(Waiter5);
+		Waiters_for_Table_2 = new JComboBox();
+		Waiters_for_Table_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Waiters_for_Table_2.setBounds(494, 121, 186, 37);
+		TableStatus.add(Waiters_for_Table_2);
+		Render(Waiters_for_Table_2);
 		
-		Table1 = new JButton("Table 1");
-		Table1.setBackground(Color.RED);
-		Table1.setEnabled(false);
-		Table1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table1.setBounds(493, 87, 187, 45);
-		TableStatus.add(Table1);
+		Waiters_for_Table_3 = new JComboBox();
+		Waiters_for_Table_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Waiters_for_Table_3.setBounds(713, 170, 186, 37);
+		TableStatus.add(Waiters_for_Table_3);
+		Render(Waiters_for_Table_3);
+		
+		Waiters_for_Table_4 = new JComboBox();
+		Waiters_for_Table_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Waiters_for_Table_4.setBounds(267, 270, 186, 37);
+		TableStatus.add(Waiters_for_Table_4);
+		Render(Waiters_for_Table_4);
+		
+		Waiters_for_Table_5 = new JComboBox();
+		Waiters_for_Table_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Waiters_for_Table_5.setBounds(494, 216, 186, 37);
+		TableStatus.add(Waiters_for_Table_5);
+		Render(Waiters_for_Table_5);
+		
+		Waiters_for_Table_6 = new JComboBox();
+		Waiters_for_Table_6.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Waiters_for_Table_6.setBounds(714, 273, 186, 37);
+		TableStatus.add(Waiters_for_Table_6);
+		Render(Waiters_for_Table_6);
+		
+		Waiters_for_Table_7 = new JComboBox();
+		Waiters_for_Table_7.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Waiters_for_Table_7.setBounds(267, 374, 186, 37);
+		TableStatus.add(Waiters_for_Table_7);
+		Render(Waiters_for_Table_7);
+		
+		Waiters_for_Table_8 = new JComboBox();
+		Waiters_for_Table_8.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Waiters_for_Table_8.setBounds(493, 320, 186, 37);
+		TableStatus.add(Waiters_for_Table_8);
+		Render(Waiters_for_Table_8);
+		
+		Waiters_for_Table_9 = new JComboBox();
+		Waiters_for_Table_9.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Waiters_for_Table_9.setBounds(714, 378, 186, 37);
+		TableStatus.add(Waiters_for_Table_9);
+		Render(Waiters_for_Table_9);
+		
+		Waiters_for_Table_10 = new JComboBox();
+		Waiters_for_Table_10.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Waiters_for_Table_10.setBounds(494, 417, 186, 37);
+		TableStatus.add(Waiters_for_Table_10);
+		Render(Waiters_for_Table_10);
+		
+		W_1 = new JButton("");
+		W_1.setForeground(Color.GREEN);
+		W_1.setEnabled(false);
+		W_1.setBounds(432, 117, 21, 45);
+		TableStatus.add(W_1);
+		W_1.setBorder(border);
+		
+		W_2 = new JButton("");
+		W_2.setEnabled(false);
+		W_2.setBounds(659, 64, 21, 45);
+		TableStatus.add(W_2);
+		W_2.setBorder(border);
+		
+		W_3 = new JButton("");
+		W_3.setEnabled(false);
+		W_3.setBounds(879, 121, 21, 45);
+		TableStatus.add(W_3);
+		W_3.setBorder(border);
+		
+		W_4 = new JButton("");
+		W_4.setEnabled(false);
+		W_4.setBounds(432, 216, 21, 45);
+		TableStatus.add(W_4);
+		W_4.setBorder(border);
+		
+		W_5 = new JButton("");
+		W_5.setEnabled(false);
+		W_5.setBounds(659, 166, 22, 45);
+		TableStatus.add(W_5);
+		W_5.setBorder(border);
+		
+		W_6 = new JButton("");
+		W_6.setEnabled(false);
+		W_6.setBounds(879, 224, 21, 45);
+		TableStatus.add(W_6);
+		W_6.setBorder(border);
+		
+		W_7 = new JButton("");
+		W_7.setEnabled(false);
+		W_7.setBounds(432, 320, 21, 45);
+		TableStatus.add(W_7);
+		W_7.setBorder(border);
+		
+		W_8 = new JButton("");
+		W_8.setEnabled(false);
+		W_8.setBounds(659, 269, 22, 45);
+		TableStatus.add(W_8);
+		W_8.setBorder(border);
+		
+		W_9 = new JButton("");
+		W_9.setEnabled(false);
+		W_9.setBounds(879, 327, 21, 45);
+		TableStatus.add(W_9);
+		W_9.setBorder(border);
+		
+		W_10 = new JButton("");
+		W_10.setEnabled(false);
+		W_10.setBounds(659, 370, 22, 45);
+		TableStatus.add(W_10);
+		W_10.setBorder(border);
 		
 		Table2 = new JButton("Table 2");
 		Table2.setBackground(Color.RED);
 		Table2.setEnabled(false);
 		Table2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table2.setBounds(295, 166, 186, 45);
+		Table2.setBounds(494, 64, 186, 45);
 		TableStatus.add(Table2);
 		
 		Table3 = new JButton("Table 3");
 		Table3.setBackground(Color.RED);
 		Table3.setEnabled(false);
 		Table3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table3.setBounds(295, 252, 187, 45);
+		Table3.setBounds(713, 122, 187, 45);
 		TableStatus.add(Table3);
 		
 		Table4 = new JButton("Table 4");
 		Table4.setBackground(Color.RED);
 		Table4.setEnabled(false);
 		Table4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table4.setBounds(295, 330, 186, 51);
+		Table4.setBounds(266, 216, 186, 45);
 		TableStatus.add(Table4);
+		
 		
 		Table5 = new JButton("Table 5");
 		Table5.setBackground(Color.RED);
 		Table5.setEnabled(false);
 		Table5.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table5.setBounds(703, 166, 187, 45);
+		Table5.setBounds(494, 166, 187, 45);
 		TableStatus.add(Table5);
 		
 		Table6 = new JButton("Table 6");
 		Table6.setBackground(Color.RED);
 		Table6.setEnabled(false);
 		Table6.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table6.setBounds(703, 246, 187, 45);
+		Table6.setBounds(713, 224, 187, 45);
 		TableStatus.add(Table6);
-		
-		Table7 = new JButton("Table 7");
-		Table7.setBackground(Color.RED);
-		Table7.setEnabled(false);
-		Table7.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table7.setBounds(703, 327, 187, 51);
-		TableStatus.add(Table7);
-		
-		Table8 = new JButton("Table 8");
-		Table8.setBackground(Color.RED);
-		Table8.setEnabled(false);
-		Table8.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table8.setBounds(493, 179, 187, 68);
-		TableStatus.add(Table8);
 		
 		Table9 = new JButton("Table 9");
 		Table9.setBackground(Color.RED);
 		Table9.setEnabled(false);
 		Table9.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table9.setBounds(493, 282, 187, 58);
+		Table9.setBounds(713, 327, 187, 45);
 		TableStatus.add(Table9);
+		
+		Table7 = new JButton("Table 7");
+		Table7.setBackground(Color.RED);
+		Table7.setEnabled(false);
+		Table7.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Table7.setBounds(266, 320, 187, 45);
+		TableStatus.add(Table7);
 		
 		Table10 = new JButton("Table 10");
 		Table10.setBackground(Color.RED);
 		Table10.setEnabled(false);
 		Table10.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table10.setBounds(493, 386, 187, 58);
+		Table10.setBounds(494, 370, 187, 45);
 		TableStatus.add(Table10);
 		
-		t1w1 = new JButton("");
-		t1w1.setEnabled(false);
-		t1w1.setBackground(Color.RED);
-		t1w1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t1w1.setBounds(493, 134, 37, 18);
-		TableStatus.add(t1w1);
 		
-		t1w2 = new JButton("");
-		t1w2.setEnabled(false);
-		t1w2.setBackground(Color.RED);
-		t1w2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t1w2.setBounds(530, 134, 37, 18);
-		TableStatus.add(t1w2);
+		Table8 = new JButton("Table 8");
+		Table8.setBackground(Color.RED);
+		Table8.setEnabled(false);
+		Table8.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Table8.setBounds(493, 269, 187, 45);
+		TableStatus.add(Table8);
 		
-		t1w3 = new JButton("");
-		t1w3.setEnabled(false);
-		t1w3.setBackground(Color.RED);
-		t1w3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t1w3.setBounds(569, 134, 37, 18);
-		TableStatus.add(t1w3);
+		Table1 = new JButton("Table 1");
+		Table1.setBackground(Color.RED);
+		Table1.setEnabled(false);
+		Table1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Table1.setBounds(266, 117, 187, 45);
+		TableStatus.add(Table1);
 		
-		t1w4 = new JButton("");
-		t1w4.setEnabled(false);
-		t1w4.setBackground(Color.RED);
-		t1w4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t1w4.setBounds(606, 134, 37, 18);
-		TableStatus.add(t1w4);
 		
-		t1w5 = new JButton("");
-		t1w5.setEnabled(false);
-		t1w5.setBackground(Color.RED);
-		t1w5.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t1w5.setBounds(643, 134, 37, 18);
-		TableStatus.add(t1w5);
-		
-		t2w1 = new JButton("");
-		t2w1.setEnabled(false);
-		t2w1.setBackground(Color.RED);
-		t2w1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t2w1.setBounds(295, 210, 37, 18);
-		TableStatus.add(t2w1);
-		
-		t2w2 = new JButton("");
-		t2w2.setEnabled(false);
-		t2w2.setBackground(Color.RED);
-		t2w2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t2w2.setBounds(332, 210, 37, 18);
-		TableStatus.add(t2w2);
-		
-		t2w3 = new JButton("");
-		t2w3.setEnabled(false);
-		t2w3.setBackground(Color.RED);
-		t2w3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t2w3.setBounds(371, 210, 37, 18);
-		TableStatus.add(t2w3);
-		
-		t2w4 = new JButton("");
-		t2w4.setEnabled(false);
-		t2w4.setBackground(Color.RED);
-		t2w4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t2w4.setBounds(408, 210, 37, 18);
-		TableStatus.add(t2w4);
-		
-		t2w5 = new JButton("");
-		t2w5.setEnabled(false);
-		t2w5.setBackground(Color.RED);
-		t2w5.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t2w5.setBounds(445, 210, 37, 18);
-		TableStatus.add(t2w5);
-		
-		t3w1 = new JButton("");
-		t3w1.setEnabled(false);
-		t3w1.setBackground(Color.RED);
-		t3w1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t3w1.setBounds(294, 299, 37, 18);
-		TableStatus.add(t3w1);
-		
-		t3w2 = new JButton("");
-		t3w2.setEnabled(false);
-		t3w2.setBackground(Color.RED);
-		t3w2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t3w2.setBounds(331, 299, 37, 18);
-		TableStatus.add(t3w2);
-		
-		t3w3 = new JButton("");
-		t3w3.setEnabled(false);
-		t3w3.setBackground(Color.RED);
-		t3w3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t3w3.setBounds(370, 299, 37, 18);
-		TableStatus.add(t3w3);
-		
-		t3w4 = new JButton("");
-		t3w4.setEnabled(false);
-		t3w4.setBackground(Color.RED);
-		t3w4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t3w4.setBounds(407, 299, 37, 18);
-		TableStatus.add(t3w4);
-		
-		t3w5 = new JButton("");
-		t3w5.setEnabled(false);
-		t3w5.setBackground(Color.RED);
-		t3w5.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t3w5.setBounds(444, 299, 37, 18);
-		TableStatus.add(t3w5);
-		
-		t5w1 = new JButton("");
-		t5w1.setEnabled(false);
-		t5w1.setBackground(Color.RED);
-		t5w1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t5w1.setBounds(703, 210, 37, 18);
-		TableStatus.add(t5w1);
-		
-		t5w2 = new JButton("");
-		t5w2.setEnabled(false);
-		t5w2.setBackground(Color.RED);
-		t5w2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t5w2.setBounds(740, 210, 37, 18);
-		TableStatus.add(t5w2);
-		
-		t5w3 = new JButton("");
-		t5w3.setEnabled(false);
-		t5w3.setBackground(Color.RED);
-		t5w3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t5w3.setBounds(779, 210, 37, 18);
-		TableStatus.add(t5w3);
-		
-		t5w4 = new JButton("");
-		t5w4.setEnabled(false);
-		t5w4.setBackground(Color.RED);
-		t5w4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t5w4.setBounds(816, 210, 37, 18);
-		TableStatus.add(t5w4);
-		
-		t5w5 = new JButton("");
-		t5w5.setEnabled(false);
-		t5w5.setBackground(Color.RED);
-		t5w5.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t5w5.setBounds(853, 210, 37, 18);
-		TableStatus.add(t5w5);
-		
-		t6w1 = new JButton("");
-		t6w1.setEnabled(false);
-		t6w1.setBackground(Color.RED);
-		t6w1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t6w1.setBounds(703, 288, 37, 18);
-		TableStatus.add(t6w1);
-		
-		t6w2 = new JButton("");
-		t6w2.setEnabled(false);
-		t6w2.setBackground(Color.RED);
-		t6w2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t6w2.setBounds(740, 288, 37, 18);
-		TableStatus.add(t6w2);
-		
-		t6w3 = new JButton("");
-		t6w3.setEnabled(false);
-		t6w3.setBackground(Color.RED);
-		t6w3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t6w3.setBounds(779, 288, 37, 18);
-		TableStatus.add(t6w3);
-		
-		t6w4 = new JButton("");
-		t6w4.setEnabled(false);
-		t6w4.setBackground(Color.RED);
-		t6w4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t6w4.setBounds(816, 288, 37, 18);
-		TableStatus.add(t6w4);
-		
-		t6w5 = new JButton("");
-		t6w5.setEnabled(false);
-		t6w5.setBackground(Color.RED);
-		t6w5.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t6w5.setBounds(853, 288, 37, 18);
-		TableStatus.add(t6w5);
-		
-		t7w1 = new JButton("");
-		t7w1.setEnabled(false);
-		t7w1.setBackground(Color.RED);
-		t7w1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t7w1.setBounds(703, 380, 37, 18);
-		TableStatus.add(t7w1);
-		
-		t7w2 = new JButton("");
-		t7w2.setEnabled(false);
-		t7w2.setBackground(Color.RED);
-		t7w2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t7w2.setBounds(740, 380, 37, 18);
-		TableStatus.add(t7w2);
-		
-		t7w3 = new JButton("");
-		t7w3.setEnabled(false);
-		t7w3.setBackground(Color.RED);
-		t7w3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t7w3.setBounds(779, 380, 37, 18);
-		TableStatus.add(t7w3);
-		
-		t7w4 = new JButton("");
-		t7w4.setEnabled(false);
-		t7w4.setBackground(Color.RED);
-		t7w4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t7w4.setBounds(816, 380, 37, 18);
-		TableStatus.add(t7w4);
-		
-		t7w5 = new JButton("");
-		t7w5.setEnabled(false);
-		t7w5.setBackground(Color.RED);
-		t7w5.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t7w5.setBounds(853, 380, 37, 18);
-		TableStatus.add(t7w5);
-		
-		t10w1 = new JButton("");
-		t10w1.setEnabled(false);
-		t10w1.setBackground(Color.RED);
-		t10w1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t10w1.setBounds(493, 442, 37, 18);
-		TableStatus.add(t10w1);
-		
-		t10w2 = new JButton("");
-		t10w2.setEnabled(false);
-		t10w2.setBackground(Color.RED);
-		t10w2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t10w2.setBounds(530, 442, 37, 18);
-		TableStatus.add(t10w2);
-		
-		t10w3 = new JButton("");
-		t10w3.setEnabled(false);
-		t10w3.setBackground(Color.RED);
-		t10w3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t10w3.setBounds(569, 442, 37, 18);
-		TableStatus.add(t10w3);
-		
-		t10w4 = new JButton("");
-		t10w4.setEnabled(false);
-		t10w4.setBackground(Color.RED);
-		t10w4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t10w4.setBounds(606, 442, 37, 18);
-		TableStatus.add(t10w4);
-		
-		t10w5 = new JButton("");
-		t10w5.setEnabled(false);
-		t10w5.setBackground(Color.RED);
-		t10w5.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t10w5.setBounds(643, 442, 37, 18);
-		TableStatus.add(t10w5);
-		
-		t4w1 = new JButton("");
-		t4w1.setEnabled(false);
-		t4w1.setBackground(Color.RED);
-		t4w1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t4w1.setBounds(295, 380, 37, 18);
-		TableStatus.add(t4w1);
-		
-		t4w2 = new JButton("");
-		t4w2.setEnabled(false);
-		t4w2.setBackground(Color.RED);
-		t4w2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t4w2.setBounds(332, 380, 37, 18);
-		TableStatus.add(t4w2);
-		
-		t4w3 = new JButton("");
-		t4w3.setEnabled(false);
-		t4w3.setBackground(Color.RED);
-		t4w3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t4w3.setBounds(371, 380, 37, 18);
-		TableStatus.add(t4w3);
-		
-		t4w4 = new JButton("");
-		t4w4.setEnabled(false);
-		t4w4.setBackground(Color.RED);
-		t4w4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t4w4.setBounds(408, 380, 37, 18);
-		TableStatus.add(t4w4);
-		
-		t4w5 = new JButton("");
-		t4w5.setEnabled(false);
-		t4w5.setBackground(Color.RED);
-		t4w5.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t4w5.setBounds(445, 380, 37, 18);
-		TableStatus.add(t4w5);
-		
-		t8w1 = new JButton("");
-		t8w1.setEnabled(false);
-		t8w1.setBackground(Color.RED);
-		t8w1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t8w1.setBounds(493, 251, 37, 18);
-		TableStatus.add(t8w1);
-		
-		t8w2 = new JButton("");
-		t8w2.setEnabled(false);
-		t8w2.setBackground(Color.RED);
-		t8w2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t8w2.setBounds(530, 251, 37, 18);
-		TableStatus.add(t8w2);
-		
-		t8w3 = new JButton("");
-		t8w3.setEnabled(false);
-		t8w3.setBackground(Color.RED);
-		t8w3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t8w3.setBounds(569, 251, 37, 18);
-		TableStatus.add(t8w3);
-		
-		t8w4 = new JButton("");
-		t8w4.setEnabled(false);
-		t8w4.setBackground(Color.RED);
-		t8w4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t8w4.setBounds(606, 251, 37, 18);
-		TableStatus.add(t8w4);
-		
-		t8w5 = new JButton("");
-		t8w5.setEnabled(false);
-		t8w5.setBackground(Color.RED);
-		t8w5.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t8w5.setBounds(643, 251, 37, 18);
-		TableStatus.add(t8w5);
-		
-		t9w1 = new JButton("");
-		t9w1.setEnabled(false);
-		t9w1.setBackground(Color.RED);
-		t9w1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t9w1.setBounds(493, 346, 37, 18);
-		TableStatus.add(t9w1);
-		
-		t9w2 = new JButton("");
-		t9w2.setEnabled(false);
-		t9w2.setBackground(Color.RED);
-		t9w2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t9w2.setBounds(530, 346, 37, 18);
-		TableStatus.add(t9w2);
-		
-		t9w3 = new JButton("");
-		t9w3.setEnabled(false);
-		t9w3.setBackground(Color.RED);
-		t9w3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t9w3.setBounds(569, 346, 37, 18);
-		TableStatus.add(t9w3);
-		
-		t9w4 = new JButton("");
-		t9w4.setEnabled(false);
-		t9w4.setBackground(Color.RED);
-		t9w4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t9w4.setBounds(606, 346, 37, 18);
-		TableStatus.add(t9w4);
-		
-		t9w5 = new JButton("");
-		t9w5.setEnabled(false);
-		t9w5.setBackground(Color.RED);
-		t9w5.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		t9w5.setBounds(643, 346, 37, 18);
-		TableStatus.add(t9w5);
-		TableStatus.setVisible(true);
 		
 		// ************************************
 		// ************************************
@@ -661,6 +439,34 @@ public class Host_GUI extends JFrame implements ActionListener{
 		// ************************************
 		// ************************************
 		
+		//*************************************
+		//INITIAL WAITER INPUT (FROM DATABASE)
+		//*************************************
+		Waiter_List.add("Hitler");
+		Waiter_List.add("Stalin");
+		Waiter_List.add("Mao");
+		Waiter_List.add("Saddam");
+		Waiter_List.add("Satan");
+		//*************************************
+		//*************************************
+		//*************************************
+		
+		//*************************************
+		//INITIAL WAITER STATUS AT TABLE (OCCUPIED BY WAITER OR NOT?)
+		//*************************************
+		W_1.setBackground(Color.RED);
+		W_2.setBackground(Color.RED);
+		W_3.setBackground(Color.RED);
+		W_4.setBackground(Color.RED);
+		W_5.setBackground(Color.RED);
+		W_6.setBackground(Color.RED);
+		W_7.setBackground(Color.RED);
+		W_8.setBackground(Color.RED);
+		W_9.setBackground(Color.RED);
+		W_10.setBackground(Color.RED);
+		//*************************************
+		//*************************************
+		//*************************************
 		
 		UIManager.put("ToggleButton.select", Color.GREEN);
 		
@@ -682,6 +488,8 @@ public class Host_GUI extends JFrame implements ActionListener{
 		logoutButton.addActionListener(this);
 		
 		MainPanel.setVisible(true);
+		
+		
 	}
 	
 	public void Render(JComboBox<String> x){
@@ -737,6 +545,7 @@ public class Host_GUI extends JFrame implements ActionListener{
         dateAndTime.setText(DateFormat.getDateTimeInstance().format(new Date()));
     }
 	
+	@SuppressWarnings("unchecked")
 	public void actionPerformed(ActionEvent e) {
 	Object a = e.getSource();
 	if(a == logoutButton)
@@ -785,6 +594,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 			if(s == "Table 10"){
 				Table10.setBackground(Color.green);
 			}
+			
 		}
 	if(a == Unassign)
 		{
@@ -820,239 +630,163 @@ public class Host_GUI extends JFrame implements ActionListener{
 				Table10.setBackground(Color.red);
 			}
 		}
-	if(a == Waiter1)
+	if(a == AssignWaiter)
 	{
 		String x = (String)combobox_waiter.getSelectedItem();
 		if(x == "Table 1"){
-			if(t1w1.getBackground() == Color.red) t1w1.setBackground(Color.green);
-			else if(t1w1.getBackground() == Color.green) t1w1.setBackground(Color.red);
-		}
+			removeDuplicatesAndAdd(Waiters_for_Table_1,WaiterList);
+			}
 		if(x == "Table 2"){
-			if(t2w1.getBackground() == Color.red) t2w1.setBackground(Color.green);
-			else if(t2w1.getBackground() == Color.green) t2w1.setBackground(Color.red);
+			removeDuplicatesAndAdd(Waiters_for_Table_2,WaiterList);
 		}
 		if(x == "Table 3"){
-			if(t3w1.getBackground() == Color.red) t3w1.setBackground(Color.green);
-			else if(t3w1.getBackground() == Color.green) t3w1.setBackground(Color.red);
+			removeDuplicatesAndAdd(Waiters_for_Table_3,WaiterList);
 		}
 		if(x == "Table 4"){
-			if(t4w1.getBackground() == Color.red) t4w1.setBackground(Color.green);
-			else if(t4w1.getBackground() == Color.green) t4w1.setBackground(Color.red);
+			removeDuplicatesAndAdd(Waiters_for_Table_4,WaiterList);
 		}
 		if(x == "Table 5"){
-			if(t5w1.getBackground() == Color.red) t5w1.setBackground(Color.green);
-			else if(t5w1.getBackground() == Color.green) t5w1.setBackground(Color.red);
+			removeDuplicatesAndAdd(Waiters_for_Table_5,WaiterList);
 		}
 		if(x == "Table 6"){
-			if(t6w1.getBackground() == Color.red) t6w1.setBackground(Color.green);
-			else if(t6w1.getBackground() == Color.green) t6w1.setBackground(Color.red);
+			removeDuplicatesAndAdd(Waiters_for_Table_6,WaiterList);
 		}
 		if(x == "Table 7"){
-			if(t7w1.getBackground() == Color.red) t7w1.setBackground(Color.green);
-			else if(t7w1.getBackground() == Color.green) t7w1.setBackground(Color.red);
+			removeDuplicatesAndAdd(Waiters_for_Table_7,WaiterList);
 		}
 		if(x == "Table 8"){
-			if(t8w1.getBackground() == Color.red) t8w1.setBackground(Color.green);
-			else if(t8w1.getBackground() == Color.green) t8w1.setBackground(Color.red);
+			removeDuplicatesAndAdd(Waiters_for_Table_8,WaiterList);
 		}
 		if(x == "Table 9"){
-			if(t9w1.getBackground() == Color.red) t9w1.setBackground(Color.green);
-			else if(t9w1.getBackground() == Color.green) t9w1.setBackground(Color.red);
+			removeDuplicatesAndAdd(Waiters_for_Table_9,WaiterList);
 		}
 		if(x == "Table 10"){
-			if(t10w1.getBackground() == Color.red) t10w1.setBackground(Color.green);
-			else if(t10w1.getBackground() == Color.green) t10w1.setBackground(Color.red);
+			removeDuplicatesAndAdd(Waiters_for_Table_10,WaiterList);
 		}
+		
+		// Any waiters occupy the table -> Green Indicator. Else -> Red Indicator
+		if (Waiters_for_Table_1.getItemCount() == 0){
+			W_1.setBackground(Color.RED);
+		}else{W_1.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_2.getItemCount() == 0){
+			W_2.setBackground(Color.RED);
+		}else{W_2.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_3.getItemCount() == 0){
+			W_3.setBackground(Color.RED);
+		}else{W_3.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_4.getItemCount() == 0){
+			W_4.setBackground(Color.RED);
+		}else{W_4.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_5.getItemCount() == 0){
+			W_5.setBackground(Color.RED);
+		}else{W_5.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_6.getItemCount() == 0){
+			W_6.setBackground(Color.RED);
+		}else{W_6.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_7.getItemCount() == 0){
+			W_7.setBackground(Color.RED);
+		}else{W_7.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_8.getItemCount() == 0){
+			W_8.setBackground(Color.RED);
+		}else{W_8.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_9.getItemCount() == 0){
+			W_9.setBackground(Color.RED);
+		}else{W_9.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_10.getItemCount() == 0){
+			W_10.setBackground(Color.RED);
+		}else{W_10.setBackground(Color.GREEN);}
+		
 	}
-	if(a == Waiter2)
+	if(a == UnassignWaiter)
 	{
 		String x = (String)combobox_waiter.getSelectedItem();
 		if(x == "Table 1"){
-			if(t1w2.getBackground() == Color.red) t1w2.setBackground(Color.green);
-			else if(t1w2.getBackground() == Color.green) t1w2.setBackground(Color.red);
+			Waiters_for_Table_1.removeItem((String) WaiterList.getSelectedItem());
 		}
 		if(x == "Table 2"){
-			if(t2w2.getBackground() == Color.red) t2w2.setBackground(Color.green);
-			else if(t2w2.getBackground() == Color.green) t2w2.setBackground(Color.red);
+			Waiters_for_Table_2.removeItem((String) WaiterList.getSelectedItem());
 		}
 		if(x == "Table 3"){
-			if(t3w2.getBackground() == Color.red) t3w2.setBackground(Color.green);
-			else if(t3w2.getBackground() == Color.green) t3w2.setBackground(Color.red);
+			Waiters_for_Table_3.removeItem((String) WaiterList.getSelectedItem());
 		}
 		if(x == "Table 4"){
-			if(t4w2.getBackground() == Color.red) t4w2.setBackground(Color.green);
-			else if(t4w2.getBackground() == Color.green) t4w2.setBackground(Color.red);
+			Waiters_for_Table_4.removeItem((String) WaiterList.getSelectedItem());
 		}
 		if(x == "Table 5"){
-			if(t5w2.getBackground() == Color.red) t5w2.setBackground(Color.green);
-			else if(t5w2.getBackground() == Color.green) t5w2.setBackground(Color.red);
+			Waiters_for_Table_5.removeItem((String) WaiterList.getSelectedItem());
 		}
 		if(x == "Table 6"){
-			if(t6w2.getBackground() == Color.red) t6w2.setBackground(Color.green);
-			else if(t6w2.getBackground() == Color.green) t6w2.setBackground(Color.red);
+			Waiters_for_Table_6.removeItem((String) WaiterList.getSelectedItem());
 		}
 		if(x == "Table 7"){
-			if(t7w2.getBackground() == Color.red) t7w2.setBackground(Color.green);
-			else if(t7w2.getBackground() == Color.green) t7w2.setBackground(Color.red);
+			Waiters_for_Table_7.removeItem((String) WaiterList.getSelectedItem());
 		}
 		if(x == "Table 8"){
-			if(t8w2.getBackground() == Color.red) t8w2.setBackground(Color.green);
-			else if(t8w2.getBackground() == Color.green) t8w2.setBackground(Color.red);
+			Waiters_for_Table_8.removeItem((String) WaiterList.getSelectedItem());
 		}
 		if(x == "Table 9"){
-			if(t9w2.getBackground() == Color.red) t9w2.setBackground(Color.green);
-			else if(t9w2.getBackground() == Color.green) t9w2.setBackground(Color.red);
+			Waiters_for_Table_9.removeItem((String) WaiterList.getSelectedItem());
 		}
 		if(x == "Table 10"){
-			if(t10w2.getBackground() == Color.red) t10w2.setBackground(Color.green);
-			else if(t10w2.getBackground() == Color.green) t10w2.setBackground(Color.red);
+			Waiters_for_Table_10.removeItem((String) WaiterList.getSelectedItem());
 		}
-	}
-	if(a == Waiter3)
-	{
-		String x = (String)combobox_waiter.getSelectedItem();
-		if(x == "Table 1"){
-			if(t1w3.getBackground() == Color.red) t1w3.setBackground(Color.green);
-			else if(t1w3.getBackground() == Color.green) t1w3.setBackground(Color.red);
-		}
-		if(x == "Table 2"){
-			if(t2w3.getBackground() == Color.red) t2w3.setBackground(Color.green);
-			else if(t2w3.getBackground() == Color.green) t2w3.setBackground(Color.red);
-		}
-		if(x == "Table 3"){
-			if(t3w3.getBackground() == Color.red) t3w3.setBackground(Color.green);
-			else if(t3w3.getBackground() == Color.green) t3w3.setBackground(Color.red);
-		}
-		if(x == "Table 4"){
-			if(t4w3.getBackground() == Color.red) t4w3.setBackground(Color.green);
-			else if(t4w3.getBackground() == Color.green) t4w3.setBackground(Color.red);
-		}
-		if(x == "Table 5"){
-			if(t5w3.getBackground() == Color.red) t5w3.setBackground(Color.green);
-			else if(t5w3.getBackground() == Color.green) t5w3.setBackground(Color.red);
-		}
-		if(x == "Table 6"){
-			if(t6w3.getBackground() == Color.red) t6w3.setBackground(Color.green);
-			else if(t6w3.getBackground() == Color.green) t6w3.setBackground(Color.red);
-		}
-		if(x == "Table 7"){
-			if(t7w3.getBackground() == Color.red) t7w3.setBackground(Color.green);
-			else if(t7w3.getBackground() == Color.green) t7w3.setBackground(Color.red);
-		}
-		if(x == "Table 8"){
-			if(t8w3.getBackground() == Color.red) t8w3.setBackground(Color.green);
-			else if(t8w3.getBackground() == Color.green) t8w3.setBackground(Color.red);
-		}
-		if(x == "Table 9"){
-			if(t9w3.getBackground() == Color.red) t9w3.setBackground(Color.green);
-			else if(t9w3.getBackground() == Color.green) t9w3.setBackground(Color.red);
-		}
-		if(x == "Table 10"){
-			if(t10w3.getBackground() == Color.red) t10w3.setBackground(Color.green);
-			else if(t10w3.getBackground() == Color.green) t10w3.setBackground(Color.red);
-		}
-	}
-	if(a == Waiter4)
-	{
-		String x = (String)combobox_waiter.getSelectedItem();
-		if(x == "Table 1"){
-			if(t1w4.getBackground() == Color.red) t1w4.setBackground(Color.green);
-			else if(t1w4.getBackground() == Color.green) t1w4.setBackground(Color.red);
-		}
-		if(x == "Table 2"){
-			if(t2w4.getBackground() == Color.red) t2w4.setBackground(Color.green);
-			else if(t2w4.getBackground() == Color.green) t2w4.setBackground(Color.red);
-		}
-		if(x == "Table 3"){
-			if(t3w4.getBackground() == Color.red) t3w4.setBackground(Color.green);
-			else if(t3w4.getBackground() == Color.green) t3w4.setBackground(Color.red);
-		}
-		if(x == "Table 4"){
-			if(t4w4.getBackground() == Color.red) t4w4.setBackground(Color.green);
-			else if(t4w4.getBackground() == Color.green) t4w4.setBackground(Color.red);
-		}
-		if(x == "Table 5"){
-			if(t5w4.getBackground() == Color.red) t5w4.setBackground(Color.green);
-			else if(t5w4.getBackground() == Color.green) t5w4.setBackground(Color.red);
-		}
-		if(x == "Table 6"){
-			if(t6w4.getBackground() == Color.red) t6w4.setBackground(Color.green);
-			else if(t6w4.getBackground() == Color.green) t6w4.setBackground(Color.red);
-		}
-		if(x == "Table 7"){
-			if(t7w4.getBackground() == Color.red) t7w4.setBackground(Color.green);
-			else if(t7w4.getBackground() == Color.green) t7w4.setBackground(Color.red);
-		}
-		if(x == "Table 8"){
-			if(t8w4.getBackground() == Color.red) t8w4.setBackground(Color.green);
-			else if(t8w4.getBackground() == Color.green) t8w4.setBackground(Color.red);
-		}
-		if(x == "Table 9"){
-			if(t9w4.getBackground() == Color.red) t9w4.setBackground(Color.green);
-			else if(t9w4.getBackground() == Color.green) t9w4.setBackground(Color.red);
-		}
-		if(x == "Table 10"){
-			if(t10w4.getBackground() == Color.red) t10w4.setBackground(Color.green);
-			else if(t10w4.getBackground() == Color.green) t10w4.setBackground(Color.red);
-		}
-	}
-	if(a == Waiter5)
-	{
-		String x = (String)combobox_waiter.getSelectedItem();
-		if(x == "Table 1"){
-			if(t1w5.getBackground() == Color.red) t1w5.setBackground(Color.green);
-			else if(t1w5.getBackground() == Color.green) t1w5.setBackground(Color.red);
-		}
-		if(x == "Table 2"){
-			if(t2w5.getBackground() == Color.red) t2w5.setBackground(Color.green);
-			else if(t2w5.getBackground() == Color.green) t2w5.setBackground(Color.red);
-		}
-		if(x == "Table 3"){
-			if(t3w5.getBackground() == Color.red) t3w5.setBackground(Color.green);
-			else if(t3w5.getBackground() == Color.green) t3w5.setBackground(Color.red);
-		}
-		if(x == "Table 4"){
-			if(t4w5.getBackground() == Color.red) t4w5.setBackground(Color.green);
-			else if(t4w5.getBackground() == Color.green) t4w5.setBackground(Color.red);
-		}
-		if(x == "Table 5"){
-			if(t5w5.getBackground() == Color.red) t5w5.setBackground(Color.green);
-			else if(t5w5.getBackground() == Color.green) t5w5.setBackground(Color.red);
-		}
-		if(x == "Table 6"){
-			if(t6w5.getBackground() == Color.red) t6w5.setBackground(Color.green);
-			else if(t6w5.getBackground() == Color.green) t6w5.setBackground(Color.red);
-		}
-		if(x == "Table 7"){
-			if(t7w5.getBackground() == Color.red) t7w5.setBackground(Color.green);
-			else if(t7w5.getBackground() == Color.green) t7w5.setBackground(Color.red);
-		}
-		if(x == "Table 8"){
-			if(t8w5.getBackground() == Color.red) t8w5.setBackground(Color.green);
-			else if(t8w5.getBackground() == Color.green) t8w5.setBackground(Color.red);
-		}
-		if(x == "Table 9"){
-			if(t9w5.getBackground() == Color.red) t9w5.setBackground(Color.green);
-			else if(t9w5.getBackground() == Color.green) t9w5.setBackground(Color.red);
-		}
-		if(x == "Table 10"){
-			if(t10w5.getBackground() == Color.red) t10w5.setBackground(Color.green);
-			else if(t10w5.getBackground() == Color.green) t10w5.setBackground(Color.red);
-		}
+		
+		// Any waiters occupy the table -> Green Indicator. Else -> Red Indicator
+		if (Waiters_for_Table_1.getItemCount() == 0){
+			W_1.setBackground(Color.RED);
+		}else{W_1.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_2.getItemCount() == 0){
+			W_2.setBackground(Color.RED);
+		}else{W_2.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_3.getItemCount() == 0){
+			W_3.setBackground(Color.RED);
+		}else{W_3.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_4.getItemCount() == 0){
+			W_4.setBackground(Color.RED);
+		}else{W_4.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_5.getItemCount() == 0){
+			W_5.setBackground(Color.RED);
+		}else{W_5.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_6.getItemCount() == 0){
+			W_6.setBackground(Color.RED);
+		}else{W_6.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_7.getItemCount() == 0){
+			W_7.setBackground(Color.RED);
+		}else{W_7.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_8.getItemCount() == 0){
+			W_8.setBackground(Color.RED);
+		}else{W_8.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_9.getItemCount() == 0){
+			W_9.setBackground(Color.RED);
+		}else{W_9.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_10.getItemCount() == 0){
+			W_10.setBackground(Color.RED);
+		}else{W_10.setBackground(Color.GREEN);}
+	
+		
 	}
 	
 	
 
 	}
 	
+	public void removeDuplicatesAndAdd(JComboBox WaitersAtTables, JComboBox WaitersToBeSelected){
+		boolean exists = false;
+		 for (int index = 0; index < WaitersAtTables.getItemCount() && !exists; index++) { 
+			   if (WaitersToBeSelected.getSelectedItem().equals(WaitersAtTables.getItemAt(index))) { 
+			     exists = true;
+			     JOptionPane.showMessageDialog(rootPanel, "Waiter already exists at selected table!");
+			   }
+			 }
+			 if (!exists) {
+				 WaitersAtTables.addItem((String) WaitersToBeSelected.getSelectedItem()); 
+		}
+	}
 	
 	public void itemStateChanged(ItemEvent ie){
 		int index = combobox_customer.getSelectedIndex();
 		System.out.println(index);
-	
 	}
-	
-	
 	}
 		
 
