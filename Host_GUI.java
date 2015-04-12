@@ -161,7 +161,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		// ************************************
 		
 		// Borders for buttons):
-		Border border = new LineBorder(Color.BLUE,2);
+		Border border = new LineBorder(Color.BLACK,3);
 		
 		//
 		
@@ -313,7 +313,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		
 		W_3 = new JButton("");
 		W_3.setEnabled(false);
-		W_3.setBounds(879, 121, 21, 45);
+		W_3.setBounds(879, 122, 21, 45);
 		TableStatus.add(W_3);
 		W_3.setBorder(border);
 		
@@ -365,6 +365,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Table2.setBounds(494, 64, 166, 45);
 		TableStatus.add(Table2);
+		Table2.setBorder(border);
 		
 		Table3 = new JButton("Table 3");
 		Table3.setBackground(Color.RED);
@@ -372,6 +373,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Table3.setBounds(713, 122, 166, 45);
 		TableStatus.add(Table3);
+		Table3.setBorder(border);
 		
 		Table4 = new JButton("Table 4");
 		Table4.setBackground(Color.RED);
@@ -379,6 +381,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table4.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Table4.setBounds(266, 216, 166, 45);
 		TableStatus.add(Table4);
+		Table4.setBorder(border);
 		
 		
 		Table5 = new JButton("Table 5");
@@ -387,6 +390,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table5.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Table5.setBounds(494, 166, 166, 45);
 		TableStatus.add(Table5);
+		Table5.setBorder(border);
 		
 		Table6 = new JButton("Table 6");
 		Table6.setBackground(Color.RED);
@@ -394,6 +398,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table6.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Table6.setBounds(713, 224, 166, 45);
 		TableStatus.add(Table6);
+		Table6.setBorder(border);
 		
 		Table9 = new JButton("Table 9");
 		Table9.setBackground(Color.RED);
@@ -401,6 +406,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table9.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Table9.setBounds(713, 327, 166, 45);
 		TableStatus.add(Table9);
+		Table9.setBorder(border);
 		
 		Table7 = new JButton("Table 7");
 		Table7.setBackground(Color.RED);
@@ -408,6 +414,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table7.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Table7.setBounds(266, 320, 166, 45);
 		TableStatus.add(Table7);
+		Table7.setBorder(border);
 		
 		Table10 = new JButton("Table 10");
 		Table10.setBackground(Color.RED);
@@ -415,6 +422,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table10.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Table10.setBounds(494, 370, 166, 45);
 		TableStatus.add(Table10);
+		Table10.setBorder(border);
 		
 		
 		Table8 = new JButton("Table 8");
@@ -423,6 +431,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table8.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Table8.setBounds(493, 269, 166, 45);
 		TableStatus.add(Table8);
+		Table8.setBorder(border);
 		
 		Table1 = new JButton("Table 1");
 		Table1.setBackground(Color.RED);
@@ -430,6 +439,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Table1.setBounds(266, 117, 166, 45);
 		TableStatus.add(Table1);
+		Table1.setBorder(border);
 		
 		
 		
