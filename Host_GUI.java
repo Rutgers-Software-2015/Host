@@ -363,21 +363,21 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table2.setBackground(Color.RED);
 		Table2.setEnabled(false);
 		Table2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table2.setBounds(494, 64, 186, 45);
+		Table2.setBounds(494, 64, 166, 45);
 		TableStatus.add(Table2);
 		
 		Table3 = new JButton("Table 3");
 		Table3.setBackground(Color.RED);
 		Table3.setEnabled(false);
 		Table3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table3.setBounds(713, 122, 187, 45);
+		Table3.setBounds(713, 122, 166, 45);
 		TableStatus.add(Table3);
 		
 		Table4 = new JButton("Table 4");
 		Table4.setBackground(Color.RED);
 		Table4.setEnabled(false);
 		Table4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table4.setBounds(266, 216, 186, 45);
+		Table4.setBounds(266, 216, 166, 45);
 		TableStatus.add(Table4);
 		
 		
@@ -385,35 +385,35 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table5.setBackground(Color.RED);
 		Table5.setEnabled(false);
 		Table5.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table5.setBounds(494, 166, 187, 45);
+		Table5.setBounds(494, 166, 166, 45);
 		TableStatus.add(Table5);
 		
 		Table6 = new JButton("Table 6");
 		Table6.setBackground(Color.RED);
 		Table6.setEnabled(false);
 		Table6.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table6.setBounds(713, 224, 187, 45);
+		Table6.setBounds(713, 224, 166, 45);
 		TableStatus.add(Table6);
 		
 		Table9 = new JButton("Table 9");
 		Table9.setBackground(Color.RED);
 		Table9.setEnabled(false);
 		Table9.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table9.setBounds(713, 327, 187, 45);
+		Table9.setBounds(713, 327, 166, 45);
 		TableStatus.add(Table9);
 		
 		Table7 = new JButton("Table 7");
 		Table7.setBackground(Color.RED);
 		Table7.setEnabled(false);
 		Table7.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table7.setBounds(266, 320, 187, 45);
+		Table7.setBounds(266, 320, 166, 45);
 		TableStatus.add(Table7);
 		
 		Table10 = new JButton("Table 10");
 		Table10.setBackground(Color.RED);
 		Table10.setEnabled(false);
 		Table10.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table10.setBounds(494, 370, 187, 45);
+		Table10.setBounds(494, 370, 166, 45);
 		TableStatus.add(Table10);
 		
 		
@@ -421,14 +421,14 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table8.setBackground(Color.RED);
 		Table8.setEnabled(false);
 		Table8.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table8.setBounds(493, 269, 187, 45);
+		Table8.setBounds(493, 269, 166, 45);
 		TableStatus.add(Table8);
 		
 		Table1 = new JButton("Table 1");
 		Table1.setBackground(Color.RED);
 		Table1.setEnabled(false);
 		Table1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table1.setBounds(266, 117, 187, 45);
+		Table1.setBounds(266, 117, 166, 45);
 		TableStatus.add(Table1);
 		
 		
@@ -447,6 +447,12 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Waiter_List.add("Mao");
 		Waiter_List.add("Saddam");
 		Waiter_List.add("Satan");
+		
+		
+		// Show the first waiter of the list
+		if (WaiterList.getItemCount() != 0){
+			WaiterList.setSelectedIndex(0);
+		}
 		//*************************************
 		//*************************************
 		//*************************************
@@ -559,40 +565,40 @@ public class Host_GUI extends JFrame implements ActionListener{
 		}
 	if(a == Help)
 		{
-			JOptionPane.showMessageDialog(rootPanel, "<htmL>For customer: Select assign to assign a customer to a table, unassign to unassign a customer from a table. <br><br>For waiter: Select a waiter to occupy a waiter. Indicators underneath the table display which waiter occupied the table (left = waiter 1, right = waiter 5<br></html>");
+			JOptionPane.showMessageDialog(rootPanel, "<htmL>For customer: Select assign to assign a customer to a table, unassign to unassign a customer from a table. <br><br>For waiter: Select a table, then select a waiter to occupy that table. If the indicator glows green, waiters occupy the table. To unnocpy a waiter, simply select the waiter and unassign him/her.<br></html>");
 		}
 	if(a == Assign)
 		{
 			String s = (String)combobox_customer.getSelectedItem();
 			if(s == "Table 1"){
-				Table1.setBackground(Color.green);
+				CheckColorAndSetGreen(Table1);
 			}
 			if(s == "Table 2"){
-				Table2.setBackground(Color.green);
+				CheckColorAndSetGreen(Table2);
 			}
 			if(s == "Table 3"){
-				Table3.setBackground(Color.green);
+				CheckColorAndSetGreen(Table3);
 			}
 			if(s == "Table 4"){
-				Table4.setBackground(Color.green);
+				CheckColorAndSetGreen(Table4);
 			}
 			if(s == "Table 5"){
-				Table5.setBackground(Color.green);
+				CheckColorAndSetGreen(Table5);
 			}
 			if(s == "Table 6"){
-				Table6.setBackground(Color.green);
+				CheckColorAndSetGreen(Table6);
 			}
 			if(s == "Table 7"){
-				Table7.setBackground(Color.green);
+				CheckColorAndSetGreen(Table7);
 			}
 			if(s == "Table 8"){
-				Table8.setBackground(Color.green);
+				CheckColorAndSetGreen(Table8);
 			}
 			if(s == "Table 9"){
-				Table9.setBackground(Color.green);
+				CheckColorAndSetGreen(Table9);
 			}
 			if(s == "Table 10"){
-				Table10.setBackground(Color.green);
+				CheckColorAndSetGreen(Table10);
 			}
 			
 		}
@@ -600,34 +606,34 @@ public class Host_GUI extends JFrame implements ActionListener{
 		{
 			String s = (String)combobox_customer.getSelectedItem();
 			if(s == "Table 1"){
-				Table1.setBackground(Color.red);
+				CheckColorAndSetRed(Table1);
 			}
 			if(s == "Table 2"){
-				Table2.setBackground(Color.red);
+				CheckColorAndSetRed(Table2);
 			}
 			if(s == "Table 3"){
-				Table3.setBackground(Color.red);
+				CheckColorAndSetRed(Table3);
 			}
 			if(s == "Table 4"){
-				Table4.setBackground(Color.red);
+				CheckColorAndSetRed(Table4);
 			}
 			if(s == "Table 5"){
-				Table5.setBackground(Color.red);
+				CheckColorAndSetRed(Table5);
 			}
 			if(s == "Table 6"){
-				Table6.setBackground(Color.red);
+				CheckColorAndSetRed(Table6);
 			}
 			if(s == "Table 7"){
-				Table7.setBackground(Color.red);
+				CheckColorAndSetRed(Table7);
 			}
 			if(s == "Table 8"){
-				Table8.setBackground(Color.red);
+				CheckColorAndSetRed(Table8);
 			}
 			if(s == "Table 9"){
-				Table9.setBackground(Color.red);
+				CheckColorAndSetRed(Table9);
 			}
 			if(s == "Table 10"){
-				Table10.setBackground(Color.red);
+				CheckColorAndSetRed(Table10);
 			}
 		}
 	if(a == AssignWaiter)
@@ -782,6 +788,20 @@ public class Host_GUI extends JFrame implements ActionListener{
 				 WaitersAtTables.addItem((String) WaitersToBeSelected.getSelectedItem()); 
 		}
 	}
+	
+	public void CheckColorAndSetRed(JButton x ){
+		if (x.getBackground() == Color.RED){
+				System.out.println("Cannot unassign customer(s) from a table that has no customers!");
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Cannot unassign customer(s) from a table that has no customers! </html>");
+		} else {x.setBackground(Color.RED);}
+	}
+	public void CheckColorAndSetGreen(JButton x ){
+		if (x.getBackground() == Color.GREEN){
+				System.out.println("Customer(s) already assigned to table!");
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Customer(s) already assigned to table! </html>");
+		} else {x.setBackground(Color.GREEN);}
+	}
+	
 	
 	public void itemStateChanged(ItemEvent ie){
 		int index = combobox_customer.getSelectedIndex();
