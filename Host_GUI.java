@@ -452,11 +452,11 @@ public class Host_GUI extends JFrame implements ActionListener{
 		//*************************************
 		//INITIAL WAITER INPUT (FROM DATABASE)
 		//*************************************
-		Waiter_List.add("Hitler");
-		Waiter_List.add("Stalin");
-		Waiter_List.add("Mao");
-		Waiter_List.add("Saddam");
-		Waiter_List.add("Satan");
+		Waiter_List.add("Jimmy");
+		Waiter_List.add("Michael");
+		Waiter_List.add("Sarah");
+		Waiter_List.add("John");
+		Waiter_List.add("Wendy");
 		
 		
 		// Show the first waiter of the list
