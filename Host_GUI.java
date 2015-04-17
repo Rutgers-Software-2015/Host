@@ -78,10 +78,13 @@ public class Host_GUI extends JFrame implements ActionListener{
 			public JButton W_1,W_2,W_3,W_4,W_5,W_6,W_7,W_8,W_9,W_10;
 			public Vector<String> Waiter_List;
 			
+			private Host_Handler h = new Host_Handler();
+			
 	public Host_GUI() {
 		
 		super();
 		initialize();
+		h.updateTableStatus();
 		
 	}
 
@@ -108,7 +111,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 	        });
 		
 		this.setVisible(true);
-		
+		h.readWaiterList();
 		}
 	
 	
