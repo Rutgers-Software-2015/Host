@@ -39,7 +39,6 @@ import javax.swing.Timer;
 import javax.swing.UIManager;
 
 import Login.LoginWindow;
-import Shared.GUITemplates.SubframeTemplate;
 import Shared.Gradients.GradientButton;
 import Shared.Gradients.GradientPanel;
 
@@ -84,7 +83,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		
 		super();
 		initialize();
-		h.updateTableStatus();
+		//h.updateTableStatus();
 		
 	}
 
@@ -111,7 +110,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 	        });
 		
 		this.setVisible(true);
-		h.readWaiterList();
+		//h.readWaiterList();
 		}
 	
 	
@@ -461,6 +460,14 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Waiter_List.add("John");
 		Waiter_List.add("Wendy");
 		
+		//*********************************************
+		//INITIAL WAITER Status at table (FROM DATABASE)
+		//*********************************************
+		
+		//
+		
+		
+		
 		
 		// Show the first waiter of the list
 		if (WaiterList.getItemCount() != 0){
@@ -503,6 +510,8 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Message.setFocusPainted(false);
 		Message.setBounds(817, 551, 371, 66);
 		MainPanel.add(Message);
+		
+		//h.tellGetStrings("EMP_ID_1");
 		
 		logoutButton.addActionListener(this);
 		
@@ -585,33 +594,43 @@ public class Host_GUI extends JFrame implements ActionListener{
 			String s = (String)combobox_customer.getSelectedItem();
 			if(s == "Table 1"){
 				CheckColorAndSetGreen(Table1);
+				h.updateTableOccupiedByCustomer(1);
 			}
 			if(s == "Table 2"){
 				CheckColorAndSetGreen(Table2);
+				h.updateTableOccupiedByCustomer(2);
 			}
 			if(s == "Table 3"){
 				CheckColorAndSetGreen(Table3);
+				h.updateTableOccupiedByCustomer(3);
 			}
 			if(s == "Table 4"){
 				CheckColorAndSetGreen(Table4);
+				h.updateTableOccupiedByCustomer(4);
 			}
 			if(s == "Table 5"){
 				CheckColorAndSetGreen(Table5);
+				h.updateTableOccupiedByCustomer(5);
 			}
 			if(s == "Table 6"){
 				CheckColorAndSetGreen(Table6);
+				h.updateTableOccupiedByCustomer(6);
 			}
 			if(s == "Table 7"){
 				CheckColorAndSetGreen(Table7);
+				h.updateTableOccupiedByCustomer(7);
 			}
 			if(s == "Table 8"){
 				CheckColorAndSetGreen(Table8);
+				h.updateTableOccupiedByCustomer(8);
 			}
 			if(s == "Table 9"){
 				CheckColorAndSetGreen(Table9);
+				h.updateTableOccupiedByCustomer(9);
 			}
 			if(s == "Table 10"){
 				CheckColorAndSetGreen(Table10);
+				h.updateTableOccupiedByCustomer(10);
 			}
 			
 		}
@@ -620,33 +639,43 @@ public class Host_GUI extends JFrame implements ActionListener{
 			String s = (String)combobox_customer.getSelectedItem();
 			if(s == "Table 1"){
 				CheckColorAndSetRed(Table1);
+				h.updateTableUnoccupiedByCustomer(1);
 			}
 			if(s == "Table 2"){
 				CheckColorAndSetRed(Table2);
+				h.updateTableUnoccupiedByCustomer(2);
 			}
 			if(s == "Table 3"){
 				CheckColorAndSetRed(Table3);
+				h.updateTableUnoccupiedByCustomer(3);
 			}
 			if(s == "Table 4"){
 				CheckColorAndSetRed(Table4);
+				h.updateTableUnoccupiedByCustomer(4);
 			}
 			if(s == "Table 5"){
 				CheckColorAndSetRed(Table5);
+				h.updateTableUnoccupiedByCustomer(5);
 			}
 			if(s == "Table 6"){
 				CheckColorAndSetRed(Table6);
+				h.updateTableUnoccupiedByCustomer(6);
 			}
 			if(s == "Table 7"){
 				CheckColorAndSetRed(Table7);
+				h.updateTableUnoccupiedByCustomer(7);
 			}
 			if(s == "Table 8"){
 				CheckColorAndSetRed(Table8);
+				h.updateTableUnoccupiedByCustomer(8);
 			}
 			if(s == "Table 9"){
 				CheckColorAndSetRed(Table9);
+				h.updateTableUnoccupiedByCustomer(9);
 			}
 			if(s == "Table 10"){
 				CheckColorAndSetRed(Table10);
+				h.updateTableUnoccupiedByCustomer(10);
 			}
 		}
 	if(a == AssignWaiter)
@@ -654,33 +683,43 @@ public class Host_GUI extends JFrame implements ActionListener{
 		String x = (String)combobox_waiter.getSelectedItem();
 		if(x == "Table 1"){
 			removeDuplicatesAndAdd(Waiters_for_Table_1,WaiterList);
+			CommunicateAssignedWaiter(Waiters_for_Table_1,1);
 			}
 		if(x == "Table 2"){
 			removeDuplicatesAndAdd(Waiters_for_Table_2,WaiterList);
+			CommunicateAssignedWaiter(Waiters_for_Table_2,2);
 		}
 		if(x == "Table 3"){
 			removeDuplicatesAndAdd(Waiters_for_Table_3,WaiterList);
+			CommunicateAssignedWaiter(Waiters_for_Table_3,3);
 		}
 		if(x == "Table 4"){
 			removeDuplicatesAndAdd(Waiters_for_Table_4,WaiterList);
+			CommunicateAssignedWaiter(Waiters_for_Table_4,4);
 		}
 		if(x == "Table 5"){
 			removeDuplicatesAndAdd(Waiters_for_Table_5,WaiterList);
+			CommunicateAssignedWaiter(Waiters_for_Table_5,5);
 		}
 		if(x == "Table 6"){
 			removeDuplicatesAndAdd(Waiters_for_Table_6,WaiterList);
+			CommunicateAssignedWaiter(Waiters_for_Table_6,6);
 		}
 		if(x == "Table 7"){
 			removeDuplicatesAndAdd(Waiters_for_Table_7,WaiterList);
+			CommunicateAssignedWaiter(Waiters_for_Table_7,7);
 		}
 		if(x == "Table 8"){
 			removeDuplicatesAndAdd(Waiters_for_Table_8,WaiterList);
+			CommunicateAssignedWaiter(Waiters_for_Table_8,8);
 		}
 		if(x == "Table 9"){
 			removeDuplicatesAndAdd(Waiters_for_Table_9,WaiterList);
+			CommunicateAssignedWaiter(Waiters_for_Table_9,9);
 		}
 		if(x == "Table 10"){
 			removeDuplicatesAndAdd(Waiters_for_Table_10,WaiterList);
+			CommunicateAssignedWaiter(Waiters_for_Table_10,10);
 		}
 		
 		// Any waiters occupy the table -> Green Indicator. Else -> Red Indicator
@@ -721,33 +760,43 @@ public class Host_GUI extends JFrame implements ActionListener{
 		String x = (String)combobox_waiter.getSelectedItem();
 		if(x == "Table 1"){
 			Waiters_for_Table_1.removeItem((String) WaiterList.getSelectedItem());
+			CommunicateUnassignedWaiter(Waiters_for_Table_1,1);
 		}
 		if(x == "Table 2"){
 			Waiters_for_Table_2.removeItem((String) WaiterList.getSelectedItem());
+			CommunicateUnassignedWaiter(Waiters_for_Table_2,2);
 		}
 		if(x == "Table 3"){
 			Waiters_for_Table_3.removeItem((String) WaiterList.getSelectedItem());
+			CommunicateUnassignedWaiter(Waiters_for_Table_3,3);
 		}
 		if(x == "Table 4"){
 			Waiters_for_Table_4.removeItem((String) WaiterList.getSelectedItem());
+			CommunicateUnassignedWaiter(Waiters_for_Table_4,4);
 		}
 		if(x == "Table 5"){
 			Waiters_for_Table_5.removeItem((String) WaiterList.getSelectedItem());
+			CommunicateUnassignedWaiter(Waiters_for_Table_5,5);
 		}
 		if(x == "Table 6"){
 			Waiters_for_Table_6.removeItem((String) WaiterList.getSelectedItem());
+			CommunicateUnassignedWaiter(Waiters_for_Table_6,6);
 		}
 		if(x == "Table 7"){
 			Waiters_for_Table_7.removeItem((String) WaiterList.getSelectedItem());
+			CommunicateUnassignedWaiter(Waiters_for_Table_7,7);
 		}
 		if(x == "Table 8"){
 			Waiters_for_Table_8.removeItem((String) WaiterList.getSelectedItem());
+			CommunicateUnassignedWaiter(Waiters_for_Table_8,8);
 		}
 		if(x == "Table 9"){
 			Waiters_for_Table_9.removeItem((String) WaiterList.getSelectedItem());
+			CommunicateUnassignedWaiter(Waiters_for_Table_9,9);
 		}
 		if(x == "Table 10"){
 			Waiters_for_Table_10.removeItem((String) WaiterList.getSelectedItem());
+			CommunicateUnassignedWaiter(Waiters_for_Table_10,10);
 		}
 		
 		// Any waiters occupy the table -> Green Indicator. Else -> Red Indicator
@@ -816,11 +865,61 @@ public class Host_GUI extends JFrame implements ActionListener{
 	}
 	
 	
+	
+	 public void CommunicateAssignedWaiter(JComboBox Waiters_for_table,int Table_ID){ 
+	 if(Waiters_for_table.getItemCount() == 1){
+			String NameOfWaiter_1 = Waiters_for_table.getItemAt(0).toString();
+			h.updateTablesOccupiedByWaiter(1,Table_ID,NameOfWaiter_1);
+	 }
+	 if(Waiters_for_table.getItemCount() == 2){
+			String NameOfWaiter_2 = Waiters_for_table.getItemAt(1).toString();
+			h.updateTablesOccupiedByWaiter(2,Table_ID,NameOfWaiter_2);
+	 }
+	 if(Waiters_for_table.getItemCount() == 3){
+		 	String NameOfWaiter_3 = Waiters_for_table.getItemAt(2).toString();
+			h.updateTablesOccupiedByWaiter(3,Table_ID,NameOfWaiter_3);
+	 }
+	 if(Waiters_for_table.getItemCount() == 4){
+			String NameOfWaiter_4 = Waiters_for_table.getItemAt(3).toString();
+			h.updateTablesOccupiedByWaiter(4,Table_ID,NameOfWaiter_4);
+	 }
+	 if(Waiters_for_table.getItemCount() == 5){
+			String NameOfWaiter_5 = Waiters_for_table.getItemAt(4).toString();
+			h.updateTablesOccupiedByWaiter(5,Table_ID,NameOfWaiter_5);
+	 } 
+	 }
+	 
+	 public void CommunicateUnassignedWaiter(JComboBox Waiters_for_table,int Table_ID ){
+		 if(Waiters_for_table.getItemCount() == 1){
+				h.updateTablesUnoccipiedByWaiter(1,Table_ID);
+		 }
+		 if(Waiters_for_table.getItemCount() == 2){
+				h.updateTablesUnoccipiedByWaiter(2,Table_ID);
+		 }
+		 if(Waiters_for_table.getItemCount() == 3){
+				h.updateTablesUnoccipiedByWaiter(3,Table_ID);
+		 }
+		 if(Waiters_for_table.getItemCount() == 4){
+				h.updateTablesUnoccipiedByWaiter(4,Table_ID);
+		 }
+		 if(Waiters_for_table.getItemCount() == 5){
+				h.updateTablesUnoccipiedByWaiter(5,Table_ID);
+		 } 
+		 
+	 }
+	
+	
+	
+	
+	
+	
 	public void itemStateChanged(ItemEvent ie){
 		int index = combobox_customer.getSelectedIndex();
 		System.out.println(index);
 	}
+	
+	
 	}
 		
-
+	
 
