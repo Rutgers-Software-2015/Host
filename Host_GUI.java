@@ -24,6 +24,7 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Rectangle;
 import java.awt.SystemColor;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Vector;
@@ -110,7 +111,8 @@ public class Host_GUI extends JFrame implements ActionListener{
 	        });
 		
 		this.setVisible(true);
-		//h.readWaiterList();
+		
+		
 		}
 	
 	
@@ -131,7 +133,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		rootPanel.setVisible(true);
 	}
 	
-	private void setBackgroundPanel()
+	private void setBackgroundPanel() 
 	{
 		// Create Background Panel
 		MainPanel = new GradientPanel();
@@ -362,7 +364,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		W_10.setBorder(border);
 		
 		Table2 = new JButton("Table 2");
-		Table2.setBackground(Color.RED);
+		//Table2.setBackground(Color.RED);
 		Table2.setEnabled(false);
 		Table2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Table2.setBounds(494, 64, 166, 45);
@@ -370,7 +372,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table2.setBorder(border);
 		
 		Table3 = new JButton("Table 3");
-		Table3.setBackground(Color.RED);
+		//Table3.setBackground(Color.RED);
 		Table3.setEnabled(false);
 		Table3.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Table3.setBounds(713, 122, 166, 45);
@@ -378,7 +380,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table3.setBorder(border);
 		
 		Table4 = new JButton("Table 4");
-		Table4.setBackground(Color.RED);
+		//Table4.setBackground(Color.RED);
 		Table4.setEnabled(false);
 		Table4.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Table4.setBounds(266, 216, 166, 45);
@@ -387,7 +389,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		
 		
 		Table5 = new JButton("Table 5");
-		Table5.setBackground(Color.RED);
+		//Table5.setBackground(Color.RED);
 		Table5.setEnabled(false);
 		Table5.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Table5.setBounds(494, 166, 166, 45);
@@ -395,7 +397,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table5.setBorder(border);
 		
 		Table6 = new JButton("Table 6");
-		Table6.setBackground(Color.RED);
+		//Table6.setBackground(Color.RED);
 		Table6.setEnabled(false);
 		Table6.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Table6.setBounds(713, 224, 166, 45);
@@ -403,7 +405,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table6.setBorder(border);
 		
 		Table9 = new JButton("Table 9");
-		Table9.setBackground(Color.RED);
+		//Table9.setBackground(Color.RED);
 		Table9.setEnabled(false);
 		Table9.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Table9.setBounds(713, 327, 166, 45);
@@ -411,7 +413,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table9.setBorder(border);
 		
 		Table7 = new JButton("Table 7");
-		Table7.setBackground(Color.RED);
+		//Table7.setBackground(Color.RED);
 		Table7.setEnabled(false);
 		Table7.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Table7.setBounds(266, 320, 166, 45);
@@ -419,7 +421,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table7.setBorder(border);
 		
 		Table10 = new JButton("Table 10");
-		Table10.setBackground(Color.RED);
+		//Table10.setBackground(Color.RED);
 		Table10.setEnabled(false);
 		Table10.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Table10.setBounds(494, 370, 166, 45);
@@ -428,7 +430,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		
 		
 		Table8 = new JButton("Table 8");
-		Table8.setBackground(Color.RED);
+		//Table8.setBackground(Color.RED);
 		Table8.setEnabled(false);
 		Table8.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Table8.setBounds(493, 269, 166, 45);
@@ -436,20 +438,84 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table8.setBorder(border);
 		
 		Table1 = new JButton("Table 1");
-		Table1.setBackground(Color.RED);
+		//Table1.setBackground(Color.RED);
 		Table1.setEnabled(false);
 		Table1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		Table1.setBounds(266, 117, 166, 45);
 		TableStatus.add(Table1);
 		Table1.setBorder(border);
 		
-		
+		//UIManager.put("ToggleButton.select", Color.GREEN);
 		
 		// ************************************
 		// ************************************
 		// End of main definitions (ignore)
 		// ************************************
 		// ************************************
+		
+		//test
+		System.out.print("Table 1: ");WaitersAtRow(0);	
+		System.out.print("Table 2: ");WaitersAtRow(1);
+		System.out.print("Table 3: ");WaitersAtRow(2);
+		System.out.print("Table 4: ");WaitersAtRow(3);
+		System.out.print("Table 5: ");WaitersAtRow(4);
+		System.out.print("Table 6: ");WaitersAtRow(5);
+		System.out.print("Table 7: ");WaitersAtRow(6);
+		System.out.print("Table 8: ");WaitersAtRow(7);
+		System.out.print("Table 9: ");WaitersAtRow(8);
+		System.out.print("Table 10: ");WaitersAtRow(9);
+		
+		// Rows of waiters
+		
+		Vector<String> Row1 = new Vector<String>();
+		Vector<String> Row2 = new Vector<String>();
+		Vector<String> Row3 = new Vector<String>();
+		Vector<String> Row4 = new Vector<String>();
+		Vector<String> Row6 = new Vector<String>();
+		Vector<String> Row7 = new Vector<String>();
+		Vector<String> Row8 = new Vector<String>();
+		Vector<String> Row9 = new Vector<String>();
+		Vector<String> Row10 = new Vector<String>();
+		
+		//*************************************
+		//INITIAL CUSTOMER STATUSES (At table)
+		//*************************************
+		try {
+			if(h.CustomerList().elementAt(0).toString().equals("Occupied")){
+				Table1.setBackground(Color.green);
+				}else{Table1.setBackground(Color.red);}
+			if(h.CustomerList().elementAt(1).toString().equals("Occupied")){
+				Table2.setBackground(Color.green);
+				}else{Table2.setBackground(Color.red);}
+			if(h.CustomerList().elementAt(2).toString().equals("Occupied")){
+				Table3.setBackground(Color.green);
+				}else{Table3.setBackground(Color.red);}
+			if(h.CustomerList().elementAt(3).toString().equals("Occupied")){
+				Table4.setBackground(Color.green);
+				}else{Table4.setBackground(Color.red);}
+			if(h.CustomerList().elementAt(4).toString().equals("Occupied")){
+				Table5.setBackground(Color.green);
+				}else{Table5.setBackground(Color.red);}
+			if(h.CustomerList().elementAt(5).toString().equals("Occupied")){
+				Table6.setBackground(Color.green);
+				}else{Table6.setBackground(Color.red);}
+			if(h.CustomerList().elementAt(6).toString().equals("Occupied")){
+				Table7.setBackground(Color.green);
+				}else{Table7.setBackground(Color.red);}
+			if(h.CustomerList().elementAt(7).toString().equals("Occupied")){
+				Table8.setBackground(Color.green);
+				}else{Table8.setBackground(Color.red);}
+			if(h.CustomerList().elementAt(8).toString().equals("Occupied")){
+				Table9.setBackground(Color.green);
+				}else{Table9.setBackground(Color.red);}
+			if(h.CustomerList().elementAt(9).toString().equals("Occupied")){
+				Table10.setBackground(Color.green);
+				}else{Table10.setBackground(Color.red);}
+			} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
 		
 		//*************************************
 		//INITIAL WAITER INPUT (FROM DATABASE)
@@ -461,40 +527,68 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Waiter_List.add("Wendy");
 		
 		//*********************************************
-		//INITIAL WAITER Status at table (FROM DATABASE)
+		//INITIAL WAITERS at table (FROM DATABASE)
 		//*********************************************
+
+		//addInitialWaiters(Waiters_for_Table_1);
+		addInitialWaiters(Waiters_for_Table_1,0);
+		addInitialWaiters(Waiters_for_Table_2,1);
+		addInitialWaiters(Waiters_for_Table_3,2);
+		addInitialWaiters(Waiters_for_Table_4,3);
+		addInitialWaiters(Waiters_for_Table_5,4);
+		addInitialWaiters(Waiters_for_Table_6,5);
+		addInitialWaiters(Waiters_for_Table_7,6);
+		addInitialWaiters(Waiters_for_Table_8,7);
+		addInitialWaiters(Waiters_for_Table_9,8);
+		addInitialWaiters(Waiters_for_Table_10,9);
 		
-		//
-		
-		
-		
-		
-		// Show the first waiter of the list
-		if (WaiterList.getItemCount() != 0){
-			WaiterList.setSelectedIndex(0);
-		}
 		//*************************************
 		//*************************************
-		//*************************************
 		
-		//*************************************
+		//**********************************************************
 		//INITIAL WAITER STATUS AT TABLE (OCCUPIED BY WAITER OR NOT?)
+		//**********************************************************
+		if (Waiters_for_Table_1.getItemCount() == 0 /* || Waiters_for_Table_1.getItemAt(0) == null*/){
+				W_1.setBackground(Color.RED);
+			}else{W_1.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_2.getItemCount() == 0){
+				W_2.setBackground(Color.RED);
+			}else{W_2.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_3.getItemCount() == 0){
+				W_3.setBackground(Color.RED);
+			}else{W_3.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_4.getItemCount() == 0){
+				W_4.setBackground(Color.RED);
+			}else{W_4.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_5.getItemCount() == 0){
+				W_5.setBackground(Color.RED);
+			}else{W_5.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_6.getItemCount() == 0){
+				W_6.setBackground(Color.RED);
+			}else{W_6.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_7.getItemCount() == 0){
+				W_7.setBackground(Color.RED);
+			}else{W_7.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_8.getItemCount() == 0){
+				W_8.setBackground(Color.RED);
+			}else{W_8.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_9.getItemCount() == 0){
+				W_9.setBackground(Color.RED);
+			}else{W_9.setBackground(Color.GREEN);}
+		if (Waiters_for_Table_10.getItemCount() == 0){
+				W_10.setBackground(Color.RED);
+			}else{W_10.setBackground(Color.GREEN);}		
+			
+		
 		//*************************************
-		W_1.setBackground(Color.RED);
-		W_2.setBackground(Color.RED);
-		W_3.setBackground(Color.RED);
-		W_4.setBackground(Color.RED);
-		W_5.setBackground(Color.RED);
-		W_6.setBackground(Color.RED);
-		W_7.setBackground(Color.RED);
-		W_8.setBackground(Color.RED);
-		W_9.setBackground(Color.RED);
-		W_10.setBackground(Color.RED);
-		//*************************************
-		//*************************************
+
+		// Show the first waiter of the list
+			if (WaiterList.getItemCount() != 0){
+				WaiterList.setSelectedIndex(0);
+			}
+			
 		//*************************************
 		
-		UIManager.put("ToggleButton.select", Color.GREEN);
 		
 		Help = new GradientButton("HELP");
 		Help.addActionListener(this);
@@ -511,7 +605,6 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Message.setBounds(817, 551, 371, 66);
 		MainPanel.add(Message);
 		
-		//h.tellGetStrings("EMP_ID_1");
 		
 		logoutButton.addActionListener(this);
 		
@@ -578,6 +671,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 	Object a = e.getSource();
 	if(a == logoutButton)
 		{
+			h.disconnect();
 			new LoginWindow();
 			dispose();
 		}
@@ -723,7 +817,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		}
 		
 		// Any waiters occupy the table -> Green Indicator. Else -> Red Indicator
-		if (Waiters_for_Table_1.getItemCount() == 0){
+		if (Waiters_for_Table_1.getItemCount() == 0 /* || Waiters_for_Table_1.getItemAt(0) == null*/){
 			W_1.setBackground(Color.RED);
 		}else{W_1.setBackground(Color.GREEN);}
 		if (Waiters_for_Table_2.getItemCount() == 0){
@@ -752,7 +846,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		}else{W_9.setBackground(Color.GREEN);}
 		if (Waiters_for_Table_10.getItemCount() == 0){
 			W_10.setBackground(Color.RED);
-		}else{W_10.setBackground(Color.GREEN);}
+		}else{W_10.setBackground(Color.GREEN);}		
 		
 	}
 	if(a == UnassignWaiter)
@@ -760,47 +854,47 @@ public class Host_GUI extends JFrame implements ActionListener{
 		String x = (String)combobox_waiter.getSelectedItem();
 		if(x == "Table 1"){
 			Waiters_for_Table_1.removeItem((String) WaiterList.getSelectedItem());
-			CommunicateUnassignedWaiter(Waiters_for_Table_1,1);
+			
 		}
 		if(x == "Table 2"){
 			Waiters_for_Table_2.removeItem((String) WaiterList.getSelectedItem());
-			CommunicateUnassignedWaiter(Waiters_for_Table_2,2);
+			
 		}
 		if(x == "Table 3"){
 			Waiters_for_Table_3.removeItem((String) WaiterList.getSelectedItem());
-			CommunicateUnassignedWaiter(Waiters_for_Table_3,3);
+			
 		}
 		if(x == "Table 4"){
 			Waiters_for_Table_4.removeItem((String) WaiterList.getSelectedItem());
-			CommunicateUnassignedWaiter(Waiters_for_Table_4,4);
+			
 		}
 		if(x == "Table 5"){
 			Waiters_for_Table_5.removeItem((String) WaiterList.getSelectedItem());
-			CommunicateUnassignedWaiter(Waiters_for_Table_5,5);
+			
 		}
 		if(x == "Table 6"){
 			Waiters_for_Table_6.removeItem((String) WaiterList.getSelectedItem());
-			CommunicateUnassignedWaiter(Waiters_for_Table_6,6);
+			
 		}
 		if(x == "Table 7"){
 			Waiters_for_Table_7.removeItem((String) WaiterList.getSelectedItem());
-			CommunicateUnassignedWaiter(Waiters_for_Table_7,7);
+			
 		}
 		if(x == "Table 8"){
 			Waiters_for_Table_8.removeItem((String) WaiterList.getSelectedItem());
-			CommunicateUnassignedWaiter(Waiters_for_Table_8,8);
+			
 		}
 		if(x == "Table 9"){
 			Waiters_for_Table_9.removeItem((String) WaiterList.getSelectedItem());
-			CommunicateUnassignedWaiter(Waiters_for_Table_9,9);
+			
 		}
 		if(x == "Table 10"){
 			Waiters_for_Table_10.removeItem((String) WaiterList.getSelectedItem());
-			CommunicateUnassignedWaiter(Waiters_for_Table_10,10);
+			
 		}
 		
 		// Any waiters occupy the table -> Green Indicator. Else -> Red Indicator
-		if (Waiters_for_Table_1.getItemCount() == 0){
+		if (Waiters_for_Table_1.getItemCount() == 0 /* || Waiters_for_Table_1.getItemAt(0) == null */){
 			W_1.setBackground(Color.RED);
 		}else{W_1.setBackground(Color.GREEN);}
 		if (Waiters_for_Table_2.getItemCount() == 0){
@@ -829,7 +923,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		}else{W_9.setBackground(Color.GREEN);}
 		if (Waiters_for_Table_10.getItemCount() == 0){
 			W_10.setBackground(Color.RED);
-		}else{W_10.setBackground(Color.GREEN);}
+		}else{W_10.setBackground(Color.GREEN);}		
 	
 		
 	}
@@ -890,33 +984,55 @@ public class Host_GUI extends JFrame implements ActionListener{
 	 }
 	 
 	 public void CommunicateUnassignedWaiter(JComboBox Waiters_for_table,int Table_ID ){
-		 if(Waiters_for_table.getItemCount() == 1){
-				h.updateTablesUnoccipiedByWaiter(1,Table_ID);
-		 }
-		 if(Waiters_for_table.getItemCount() == 2){
-				h.updateTablesUnoccipiedByWaiter(2,Table_ID);
-		 }
-		 if(Waiters_for_table.getItemCount() == 3){
-				h.updateTablesUnoccipiedByWaiter(3,Table_ID);
-		 }
-		 if(Waiters_for_table.getItemCount() == 4){
-				h.updateTablesUnoccipiedByWaiter(4,Table_ID);
-		 }
-		 if(Waiters_for_table.getItemCount() == 5){
-				h.updateTablesUnoccipiedByWaiter(5,Table_ID);
-		 } 
-		 
+		
+		
 	 }
 	
+	 public void addInitialWaiters(JComboBox WaitersAtTables,int index){
+		 try {
+				 if(h.Emp_ID_1().elementAt(index) != null){
+					 WaitersAtTables.addItem(h.Emp_ID_1().elementAt(index));
+				 }
+				 if(h.Emp_ID_2().elementAt(index) != null){
+					 WaitersAtTables.addItem(h.Emp_ID_2().elementAt(index));
+				 }
+				 if(h.Emp_ID_3().elementAt(index) != null){
+					 WaitersAtTables.addItem(h.Emp_ID_3().elementAt(index));
+				 }
+				 if(h.Emp_ID_4().elementAt(index) != null){
+					 WaitersAtTables.addItem(h.Emp_ID_4().elementAt(index));
+				 }
+				 if(h.Emp_ID_5().elementAt(index) != null){
+					 WaitersAtTables.addItem(h.Emp_ID_5().elementAt(index));
+				 }
+			 
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} 
+		 
+		 
+	 }
+	public void WaitersAtRow(int row){
+		try {
+			System.out.print(h.Emp_ID_1().elementAt(row).toString());
+			System.out.print(", " +h.Emp_ID_2().elementAt(row).toString());
+			System.out.print(", " +h.Emp_ID_3().elementAt(row).toString());
+			System.out.print(", " +h.Emp_ID_4().elementAt(row).toString());
+			System.out.println(", " +h.Emp_ID_5().elementAt(row).toString());
+		} catch (SQLException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+	}
+	 
 	
-	
-	
-	
-	
+	/*
 	public void itemStateChanged(ItemEvent ie){
 		int index = combobox_customer.getSelectedIndex();
 		System.out.println(index);
 	}
+	*/
 	
 	
 	}
