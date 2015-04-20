@@ -76,7 +76,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 			public JComboBox Waiters_for_Table_6;
 			public JComboBox Waiters_for_Table_9;
 			public JButton W_1,W_2,W_3,W_4,W_5,W_6,W_7,W_8,W_9,W_10;
-			public Vector<String> Waiter_List;
+			public Vector<String> Waiter_List;//Row1,Row2,Row3,Row4,Row5,Row6,Row7,Row8,Row9,Row10;
 			
 			private Host_Handler h = new Host_Handler();
 			
@@ -168,6 +168,10 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Border border = new LineBorder(Color.BLACK,3);
 		
 		//
+		
+		// Rows of waiters
+				
+		// Buttons, Labels, Combo boxes
 		
 		JLabel Title_Status = new JLabel("Change Table Status");
 		Title_Status.setFont(new Font("Tahoma", Font.PLAIN, 28));
@@ -454,61 +458,51 @@ public class Host_GUI extends JFrame implements ActionListener{
 		// ************************************
 		
 		//test
-		System.out.print("Table 1: ");WaitersAtRow(0);	
-		System.out.print("Table 2: ");WaitersAtRow(1);
-		System.out.print("Table 3: ");WaitersAtRow(2);
-		System.out.print("Table 4: ");WaitersAtRow(3);
-		System.out.print("Table 5: ");WaitersAtRow(4);
-		System.out.print("Table 6: ");WaitersAtRow(5);
-		System.out.print("Table 7: ");WaitersAtRow(6);
-		System.out.print("Table 8: ");WaitersAtRow(7);
-		System.out.print("Table 9: ");WaitersAtRow(8);
-		System.out.print("Table 10: ");WaitersAtRow(9);
 		
-		// Rows of waiters
-		
-		Vector<String> Row1 = new Vector<String>();
-		Vector<String> Row2 = new Vector<String>();
-		Vector<String> Row3 = new Vector<String>();
-		Vector<String> Row4 = new Vector<String>();
-		Vector<String> Row6 = new Vector<String>();
-		Vector<String> Row7 = new Vector<String>();
-		Vector<String> Row8 = new Vector<String>();
-		Vector<String> Row9 = new Vector<String>();
-		Vector<String> Row10 = new Vector<String>();
-		
+		/*
+		 waitersAtRow(0, Row1);
+		 waitersAtRow(1, Row2);
+		 waitersAtRow(2, Row3);
+		 waitersAtRow(3, Row4);
+		 waitersAtRow(4, Row5);
+		 waitersAtRow(5, Row6);
+		 waitersAtRow(6, Row7);
+		 waitersAtRow(7, Row8);
+		 waitersAtRow(8, Row9);
+		 waitersAtRow(9, Row10);
+		 */
 		//*************************************
 		//INITIAL CUSTOMER STATUSES (At table)
 		//*************************************
 		try {
-			if(h.CustomerList().elementAt(0).toString().equals("Occupied")){
+			if(h.CustomerList().get(0).toString().equals("Occupied")){
 				Table1.setBackground(Color.green);
 				}else{Table1.setBackground(Color.red);}
-			if(h.CustomerList().elementAt(1).toString().equals("Occupied")){
+			if(h.CustomerList().get(1).toString().equals("Occupied")){
 				Table2.setBackground(Color.green);
 				}else{Table2.setBackground(Color.red);}
-			if(h.CustomerList().elementAt(2).toString().equals("Occupied")){
+			if(h.CustomerList().get(2).toString().equals("Occupied")){
 				Table3.setBackground(Color.green);
 				}else{Table3.setBackground(Color.red);}
-			if(h.CustomerList().elementAt(3).toString().equals("Occupied")){
+			if(h.CustomerList().get(3).toString().equals("Occupied")){
 				Table4.setBackground(Color.green);
 				}else{Table4.setBackground(Color.red);}
-			if(h.CustomerList().elementAt(4).toString().equals("Occupied")){
+			if(h.CustomerList().get(4).toString().equals("Occupied")){
 				Table5.setBackground(Color.green);
 				}else{Table5.setBackground(Color.red);}
-			if(h.CustomerList().elementAt(5).toString().equals("Occupied")){
+			if(h.CustomerList().get(5).toString().equals("Occupied")){
 				Table6.setBackground(Color.green);
 				}else{Table6.setBackground(Color.red);}
-			if(h.CustomerList().elementAt(6).toString().equals("Occupied")){
+			if(h.CustomerList().get(6).toString().equals("Occupied")){
 				Table7.setBackground(Color.green);
 				}else{Table7.setBackground(Color.red);}
-			if(h.CustomerList().elementAt(7).toString().equals("Occupied")){
+			if(h.CustomerList().get(7).toString().equals("Occupied")){
 				Table8.setBackground(Color.green);
 				}else{Table8.setBackground(Color.red);}
-			if(h.CustomerList().elementAt(8).toString().equals("Occupied")){
+			if(h.CustomerList().get(8).toString().equals("Occupied")){
 				Table9.setBackground(Color.green);
 				}else{Table9.setBackground(Color.red);}
-			if(h.CustomerList().elementAt(9).toString().equals("Occupied")){
+			if(h.CustomerList().get(9).toString().equals("Occupied")){
 				Table10.setBackground(Color.green);
 				}else{Table10.setBackground(Color.red);}
 			} catch (SQLException e) {
@@ -548,38 +542,16 @@ public class Host_GUI extends JFrame implements ActionListener{
 		//**********************************************************
 		//INITIAL WAITER STATUS AT TABLE (OCCUPIED BY WAITER OR NOT?)
 		//**********************************************************
-		if (Waiters_for_Table_1.getItemCount() == 0 /* || Waiters_for_Table_1.getItemAt(0) == null*/){
-				W_1.setBackground(Color.RED);
-			}else{W_1.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_2.getItemCount() == 0){
-				W_2.setBackground(Color.RED);
-			}else{W_2.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_3.getItemCount() == 0){
-				W_3.setBackground(Color.RED);
-			}else{W_3.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_4.getItemCount() == 0){
-				W_4.setBackground(Color.RED);
-			}else{W_4.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_5.getItemCount() == 0){
-				W_5.setBackground(Color.RED);
-			}else{W_5.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_6.getItemCount() == 0){
-				W_6.setBackground(Color.RED);
-			}else{W_6.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_7.getItemCount() == 0){
-				W_7.setBackground(Color.RED);
-			}else{W_7.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_8.getItemCount() == 0){
-				W_8.setBackground(Color.RED);
-			}else{W_8.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_9.getItemCount() == 0){
-				W_9.setBackground(Color.RED);
-			}else{W_9.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_10.getItemCount() == 0){
-				W_10.setBackground(Color.RED);
-			}else{W_10.setBackground(Color.GREEN);}		
-			
-		
+		checkIfFull(Waiters_for_Table_1,W_1);
+		checkIfFull(Waiters_for_Table_2,W_2);
+		checkIfFull(Waiters_for_Table_3,W_3);
+		checkIfFull(Waiters_for_Table_4,W_4);
+		checkIfFull(Waiters_for_Table_5,W_5);
+		checkIfFull(Waiters_for_Table_6,W_6);
+		checkIfFull(Waiters_for_Table_7,W_7);
+		checkIfFull(Waiters_for_Table_8,W_8);
+		checkIfFull(Waiters_for_Table_9,W_9);
+		checkIfFull(Waiters_for_Table_10,W_10);
 		//*************************************
 
 		// Show the first waiter of the list
@@ -734,6 +706,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 			if(s == "Table 1"){
 				CheckColorAndSetRed(Table1);
 				h.updateTableUnoccupiedByCustomer(1);
+				
 			}
 			if(s == "Table 2"){
 				CheckColorAndSetRed(Table2);
@@ -777,153 +750,127 @@ public class Host_GUI extends JFrame implements ActionListener{
 		String x = (String)combobox_waiter.getSelectedItem();
 		if(x == "Table 1"){
 			removeDuplicatesAndAdd(Waiters_for_Table_1,WaiterList);
-			CommunicateAssignedWaiter(Waiters_for_Table_1,1);
+			//CommunicateAssignedWaiter(Waiters_for_Table_1,1);
+			Waiters_for_Table_1.setSelectedItem(WaiterList.getSelectedItem());
 			}
 		if(x == "Table 2"){
 			removeDuplicatesAndAdd(Waiters_for_Table_2,WaiterList);
-			CommunicateAssignedWaiter(Waiters_for_Table_2,2);
+			//CommunicateAssignedWaiter(Waiters_for_Table_2,2);
+			Waiters_for_Table_2.setSelectedItem(WaiterList.getSelectedItem());
 		}
 		if(x == "Table 3"){
 			removeDuplicatesAndAdd(Waiters_for_Table_3,WaiterList);
-			CommunicateAssignedWaiter(Waiters_for_Table_3,3);
+			//CommunicateAssignedWaiter(Waiters_for_Table_3,3);
+			Waiters_for_Table_3.setSelectedItem(WaiterList.getSelectedItem());
 		}
 		if(x == "Table 4"){
 			removeDuplicatesAndAdd(Waiters_for_Table_4,WaiterList);
-			CommunicateAssignedWaiter(Waiters_for_Table_4,4);
+			//CommunicateAssignedWaiter(Waiters_for_Table_4,4);
+			Waiters_for_Table_4.setSelectedItem(WaiterList.getSelectedItem());
 		}
 		if(x == "Table 5"){
 			removeDuplicatesAndAdd(Waiters_for_Table_5,WaiterList);
-			CommunicateAssignedWaiter(Waiters_for_Table_5,5);
+			//CommunicateAssignedWaiter(Waiters_for_Table_5,5);
+			Waiters_for_Table_5.setSelectedItem(WaiterList.getSelectedItem());
 		}
 		if(x == "Table 6"){
 			removeDuplicatesAndAdd(Waiters_for_Table_6,WaiterList);
-			CommunicateAssignedWaiter(Waiters_for_Table_6,6);
+			//CommunicateAssignedWaiter(Waiters_for_Table_6,6);
+			Waiters_for_Table_6.setSelectedItem(WaiterList.getSelectedItem());
 		}
 		if(x == "Table 7"){
 			removeDuplicatesAndAdd(Waiters_for_Table_7,WaiterList);
-			CommunicateAssignedWaiter(Waiters_for_Table_7,7);
+			//CommunicateAssignedWaiter(Waiters_for_Table_7,7);
+			Waiters_for_Table_7.setSelectedItem(WaiterList.getSelectedItem());
 		}
 		if(x == "Table 8"){
 			removeDuplicatesAndAdd(Waiters_for_Table_8,WaiterList);
-			CommunicateAssignedWaiter(Waiters_for_Table_8,8);
+			//CommunicateAssignedWaiter(Waiters_for_Table_8,8);
+			Waiters_for_Table_8.setSelectedItem(WaiterList.getSelectedItem());
 		}
 		if(x == "Table 9"){
 			removeDuplicatesAndAdd(Waiters_for_Table_9,WaiterList);
-			CommunicateAssignedWaiter(Waiters_for_Table_9,9);
+			//CommunicateAssignedWaiter(Waiters_for_Table_9,9);
+			Waiters_for_Table_9.setSelectedItem(WaiterList.getSelectedItem());
 		}
 		if(x == "Table 10"){
 			removeDuplicatesAndAdd(Waiters_for_Table_10,WaiterList);
-			CommunicateAssignedWaiter(Waiters_for_Table_10,10);
+			//CommunicateAssignedWaiter(Waiters_for_Table_10,10);
+			Waiters_for_Table_9.setSelectedItem(WaiterList.getSelectedItem());
 		}
 		
 		// Any waiters occupy the table -> Green Indicator. Else -> Red Indicator
-		if (Waiters_for_Table_1.getItemCount() == 0 /* || Waiters_for_Table_1.getItemAt(0) == null*/){
-			W_1.setBackground(Color.RED);
-		}else{W_1.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_2.getItemCount() == 0){
-			W_2.setBackground(Color.RED);
-		}else{W_2.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_3.getItemCount() == 0){
-			W_3.setBackground(Color.RED);
-		}else{W_3.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_4.getItemCount() == 0){
-			W_4.setBackground(Color.RED);
-		}else{W_4.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_5.getItemCount() == 0){
-			W_5.setBackground(Color.RED);
-		}else{W_5.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_6.getItemCount() == 0){
-			W_6.setBackground(Color.RED);
-		}else{W_6.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_7.getItemCount() == 0){
-			W_7.setBackground(Color.RED);
-		}else{W_7.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_8.getItemCount() == 0){
-			W_8.setBackground(Color.RED);
-		}else{W_8.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_9.getItemCount() == 0){
-			W_9.setBackground(Color.RED);
-		}else{W_9.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_10.getItemCount() == 0){
-			W_10.setBackground(Color.RED);
-		}else{W_10.setBackground(Color.GREEN);}		
+		checkIfFull(Waiters_for_Table_1,W_1);
+		checkIfFull(Waiters_for_Table_2,W_2);
+		checkIfFull(Waiters_for_Table_3,W_3);
+		checkIfFull(Waiters_for_Table_4,W_4);
+		checkIfFull(Waiters_for_Table_5,W_5);
+		checkIfFull(Waiters_for_Table_6,W_6);
+		checkIfFull(Waiters_for_Table_7,W_7);
+		checkIfFull(Waiters_for_Table_8,W_8);
+		checkIfFull(Waiters_for_Table_9,W_9);
+		checkIfFull(Waiters_for_Table_10,W_10);
 		
 	}
 	if(a == UnassignWaiter)
 	{
 		String x = (String)combobox_waiter.getSelectedItem();
 		if(x == "Table 1"){
-			Waiters_for_Table_1.removeItem((String) WaiterList.getSelectedItem());
+			removeItem(Waiters_for_Table_1,WaiterList);
+			//Waiters_for_Table_1.removeItem((String) WaiterList.getSelectedItem());
+			//deleteWaiterAtTable(WaiterList,Row1);
+			//printVectorContents(Row1);
+			//removeContentsForTableFromDatabase(Row1, 1);
 			
 		}
 		if(x == "Table 2"){
-			Waiters_for_Table_2.removeItem((String) WaiterList.getSelectedItem());
+			removeItem(Waiters_for_Table_2,WaiterList);
 			
 		}
 		if(x == "Table 3"){
-			Waiters_for_Table_3.removeItem((String) WaiterList.getSelectedItem());
+			removeItem(Waiters_for_Table_3,WaiterList);
 			
 		}
 		if(x == "Table 4"){
-			Waiters_for_Table_4.removeItem((String) WaiterList.getSelectedItem());
+			removeItem(Waiters_for_Table_4,WaiterList);
 			
 		}
 		if(x == "Table 5"){
-			Waiters_for_Table_5.removeItem((String) WaiterList.getSelectedItem());
+			removeItem(Waiters_for_Table_5,WaiterList);
 			
 		}
 		if(x == "Table 6"){
-			Waiters_for_Table_6.removeItem((String) WaiterList.getSelectedItem());
+			removeItem(Waiters_for_Table_6,WaiterList);
 			
 		}
 		if(x == "Table 7"){
-			Waiters_for_Table_7.removeItem((String) WaiterList.getSelectedItem());
+			removeItem(Waiters_for_Table_7,WaiterList);
 			
 		}
 		if(x == "Table 8"){
-			Waiters_for_Table_8.removeItem((String) WaiterList.getSelectedItem());
+			removeItem(Waiters_for_Table_8,WaiterList);
 			
 		}
 		if(x == "Table 9"){
-			Waiters_for_Table_9.removeItem((String) WaiterList.getSelectedItem());
+			removeItem(Waiters_for_Table_9,WaiterList);
 			
 		}
 		if(x == "Table 10"){
-			Waiters_for_Table_10.removeItem((String) WaiterList.getSelectedItem());
+			removeItem(Waiters_for_Table_10,WaiterList);
 			
 		}
 		
 		// Any waiters occupy the table -> Green Indicator. Else -> Red Indicator
-		if (Waiters_for_Table_1.getItemCount() == 0 /* || Waiters_for_Table_1.getItemAt(0) == null */){
-			W_1.setBackground(Color.RED);
-		}else{W_1.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_2.getItemCount() == 0){
-			W_2.setBackground(Color.RED);
-		}else{W_2.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_3.getItemCount() == 0){
-			W_3.setBackground(Color.RED);
-		}else{W_3.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_4.getItemCount() == 0){
-			W_4.setBackground(Color.RED);
-		}else{W_4.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_5.getItemCount() == 0){
-			W_5.setBackground(Color.RED);
-		}else{W_5.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_6.getItemCount() == 0){
-			W_6.setBackground(Color.RED);
-		}else{W_6.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_7.getItemCount() == 0){
-			W_7.setBackground(Color.RED);
-		}else{W_7.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_8.getItemCount() == 0){
-			W_8.setBackground(Color.RED);
-		}else{W_8.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_9.getItemCount() == 0){
-			W_9.setBackground(Color.RED);
-		}else{W_9.setBackground(Color.GREEN);}
-		if (Waiters_for_Table_10.getItemCount() == 0){
-			W_10.setBackground(Color.RED);
-		}else{W_10.setBackground(Color.GREEN);}		
+		checkIfFull(Waiters_for_Table_1,W_1);
+		checkIfFull(Waiters_for_Table_2,W_2);
+		checkIfFull(Waiters_for_Table_3,W_3);
+		checkIfFull(Waiters_for_Table_4,W_4);
+		checkIfFull(Waiters_for_Table_5,W_5);
+		checkIfFull(Waiters_for_Table_6,W_6);
+		checkIfFull(Waiters_for_Table_7,W_7);
+		checkIfFull(Waiters_for_Table_8,W_8);
+		checkIfFull(Waiters_for_Table_9,W_9);
+		checkIfFull(Waiters_for_Table_10,W_10);
 	
 		
 	}
@@ -941,8 +888,27 @@ public class Host_GUI extends JFrame implements ActionListener{
 			   }
 			 }
 			 if (!exists) {
-				 WaitersAtTables.addItem((String) WaitersToBeSelected.getSelectedItem()); 
+				 for(int i = 0; i <=5; i++){
+					 if(WaitersAtTables.getItemAt(i).equals("-")){
+						WaitersAtTables.removeItemAt(i);
+						 WaitersAtTables.addItem((String) WaitersToBeSelected.getSelectedItem()); 
+						 break;
+					 }
+					 
+				 }
 		}
+	}
+	
+	public void removeItem(JComboBox WaitersAtTables, JComboBox WaitersToBeSelected){
+		String Selected = (String) WaitersToBeSelected.getSelectedItem();
+		for(int index = 0; index < WaitersAtTables.getItemCount();index++){
+			if(WaitersAtTables.getItemAt(index).equals(Selected)){
+				WaitersAtTables.removeItemAt(index);
+				WaitersAtTables.addItem("-"); 
+				break;
+			}
+		}
+		//WaitersAtTables.removeItem((String) WaitersToBeSelected.getSelectedItem());
 	}
 	
 	public void CheckColorAndSetRed(JButton x ){
@@ -990,20 +956,20 @@ public class Host_GUI extends JFrame implements ActionListener{
 	
 	 public void addInitialWaiters(JComboBox WaitersAtTables,int index){
 		 try {
-				 if(h.Emp_ID_1().elementAt(index) != null){
-					 WaitersAtTables.addItem(h.Emp_ID_1().elementAt(index));
+				 if(h.Emp_ID_1().get(index) != null){
+					 WaitersAtTables.addItem(h.Emp_ID_1().get(index));
 				 }
-				 if(h.Emp_ID_2().elementAt(index) != null){
-					 WaitersAtTables.addItem(h.Emp_ID_2().elementAt(index));
+				 if(h.Emp_ID_2().get(index) != null){
+					 WaitersAtTables.addItem(h.Emp_ID_2().get(index));
 				 }
-				 if(h.Emp_ID_3().elementAt(index) != null){
-					 WaitersAtTables.addItem(h.Emp_ID_3().elementAt(index));
+				 if(h.Emp_ID_3().get(index) != null){
+					 WaitersAtTables.addItem(h.Emp_ID_3().get(index));
 				 }
-				 if(h.Emp_ID_4().elementAt(index) != null){
-					 WaitersAtTables.addItem(h.Emp_ID_4().elementAt(index));
+				 if(h.Emp_ID_4().get(index) != null){
+					 WaitersAtTables.addItem(h.Emp_ID_4().get(index));
 				 }
-				 if(h.Emp_ID_5().elementAt(index) != null){
-					 WaitersAtTables.addItem(h.Emp_ID_5().elementAt(index));
+				 if(h.Emp_ID_5().get(index) != null){
+					 WaitersAtTables.addItem(h.Emp_ID_5().get(index));
 				 }
 			 
 			} catch (SQLException e) {
@@ -1014,6 +980,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		 
 	 }
 	public void WaitersAtRow(int row){
+		/*
 		try {
 			System.out.print(h.Emp_ID_1().elementAt(row).toString());
 			System.out.print(", " +h.Emp_ID_2().elementAt(row).toString());
@@ -1023,16 +990,52 @@ public class Host_GUI extends JFrame implements ActionListener{
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
+			
+		}
+		*/
+	}
+	public void waitersAtRow(int row, Vector<String> v){
+		/*
+		try {
+			v.add(h.Emp_ID_1().elementAt(row).toString());
+			v.add(h.Emp_ID_2().elementAt(row).toString());
+			v.add(h.Emp_ID_3().elementAt(row).toString());
+			v.add(h.Emp_ID_4().elementAt(row).toString());
+			v.add(h.Emp_ID_5().elementAt(row).toString());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		*/
+	}
+	
+	public void printVectorContents(Vector<String> v){
+		System.out.print("Contents: ");
+		for(int i = 0; i < v.size(); i++){
+			System.out.print(" " + v.elementAt(i));
+		}
+		System.out.println();
+	}
+	
+	public void removeContentsForTableFromDatabase(Vector<String> List, int Table){
+		String s = (String) WaiterList.getSelectedItem();
+		for(int i = 0; i < List.size(); i ++){
+			for(int j = 1; j <= 5;j++){
+				if(s.equals(List.elementAt(i))){
+					h.update("Update Table_Statuses set Emp_ID_"+j+" = '-' where Table_ID = "+Table+";");
+				}
+				else{i++;}
+			}
 		}
 	}
-	 
 	
-	/*
-	public void itemStateChanged(ItemEvent ie){
-		int index = combobox_customer.getSelectedIndex();
-		System.out.println(index);
+	public void checkIfFull(JComboBox WaitersAtTables,JButton W){
+		if (WaitersAtTables.getItemAt(0).equals("-") && WaitersAtTables.getItemAt(1).equals("-") && WaitersAtTables.getItemAt(2).equals("-")
+				&& WaitersAtTables.getItemAt(3).equals("-") && WaitersAtTables.getItemAt(4).equals("-")){
+				W.setBackground(Color.RED);
+		}else{W.setBackground(Color.GREEN);}
 	}
-	*/
+	
 	
 	
 	}
