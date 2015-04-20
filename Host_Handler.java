@@ -2,6 +2,7 @@ package Host;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import Manager.EmpObj;
@@ -67,11 +68,11 @@ public class Host_Handler extends DatabaseCommunicator{
 		//this.disconnect();
 	}
 	
-	public Vector<String> Emp_ID_1() throws SQLException{
+	public ArrayList<String> Emp_ID_1() throws SQLException{
 		tell("use MAINDB;");
 		tell("Select * from MAINDB.Table_Statuses Order by Table_ID;");
 		ResultSet rs = tell("Select * from Table_Statuses Order by Table_ID;");
-		Vector<String> EMP_ID_LIST = new Vector<String>();
+		ArrayList<String> EMP_ID_LIST = new ArrayList<String>();
 		rs.beforeFirst();
 		while(rs.next() == true){
 			String temp = rs.getString("EMP_ID_1");
@@ -80,10 +81,10 @@ public class Host_Handler extends DatabaseCommunicator{
 		//this.disconnect();
 		return EMP_ID_LIST;
 	}
-	public Vector<String> Emp_ID_2() throws SQLException{
+	public ArrayList<String> Emp_ID_2() throws SQLException{
 		tell("use MAINDB;");
 		ResultSet rs = tell("Select * from Table_Statuses Order by Table_ID;");
-		Vector<String> EMP_ID_LIST = new Vector<String>();
+		ArrayList<String> EMP_ID_LIST = new ArrayList<String>();
 		rs.beforeFirst();
 		while(rs.next() == true){
 			String temp = rs.getString("EMP_ID_2");
@@ -92,11 +93,11 @@ public class Host_Handler extends DatabaseCommunicator{
 		//this.disconnect();
 		return EMP_ID_LIST;
 	}
-	public Vector<String> Emp_ID_3() throws SQLException{
+	public ArrayList<String> Emp_ID_3() throws SQLException{
 		tell("use MAINDB;");
 		tell("Select * from MAINDB.Table_Statuses Order by Table_ID;");
 		ResultSet rs = tell("Select * from Table_Statuses Order by Table_ID;");
-		Vector<String> EMP_ID_LIST = new Vector<String>();
+		ArrayList<String> EMP_ID_LIST = new ArrayList<String>();
 		rs.beforeFirst();
 		while(rs.next() == true){
 			String temp = rs.getString("EMP_ID_3");
@@ -105,11 +106,11 @@ public class Host_Handler extends DatabaseCommunicator{
 		//this.disconnect();
 		return EMP_ID_LIST;
 	}
-	public Vector<String> Emp_ID_4() throws SQLException{
+	public ArrayList<String> Emp_ID_4() throws SQLException{
 		tell("use MAINDB;");
 		tell("Select * from MAINDB.Table_Statuses Order by Table_ID;");
 		ResultSet rs = tell("Select * from Table_Statuses Order by Table_ID;");
-		Vector<String> EMP_ID_LIST = new Vector<String>();
+		ArrayList<String> EMP_ID_LIST = new ArrayList<String>();
 		rs.beforeFirst();
 		while(rs.next() == true){
 			String temp = rs.getString("EMP_ID_4");
@@ -118,11 +119,11 @@ public class Host_Handler extends DatabaseCommunicator{
 		//this.disconnect();
 		return EMP_ID_LIST;
 	}
-	public Vector<String> Emp_ID_5() throws SQLException{
+	public ArrayList<String> Emp_ID_5() throws SQLException{
 		tell("use MAINDB;");
 		tell("Select * from MAINDB.Table_Statuses Order by Table_ID;");
 		ResultSet rs = tell("Select * from Table_Statuses Order by Table_ID;");
-		Vector<String> EMP_ID_LIST = new Vector<String>();
+		ArrayList<String> EMP_ID_LIST = new ArrayList<String>();
 		rs.beforeFirst();
 		while(rs.next() == true){
 			String temp = rs.getString("EMP_ID_5");
@@ -131,11 +132,11 @@ public class Host_Handler extends DatabaseCommunicator{
 		//this.disconnect();
 		return EMP_ID_LIST;
 	}
-	public Vector<String> CustomerList() throws SQLException{
+	public ArrayList<String> CustomerList() throws SQLException{
 		tell("use MAINDB;");
 		tell("Select * from MAINDB.Table_Statuses Order by Table_ID;");
 		ResultSet rs = tell("Select * from Table_Statuses Order by Table_ID;");
-		Vector<String> C_STATUS_LIST = new Vector<String>();
+		ArrayList<String> C_STATUS_LIST = new ArrayList<String>();
 		rs.beforeFirst();
 		while(rs.next() == true){
 			String temp = rs.getString("C_Status");
@@ -144,11 +145,11 @@ public class Host_Handler extends DatabaseCommunicator{
 		//this.disconnect();
 		return C_STATUS_LIST;
 	}
-	public Vector<String> ReservedList() throws SQLException{
+	public ArrayList<String> ReservedList() throws SQLException{
 		tell("use MAINDB;");
 		tell("Select * from MAINDB.Table_Statuses Order by Table_ID;");
 		ResultSet rs = tell("Select * from Table_Statuses Order by Table_ID;");
-		Vector<String> R_STATUS_LIST = new Vector<String>();
+		ArrayList<String> R_STATUS_LIST = new ArrayList<String>();
 		rs.beforeFirst();
 		while(rs.next() == true){
 			String temp = rs.getString("R_Status");
@@ -157,11 +158,11 @@ public class Host_Handler extends DatabaseCommunicator{
 		//this.disconnect();
 		return R_STATUS_LIST;
 	}
-	public Vector<String> TableStatusList() throws SQLException{
+	public ArrayList<String> TableStatusList() throws SQLException{
 		tell("use MAINDB;");
 		tell("Select * from MAINDB.Table_Statuses Order by Table_ID;");
 		ResultSet rs = tell("Select * from Table_Statuses Order by Table_ID;");
-		Vector<String> T_STATUS_LIST = new Vector<String>();
+		ArrayList<String> T_STATUS_LIST = new ArrayList<String>();
 		rs.beforeFirst();
 		while(rs.next() == true){
 			String temp = rs.getString("T_Status");
