@@ -42,6 +42,7 @@ import javax.swing.UIManager;
 import Login.LoginWindow;
 import Shared.Gradients.GradientButton;
 import Shared.Gradients.GradientPanel;
+import Shared.Notifications.NotificationGUI;
 
 import javax.swing.JSeparator;
 import javax.swing.JComboBox;
@@ -51,11 +52,12 @@ import javax.swing.border.LineBorder;
 
 public class Host_GUI extends JFrame implements ActionListener{
 	//Swing Variables
+			//Notification GUI
+			private NotificationGUI notification;
 			private JPanel rootPanel,titlePanel;
 			private GradientPanel MainPanel;
 			private GradientButton logoutButton;
 			public GradientButton Help;
-			public GradientButton Message;
 			//private GradientButton logoutButton;
 			private JLabel titleLabel,dateAndTime;
 			//Other Variables
@@ -124,13 +126,19 @@ public class Host_GUI extends JFrame implements ActionListener{
 		setRootPanel();
 	}
 	
+	
 	private void setRootPanel()
 	{
 		rootPanel = new JPanel();
+		// Create Notification GUI
+		notification = new NotificationGUI(23,"Host");
+		rootPanel.add(notification);
 		rootPanel.setLayout(null);
 		rootPanel.add(titlePanel);
 		rootPanel.add(MainPanel);
 		rootPanel.setVisible(true);
+		
+		
 	}
 	
 	private void setBackgroundPanel() 
@@ -143,7 +151,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		MainPanel.setBounds(0,0,1200,652);
 		
 		logoutButton = new GradientButton("LOGOUT");
-		logoutButton.setBounds(10, 551, 371, 66);
+		logoutButton.setBounds(10, 551, 580, 66);
 		logoutButton.setFocusPainted(false);
 		logoutButton.setFont(logoutButton.getFont().deriveFont(16.0f));
 		MainPanel.add(logoutButton);
@@ -588,15 +596,8 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Help.setText("HELP");
 		Help.setFont(Help.getFont().deriveFont(16f));
 		Help.setFocusPainted(false);
-		Help.setBounds(418, 551, 371, 66);
+		Help.setBounds(602, 551, 586, 66);
 		MainPanel.add(Help);
-		
-		Message = new GradientButton("MESSAGE");
-		Message.setText("MESSAGE");
-		Message.setFont(Message.getFont().deriveFont(16f));
-		Message.setFocusPainted(false);
-		Message.setBounds(817, 551, 371, 66);
-		MainPanel.add(Message);
 		
 		
 		logoutButton.addActionListener(this);
