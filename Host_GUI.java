@@ -27,6 +27,7 @@ import java.awt.SystemColor;
 import java.sql.SQLException;
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
@@ -79,12 +80,24 @@ public class Host_GUI extends JFrame implements ActionListener{
 			public JComboBox Waiters_for_Table_9;
 			public JButton W_1,W_2,W_3,W_4,W_5,W_6,W_7,W_8,W_9,W_10;
 			public Vector<String> Waiter_List;
+			//Added by Sam
+			public LinkedList dirtyTables = new LinkedList();
+			private int counter = 0;
+			private Border border_BLACK = new LineBorder(Color.BLACK,3); //Clean
+			private Border border_YELLOW = new LineBorder(Color.YELLOW,6); //Unclean
+			private Timer blinkTimer;
 			
 			private Host_Handler h = new Host_Handler();
+			
 			
 	public Host_GUI() {
 		
 		super();
+		// New blinker timer for dirty tables
+		blinkTimer = new Timer(500,this);
+		blinkTimer.setRepeats(true);
+		blinkTimer.setCoalesce(true);
+		blinkTimer.setInitialDelay(0);
 		initialize();
 		//h.updateTableStatus();
 		
@@ -107,8 +120,11 @@ public class Host_GUI extends JFrame implements ActionListener{
 	            @Override
 	            public void windowClosing(WindowEvent e)
 	            {
-	                new LoginWindow();
-	                dispose();
+	            	blinkTimer.stop();
+	    			notification.close();
+	    			h.disconnect();
+	    			new LoginWindow();
+	    			dispose();
 	            }
 	        });
 		
@@ -137,7 +153,6 @@ public class Host_GUI extends JFrame implements ActionListener{
 		rootPanel.add(titlePanel);
 		rootPanel.add(MainPanel);
 		rootPanel.setVisible(true);
-		
 		
 	}
 	
@@ -668,6 +683,8 @@ public class Host_GUI extends JFrame implements ActionListener{
 	Object a = e.getSource();
 	if(a == logoutButton)
 		{
+			blinkTimer.stop();
+			notification.close();
 			h.disconnect();
 			new LoginWindow();
 			dispose();
@@ -973,6 +990,18 @@ public class Host_GUI extends JFrame implements ActionListener{
 	
 		
 	}
+	if(a == blinkTimer)
+	{	
+		counter++;
+		for(int i = 0;i < dirtyTables.size();i++){
+			if (counter % 2 == 0) {
+				((JButton)dirtyTables.get(i)).setBorder(border_YELLOW);
+			} else {
+				((JButton)dirtyTables.get(i)).setBorder(border_BLACK);
+			}
+		         
+		}
+	}
 	
 	
 
@@ -1076,7 +1105,12 @@ public class Host_GUI extends JFrame implements ActionListener{
 				W.setBackground(Color.RED);
 		}else{W.setBackground(Color.GREEN);}
 	}
-	
+	/**
+	 * OLD FUNCTION
+	 * @param Tablenumber
+	 * @param index
+	 */
+	/*
 	public void TableStatusInitialIndicator(JButton Tablenumber,int index){
 		Border border_BLACK = new LineBorder(Color.BLACK,3); //Clean
 		Border border_YELLOW = new LineBorder(Color.YELLOW,6); //Unclean
@@ -1106,6 +1140,38 @@ public class Host_GUI extends JFrame implements ActionListener{
 			e.printStackTrace();
 		}
 	}
+	*/
+	/**
+	 * NEW FUNCTION
+	 * @param Tablenumber
+	 * @param index
+	 */
+	public void TableStatusInitialIndicator(JButton Tablenumber,int index){
+		Border border_BLACK = new LineBorder(Color.BLACK,3); //Clean
+		Border border_YELLOW = new LineBorder(Color.YELLOW,6); //Unclean
+		try {
+			if(h.TableStatusList().get(index).toString().equals("Unclean")){//Tablenumber.setBorder(border_YELLOW);
+				if(!dirtyTables.contains(Tablenumber)){
+					dirtyTables.add(Tablenumber);
+				}
+			}
+			if(h.TableStatusList().get(index).toString().equals("Clean")){
+				dirtyTables.remove(Tablenumber);
+			}
+			if(dirtyTables.isEmpty()){
+				blinkTimer.stop();
+				counter = 0;
+			}
+			else{
+				blinkTimer.start();
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void reservedTableIndicator(JButton Indicator,int index){
 		Border border_BLACK = new LineBorder(Color.BLACK,3); //Not Reserved
 		Border border_BLUE = new LineBorder(Color.BLUE,4); //Reserved
