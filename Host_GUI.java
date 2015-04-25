@@ -1137,6 +1137,9 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Indicator.setBorder(border_BLUE);
 		h.update("UPDATE MAINDB.Table_Statuses SET R_Status = 'Reserved' WHERE TABLE_ID = "+Table_ID+";");
 	}
+	public void initialCustomerStatus(){
+		
+	}
 	}
 		
 	
