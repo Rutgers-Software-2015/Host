@@ -26,11 +26,13 @@ import java.awt.Rectangle;
 import java.awt.SystemColor;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.LinkedList;
-import java.util.Vector;
+
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JLabel;
 import javax.swing.JCheckBox;
@@ -66,7 +68,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 			public JPanel TableStatus;
 			public GradientButton AssignWaiter,UnassignWaiter,Reserve,UnReserve;
 			public JButton Table1,Table2,Table3,Table4,Table5,Table6,Table7,Table8,Table9,Table10;
-			public GradientButton Assign,Unassign;
+			public GradientButton Assign,Unassign,Clean;
 			public JComboBox combobox_customer,combobox_waiter, WaiterList;
 			public JComboBox Waiters_for_Table_2;
 			public JComboBox Waiters_for_Table_4;
@@ -79,7 +81,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 			public JComboBox Waiters_for_Table_6;
 			public JComboBox Waiters_for_Table_9;
 			public JButton W_1,W_2,W_3,W_4,W_5,W_6,W_7,W_8,W_9,W_10;
-			public Vector<String> Waiter_List;
+			
 			//Added by Sam
 			public LinkedList dirtyTables = new LinkedList();
 			private int counter = 0;
@@ -196,10 +198,10 @@ public class Host_GUI extends JFrame implements ActionListener{
 				
 		// Buttons, Labels, Combo boxes
 		
-		JLabel Title_Status = new JLabel("Change Table Status");
+		JLabel Title_Status = new JLabel("Table Status");
 		Title_Status.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		Title_Status.setHorizontalAlignment(SwingConstants.CENTER);
-		Title_Status.setBounds(408, 13, 371, 58);
+		Title_Status.setBounds(423, 13, 371, 58);
 		TableStatus.add(Title_Status);
 		
 		JButton Seperator_horizontal = new JButton("");
@@ -207,13 +209,13 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Seperator_horizontal.setBounds(0, 473, 1188, 9);
 		TableStatus.add(Seperator_horizontal);
 		
-		JLabel Customer_Title = new JLabel("Assign Customer");
+		JLabel Customer_Title = new JLabel("Customer/Table");
 		Customer_Title.setHorizontalAlignment(SwingConstants.CENTER);
 		Customer_Title.setFont(new Font("Tahoma", Font.PLAIN, 28));
-		Customer_Title.setBounds(0, 13, 307, 58);
+		Customer_Title.setBounds(0, 13, 281, 58);
 		TableStatus.add(Customer_Title);
 		
-		JLabel Assign_Waiters = new JLabel("Assign Waiters");
+		JLabel Assign_Waiters = new JLabel("Waiters");
 		Assign_Waiters.setHorizontalAlignment(SwingConstants.CENTER);
 		Assign_Waiters.setFont(new Font("Tahoma", Font.PLAIN, 28));
 		Assign_Waiters.setBounds(930, 13, 258, 58);
@@ -222,35 +224,34 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Assign = new GradientButton("Assign");
 		Assign.addActionListener(this);
 		Assign.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Assign.setBounds(55, 200, 175, 51);
+		Assign.setBounds(55, 149, 175, 51);
 		TableStatus.add(Assign);
 		
 		Unassign = new GradientButton("Unassign");
 		Unassign.addActionListener(this);
 		Unassign.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Unassign.setBounds(55, 264, 175, 51);
+		Unassign.setBounds(55, 213, 175, 51);
 		TableStatus.add(Unassign);
 		
 		String[] Tables_for_customer = {"Table 1","Table 2", "Table 3", "Table 4", "Table 5", "Table 6","Table 7","Table 8","Table 9","Table 10"};
 		combobox_customer = new JComboBox(Tables_for_customer);
 		combobox_customer.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		//combobox_customer.setSelectedIndex(0);
-		combobox_customer.setBounds(55, 121, 172, 51);
+		combobox_customer.setBounds(55, 85, 172, 51);
 		TableStatus.add(combobox_customer);
 		Render(combobox_customer);
 		
 		String[] Tables_for_waiter = {"Table 1","Table 2", "Table 3", "Table 4", "Table 5", "Table 6","Table 7","Table 8","Table 9","Table 10"};
 		combobox_waiter = new JComboBox(Tables_for_waiter);
 		combobox_waiter.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		combobox_waiter.setBounds(990, 121, 151, 51);
+		combobox_waiter.setBounds(974, 103, 187, 51);
 		TableStatus.add(combobox_waiter);
 		//combobox_waiter.setSelectedIndex(0);
 		Render(combobox_waiter);
 		
-		Waiter_List=new Vector<String>();
-		WaiterList = new JComboBox(Waiter_List);
+		WaiterList = new JComboBox(new DefaultComboBoxModel(h.initialEmployeeList().toArray()));
 		WaiterList.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		WaiterList.setBounds(990, 220, 151, 51);
+		WaiterList.setBounds(974, 195, 187, 51);
 		TableStatus.add(WaiterList);
 		TableStatus.setVisible(true);
 		Render(WaiterList);
@@ -259,7 +260,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		AssignWaiter.setText("Assign Waiter");
 		AssignWaiter.addActionListener(this);
 		AssignWaiter.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		AssignWaiter.setBounds(974, 312, 187, 45);
+		AssignWaiter.setBounds(974, 294, 187, 45);
 		TableStatus.add(AssignWaiter);
 		
 		UnassignWaiter = new GradientButton("Waiter 2");
@@ -271,143 +272,143 @@ public class Host_GUI extends JFrame implements ActionListener{
 		
 		Waiters_for_Table_1 = new JComboBox();
 		Waiters_for_Table_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Waiters_for_Table_1.setBounds(266, 170, 186, 37);
+		Waiters_for_Table_1.setBounds(284, 176, 186, 37);
 		TableStatus.add(Waiters_for_Table_1);
 		Render(Waiters_for_Table_1);
 		
 		Waiters_for_Table_2 = new JComboBox();
 		Waiters_for_Table_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Waiters_for_Table_2.setBounds(494, 121, 186, 37);
+		Waiters_for_Table_2.setBounds(512, 127, 186, 37);
 		TableStatus.add(Waiters_for_Table_2);
 		Render(Waiters_for_Table_2);
 		
 		Waiters_for_Table_3 = new JComboBox();
 		Waiters_for_Table_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Waiters_for_Table_3.setBounds(713, 170, 186, 37);
+		Waiters_for_Table_3.setBounds(731, 176, 186, 37);
 		TableStatus.add(Waiters_for_Table_3);
 		Render(Waiters_for_Table_3);
 		
 		Waiters_for_Table_4 = new JComboBox();
 		Waiters_for_Table_4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Waiters_for_Table_4.setBounds(267, 270, 186, 37);
+		Waiters_for_Table_4.setBounds(285, 276, 186, 37);
 		TableStatus.add(Waiters_for_Table_4);
 		Render(Waiters_for_Table_4);
 		
 		Waiters_for_Table_5 = new JComboBox();
 		Waiters_for_Table_5.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Waiters_for_Table_5.setBounds(494, 216, 186, 37);
+		Waiters_for_Table_5.setBounds(512, 222, 186, 37);
 		TableStatus.add(Waiters_for_Table_5);
 		Render(Waiters_for_Table_5);
 		
 		Waiters_for_Table_6 = new JComboBox();
 		Waiters_for_Table_6.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Waiters_for_Table_6.setBounds(714, 273, 186, 37);
+		Waiters_for_Table_6.setBounds(732, 279, 186, 37);
 		TableStatus.add(Waiters_for_Table_6);
 		Render(Waiters_for_Table_6);
 		
 		Waiters_for_Table_7 = new JComboBox();
 		Waiters_for_Table_7.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Waiters_for_Table_7.setBounds(267, 374, 186, 37);
+		Waiters_for_Table_7.setBounds(285, 380, 186, 37);
 		TableStatus.add(Waiters_for_Table_7);
 		Render(Waiters_for_Table_7);
 		
 		Waiters_for_Table_8 = new JComboBox();
 		Waiters_for_Table_8.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Waiters_for_Table_8.setBounds(493, 320, 186, 37);
+		Waiters_for_Table_8.setBounds(511, 326, 186, 37);
 		TableStatus.add(Waiters_for_Table_8);
 		Render(Waiters_for_Table_8);
 		
 		Waiters_for_Table_9 = new JComboBox();
 		Waiters_for_Table_9.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Waiters_for_Table_9.setBounds(714, 378, 186, 37);
+		Waiters_for_Table_9.setBounds(732, 384, 186, 37);
 		TableStatus.add(Waiters_for_Table_9);
 		Render(Waiters_for_Table_9);
 		
 		Waiters_for_Table_10 = new JComboBox();
 		Waiters_for_Table_10.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Waiters_for_Table_10.setBounds(494, 417, 186, 37);
+		Waiters_for_Table_10.setBounds(512, 423, 186, 37);
 		TableStatus.add(Waiters_for_Table_10);
 		Render(Waiters_for_Table_10);
 		
 		W_1 = new JButton("");
 		W_1.setForeground(Color.GREEN);
 		W_1.setEnabled(false);
-		W_1.setBounds(432, 117, 21, 45);
+		W_1.setBounds(450, 123, 21, 45);
 		TableStatus.add(W_1);
 		W_1.setBorder(border);
 		
 		W_2 = new JButton("");
 		W_2.setEnabled(false);
-		W_2.setBounds(659, 64, 21, 45);
+		W_2.setBounds(677, 70, 21, 45);
 		TableStatus.add(W_2);
 		W_2.setBorder(border);
 		
 		W_3 = new JButton("");
 		W_3.setEnabled(false);
-		W_3.setBounds(879, 122, 21, 45);
+		W_3.setBounds(897, 128, 21, 45);
 		TableStatus.add(W_3);
 		W_3.setBorder(border);
 		
 		W_4 = new JButton("");
 		W_4.setEnabled(false);
-		W_4.setBounds(432, 216, 21, 45);
+		W_4.setBounds(450, 222, 21, 45);
 		TableStatus.add(W_4);
 		W_4.setBorder(border);
 		
 		W_5 = new JButton("");
 		W_5.setEnabled(false);
-		W_5.setBounds(659, 166, 22, 45);
+		W_5.setBounds(677, 172, 22, 45);
 		TableStatus.add(W_5);
 		W_5.setBorder(border);
 		
 		W_6 = new JButton("");
 		W_6.setEnabled(false);
-		W_6.setBounds(879, 224, 21, 45);
+		W_6.setBounds(897, 230, 21, 45);
 		TableStatus.add(W_6);
 		W_6.setBorder(border);
 		
 		W_7 = new JButton("");
 		W_7.setEnabled(false);
-		W_7.setBounds(432, 320, 21, 45);
+		W_7.setBounds(450, 326, 21, 45);
 		TableStatus.add(W_7);
 		W_7.setBorder(border);
 		
 		W_8 = new JButton("");
 		W_8.setEnabled(false);
-		W_8.setBounds(659, 269, 22, 45);
+		W_8.setBounds(677, 275, 22, 45);
 		TableStatus.add(W_8);
 		W_8.setBorder(border);
 		
 		W_9 = new JButton("");
 		W_9.setEnabled(false);
-		W_9.setBounds(879, 327, 21, 45);
+		W_9.setBounds(897, 333, 21, 45);
 		TableStatus.add(W_9);
 		W_9.setBorder(border);
 		
 		W_10 = new JButton("");
 		W_10.setEnabled(false);
-		W_10.setBounds(659, 370, 22, 45);
+		W_10.setBounds(677, 376, 22, 45);
 		TableStatus.add(W_10);
 		W_10.setBorder(border);
 		
 		Table2 = new JButton("Table 2");
 		Table2.setEnabled(false);
 		Table2.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table2.setBounds(494, 64, 166, 45);
+		Table2.setBounds(512, 70, 166, 45);
 		TableStatus.add(Table2);
 		Table2.setBorder(border);
 		
 		Table3 = new JButton("Table 3");
 		Table3.setEnabled(false);
 		Table3.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table3.setBounds(713, 122, 166, 45);
+		Table3.setBounds(731, 128, 166, 45);
 		TableStatus.add(Table3);
 		Table3.setBorder(border);
 		
 		Table4 = new JButton("Table 4");
 		Table4.setEnabled(false);
 		Table4.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table4.setBounds(266, 216, 166, 45);
+		Table4.setBounds(284, 222, 166, 45);
 		TableStatus.add(Table4);
 		Table4.setBorder(border);
 		
@@ -415,35 +416,35 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table5 = new JButton("Table 5");
 		Table5.setEnabled(false);
 		Table5.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table5.setBounds(494, 166, 166, 45);
+		Table5.setBounds(512, 172, 166, 45);
 		TableStatus.add(Table5);
 		Table5.setBorder(border);
 		
 		Table6 = new JButton("Table 6");
 		Table6.setEnabled(false);
 		Table6.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table6.setBounds(713, 224, 166, 45);
+		Table6.setBounds(731, 230, 166, 45);
 		TableStatus.add(Table6);
 		Table6.setBorder(border);
 		
 		Table9 = new JButton("Table 9");
 		Table9.setEnabled(false);
 		Table9.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table9.setBounds(713, 327, 166, 45);
+		Table9.setBounds(731, 333, 166, 45);
 		TableStatus.add(Table9);
 		Table9.setBorder(border);
 		
 		Table7 = new JButton("Table 7");
 		Table7.setEnabled(false);
 		Table7.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table7.setBounds(266, 320, 166, 45);
+		Table7.setBounds(284, 326, 166, 45);
 		TableStatus.add(Table7);
 		Table7.setBorder(border);
 		
 		Table10 = new JButton("Table 10");
 		Table10.setEnabled(false);
 		Table10.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table10.setBounds(494, 370, 166, 45);
+		Table10.setBounds(512, 376, 166, 45);
 		TableStatus.add(Table10);
 		Table10.setBorder(border);
 		
@@ -451,30 +452,45 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Table8 = new JButton("Table 8");
 		Table8.setEnabled(false);
 		Table8.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table8.setBounds(493, 269, 166, 45);
+		Table8.setBounds(511, 275, 166, 45);
 		TableStatus.add(Table8);
 		Table8.setBorder(border);
 		
 		Table1 = new JButton("Table 1");
 		Table1.setEnabled(false);
 		Table1.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Table1.setBounds(266, 117, 166, 45);
+		Table1.setBounds(284, 123, 166, 45);
 		TableStatus.add(Table1);
 		Table1.setBorder(border);
 		
 		Reserve = new GradientButton("Reserve");
 		Reserve.setText("Reserve");
 		Reserve.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Reserve.setBounds(55, 328, 175, 51);
+		Reserve.setBounds(55, 277, 175, 51);
 		TableStatus.add(Reserve);
 		Reserve.addActionListener(this);
 		
 		UnReserve = new GradientButton("Don't Reserve");
 		UnReserve.setText("Don't Reserve");
 		UnReserve.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		UnReserve.setBounds(55, 392, 175, 51);
+		UnReserve.setBounds(55, 345, 175, 51);
 		TableStatus.add(UnReserve);
 		UnReserve.addActionListener(this);
+		
+		Clean = new GradientButton("Don't Reserve");
+		Clean.setText("Mark as clean");
+		Clean.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Clean.setBounds(55, 409, 175, 51);
+		TableStatus.add(Clean);
+		Clean.addActionListener(this);
+		
+		Help = new GradientButton("HELP");
+		Help.addActionListener(this);
+		Help.setText("HELP");
+		Help.setFont(Help.getFont().deriveFont(16f));
+		Help.setFocusPainted(false);
+		Help.setBounds(602, 551, 586, 66);
+		MainPanel.add(Help);
 		
 		//UIManager.put("ToggleButton.select", Color.GREEN);
 		
@@ -483,6 +499,9 @@ public class Host_GUI extends JFrame implements ActionListener{
 		// End of main definitions (ignore)
 		// ************************************
 		// ************************************
+		
+		
+		// Initial Statuses
 		
 		//*************************************
 		//INITIAL TABLE STATUS (CLEAN OR UNCLEAN?)
@@ -503,83 +522,47 @@ public class Host_GUI extends JFrame implements ActionListener{
 		//INITIAL TABLE STATUS (Reserved OR Not Reserved?)
 		//************************************************
 		
-		reservedTableIndicator(W_1,0);
-		reservedTableIndicator(W_2,1);
-		reservedTableIndicator(W_3,2);
-		reservedTableIndicator(W_4,3);
-		reservedTableIndicator(W_5,4);
-		reservedTableIndicator(W_6,5);
-		reservedTableIndicator(W_7,6);
-		reservedTableIndicator(W_8,7);
-		reservedTableIndicator(W_9,8);
-		reservedTableIndicator(W_10,9);
+		h.reservedTableIndicator(W_1,0);
+		h.reservedTableIndicator(W_2,1);
+		h.reservedTableIndicator(W_3,2);
+		h.reservedTableIndicator(W_4,3);
+		h.reservedTableIndicator(W_5,4);
+		h.reservedTableIndicator(W_6,5);
+		h.reservedTableIndicator(W_7,6);
+		h.reservedTableIndicator(W_8,7);
+		h.reservedTableIndicator(W_9,8);
+		h.reservedTableIndicator(W_10,9);
 		
 		//*************************************
 		//INITIAL CUSTOMER STATUSES (At table)
 		//*************************************
-		try {
-			if(h.CustomerList().get(0).toString().equals("Occupied")){
-				Table1.setBackground(Color.green);
-				}else{Table1.setBackground(Color.red);}
-			if(h.CustomerList().get(1).toString().equals("Occupied")){
-				Table2.setBackground(Color.green);
-				}else{Table2.setBackground(Color.red);}
-			if(h.CustomerList().get(2).toString().equals("Occupied")){
-				Table3.setBackground(Color.green);
-				}else{Table3.setBackground(Color.red);}
-			if(h.CustomerList().get(3).toString().equals("Occupied")){
-				Table4.setBackground(Color.green);
-				}else{Table4.setBackground(Color.red);}
-			if(h.CustomerList().get(4).toString().equals("Occupied")){
-				Table5.setBackground(Color.green);
-				}else{Table5.setBackground(Color.red);}
-			if(h.CustomerList().get(5).toString().equals("Occupied")){
-				Table6.setBackground(Color.green);
-				}else{Table6.setBackground(Color.red);}
-			if(h.CustomerList().get(6).toString().equals("Occupied")){
-				Table7.setBackground(Color.green);
-				}else{Table7.setBackground(Color.red);}
-			if(h.CustomerList().get(7).toString().equals("Occupied")){
-				Table8.setBackground(Color.green);
-				}else{Table8.setBackground(Color.red);}
-			if(h.CustomerList().get(8).toString().equals("Occupied")){
-				Table9.setBackground(Color.green);
-				}else{Table9.setBackground(Color.red);}
-			if(h.CustomerList().get(9).toString().equals("Occupied")){
-				Table10.setBackground(Color.green);
-				}else{Table10.setBackground(Color.red);}
-			} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 		
-		
-		//*************************************
-		//INITIAL WAITER INPUT (FROM DATABASE)
-		//*************************************
-		Waiter_List.add("Jimmy");
-		Waiter_List.add("Michael");
-		Waiter_List.add("Sarah");
-		Waiter_List.add("John");
-		Waiter_List.add("Wendy");
+		h.CustomerStatus(Table1,0);
+		h.CustomerStatus(Table2,1);
+		h.CustomerStatus(Table3,2);
+		h.CustomerStatus(Table4,3);
+		h.CustomerStatus(Table5,4);
+		h.CustomerStatus(Table6,5);
+		h.CustomerStatus(Table7,6);
+		h.CustomerStatus(Table8,7);
+		h.CustomerStatus(Table9,8);
+		h.CustomerStatus(Table10,9);
 		
 		//*********************************************
 		//INITIAL WAITERS at table (FROM DATABASE)
 		//*********************************************
 
-		addInitialWaiters(Waiters_for_Table_1,0);
-		addInitialWaiters(Waiters_for_Table_2,1);
-		addInitialWaiters(Waiters_for_Table_3,2);
-		addInitialWaiters(Waiters_for_Table_4,3);
-		addInitialWaiters(Waiters_for_Table_5,4);
-		addInitialWaiters(Waiters_for_Table_6,5);
-		addInitialWaiters(Waiters_for_Table_7,6);
-		addInitialWaiters(Waiters_for_Table_8,7);
-		addInitialWaiters(Waiters_for_Table_9,8);
-		addInitialWaiters(Waiters_for_Table_10,9);
+		h.addInitialWaiters(Waiters_for_Table_1,0);
+		h.addInitialWaiters(Waiters_for_Table_2,1);
+		h.addInitialWaiters(Waiters_for_Table_3,2);
+		h.addInitialWaiters(Waiters_for_Table_4,3);
+		h.addInitialWaiters(Waiters_for_Table_5,4);
+		h.addInitialWaiters(Waiters_for_Table_6,5);
+		h.addInitialWaiters(Waiters_for_Table_7,6);
+		h.addInitialWaiters(Waiters_for_Table_8,7);
+		h.addInitialWaiters(Waiters_for_Table_9,8);
+		h.addInitialWaiters(Waiters_for_Table_10,9);
 		
-		//*************************************
-		//*************************************
 		
 		//**********************************************************
 		//INITIAL WAITER STATUS AT TABLE (OCCUPIED BY WAITER OR NOT?)
@@ -596,6 +579,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		checkIfFull(Waiters_for_Table_10,W_10);
 		
 		
+		
 		//*************************************
 
 		// Show the first waiter of the list
@@ -606,15 +590,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		//*************************************
 		
 		
-		Help = new GradientButton("HELP");
-		Help.addActionListener(this);
-		Help.setText("HELP");
-		Help.setFont(Help.getFont().deriveFont(16f));
-		Help.setFocusPainted(false);
-		Help.setBounds(602, 551, 586, 66);
-		MainPanel.add(Help);
-		
-		
+			
 		logoutButton.addActionListener(this);
 		
 		MainPanel.setVisible(true);
@@ -697,6 +673,49 @@ public class Host_GUI extends JFrame implements ActionListener{
 		{
 			JOptionPane.showMessageDialog(rootPanel, "<htmL>For customer: Select assign to assign a customer to a table, unassign to unassign a customer from a table. <br><br>For waiter: Select a table, then select a waiter to occupy that table. If the indicator glows green, waiters occupy the table. To unnocpy a waiter, simply select the waiter and unassign him/her.<br></html>");
 		}
+	if (a == Clean){
+		String s = (String)combobox_customer.getSelectedItem();
+		if(s == "Table 1"){
+			h.markTableAsClean(1);
+			TableStatusIndicatorFinal(Table1);
+		}
+		if(s == "Table 2"){
+			h.markTableAsClean(2);
+			TableStatusIndicatorFinal(Table2);
+		}
+		if(s == "Table 3"){
+			h.markTableAsClean(3);	
+			TableStatusIndicatorFinal(Table3);
+		}
+		if(s == "Table 4"){
+			h.markTableAsClean(4);
+			TableStatusIndicatorFinal(Table4);
+		}
+		if(s == "Table 5"){
+			h.markTableAsClean(5);
+			TableStatusIndicatorFinal(Table5);
+		}
+		if(s == "Table 6"){
+			h.markTableAsClean(6);
+			TableStatusIndicatorFinal(Table6);
+		}
+		if(s == "Table 7"){
+			h.markTableAsClean(7);
+			TableStatusIndicatorFinal(Table7);
+		}
+		if(s == "Table 8"){
+			h.markTableAsClean(8);
+			TableStatusIndicatorFinal(Table8);
+		}
+		if(s == "Table 9"){
+			h.markTableAsClean(9);
+			TableStatusIndicatorFinal(Table9);
+		}
+		if(s == "Table 10"){
+			h.markTableAsClean(10);
+			TableStatusIndicatorFinal(Table10);
+		}
+	}
 	if(a == Assign)
 		{
 			String s = (String)combobox_customer.getSelectedItem();
@@ -746,68 +765,68 @@ public class Host_GUI extends JFrame implements ActionListener{
 		{
 		String s = (String)combobox_customer.getSelectedItem();
 		if(s == "Table 1"){
-			setBorderBlue_Reserved(W_1,1);
+			h.setBorderBlue_Reserved(W_1,1);
 		}
 		if(s == "Table 2"){
-			setBorderBlue_Reserved(W_2,2);
+			h.setBorderBlue_Reserved(W_2,2);
 		}
 		if(s == "Table 3"){
-			setBorderBlue_Reserved(W_3,3);
+			h.setBorderBlue_Reserved(W_3,3);
 		}
 		if(s == "Table 4"){
-			setBorderBlue_Reserved(W_4,4);
+			h.setBorderBlue_Reserved(W_4,4);
 		}
 		if(s == "Table 5"){
-			setBorderBlue_Reserved(W_5,5);
+			h.setBorderBlue_Reserved(W_5,5);
 		}
 		if(s == "Table 6"){
-			setBorderBlue_Reserved(W_6,6);
+			h.setBorderBlue_Reserved(W_6,6);
 		}
 		if(s == "Table 7"){
-			setBorderBlue_Reserved(W_7,7);
+			h.setBorderBlue_Reserved(W_7,7);
 		}
 		if(s == "Table 8"){
-			setBorderBlue_Reserved(W_8,8);
+			h.setBorderBlue_Reserved(W_8,8);
 		}
 		if(s == "Table 9"){
-			setBorderBlue_Reserved(W_9,9);
+			h.setBorderBlue_Reserved(W_9,9);
 		}
 		if(s == "Table 10"){
-			setBorderBlue_Reserved(W_10,10);
+			h.setBorderBlue_Reserved(W_10,10);
 		}
 		}
 	if(a == UnReserve)
 		{
 		String s = (String)combobox_customer.getSelectedItem();
 		if(s == "Table 1"){
-			setBorderBlack_Not_Reserved(W_1,1);
+			h.setBorderBlack_Not_Reserved(W_1,1);
 		}
 		if(s == "Table 2"){
-			setBorderBlack_Not_Reserved(W_2,2);
+			h.setBorderBlack_Not_Reserved(W_2,2);
 		}
 		if(s == "Table 3"){
-			setBorderBlack_Not_Reserved(W_3,3);
+			h.setBorderBlack_Not_Reserved(W_3,3);
 		}
 		if(s == "Table 4"){
-			setBorderBlack_Not_Reserved(W_4,4);
+			h.setBorderBlack_Not_Reserved(W_4,4);
 		}
 		if(s == "Table 5"){
-			setBorderBlack_Not_Reserved(W_5,5);
+			h.setBorderBlack_Not_Reserved(W_5,5);
 		}
 		if(s == "Table 6"){
-			setBorderBlack_Not_Reserved(W_6,6);
+			h.setBorderBlack_Not_Reserved(W_6,6);
 		}
 		if(s == "Table 7"){
-			setBorderBlack_Not_Reserved(W_7,7);
+			h.setBorderBlack_Not_Reserved(W_7,7);
 		}
 		if(s == "Table 8"){
-			setBorderBlack_Not_Reserved(W_8,8);
+			h.setBorderBlack_Not_Reserved(W_8,8);
 		}
 		if(s == "Table 9"){
-			setBorderBlack_Not_Reserved(W_9,9);
+			h.setBorderBlack_Not_Reserved(W_9,9);
 		}
 		if(s == "Table 10"){
-			setBorderBlack_Not_Reserved(W_10,10);
+			h.setBorderBlack_Not_Reserved(W_10,10);
 		}
 		}
 	if(a == Unassign)
@@ -859,54 +878,111 @@ public class Host_GUI extends JFrame implements ActionListener{
 	{
 		String x = (String)combobox_waiter.getSelectedItem();
 		if(x == "Table 1"){
+			if (checkIfFull(Waiters_for_Table_1) == 0 ){
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Max waiters assigned to table! (5 Waiters is max) </html>","Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
 			removeDuplicatesAndAdd(Waiters_for_Table_1,WaiterList);
 			Waiters_for_Table_1.setSelectedItem(WaiterList.getSelectedItem());
-			CommunicateWaiterStatusChange(Waiters_for_Table_1,1);
+			h.CommunicateWaiterStatusChange(Waiters_for_Table_1,1);
+			}
 			}
 		if(x == "Table 2"){
+			if (checkIfFull(Waiters_for_Table_2) == 0 ){
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Max waiters assigned to table! (5 Waiters is max) </html>","Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
 			removeDuplicatesAndAdd(Waiters_for_Table_2,WaiterList);
 			Waiters_for_Table_2.setSelectedItem(WaiterList.getSelectedItem());
-			CommunicateWaiterStatusChange(Waiters_for_Table_2,2);
+			h.CommunicateWaiterStatusChange(Waiters_for_Table_2,2);
+			}
 		}
 		if(x == "Table 3"){
+			if (checkIfFull(Waiters_for_Table_3) == 0 ){
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Max waiters assigned to table! (5 Waiters is max) </html>","Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
 			removeDuplicatesAndAdd(Waiters_for_Table_3,WaiterList);
 			Waiters_for_Table_3.setSelectedItem(WaiterList.getSelectedItem());
-			CommunicateWaiterStatusChange(Waiters_for_Table_3,3);
+			h.CommunicateWaiterStatusChange(Waiters_for_Table_3,3);
+			}
+			
 		}
 		if(x == "Table 4"){
+			if (checkIfFull(Waiters_for_Table_4) == 0 ){
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Max waiters assigned to table! (5 Waiters is max) </html>","Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
 			removeDuplicatesAndAdd(Waiters_for_Table_4,WaiterList);
 			Waiters_for_Table_4.setSelectedItem(WaiterList.getSelectedItem());
-			CommunicateWaiterStatusChange(Waiters_for_Table_4,4);
+			h.CommunicateWaiterStatusChange(Waiters_for_Table_4,4);
+			}
+			
 		}
 		if(x == "Table 5"){
+			if (checkIfFull(Waiters_for_Table_5) == 0 ){
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Max waiters assigned to table! (5 Waiters is max) </html>","Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
 			removeDuplicatesAndAdd(Waiters_for_Table_5,WaiterList);
 			Waiters_for_Table_5.setSelectedItem(WaiterList.getSelectedItem());
-			CommunicateWaiterStatusChange(Waiters_for_Table_5,5);
+			h.CommunicateWaiterStatusChange(Waiters_for_Table_5,5);
+			}
+			
 		}
 		if(x == "Table 6"){
+			if (checkIfFull(Waiters_for_Table_6) == 0 ){
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Max waiters assigned to table! (5 Waiters is max) </html>","Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
 			removeDuplicatesAndAdd(Waiters_for_Table_6,WaiterList);
 			Waiters_for_Table_6.setSelectedItem(WaiterList.getSelectedItem());
-			CommunicateWaiterStatusChange(Waiters_for_Table_6,6);
+			h.CommunicateWaiterStatusChange(Waiters_for_Table_6,6);
+			}
+			
 		}
 		if(x == "Table 7"){
+			if (checkIfFull(Waiters_for_Table_7) == 0 ){
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Max waiters assigned to table! (5 Waiters is max) </html>","Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
 			removeDuplicatesAndAdd(Waiters_for_Table_7,WaiterList);
 			Waiters_for_Table_7.setSelectedItem(WaiterList.getSelectedItem());
-			CommunicateWaiterStatusChange(Waiters_for_Table_7,7);
+			h.CommunicateWaiterStatusChange(Waiters_for_Table_7,7);
+			}
+			
 		}
 		if(x == "Table 8"){
+			if (checkIfFull(Waiters_for_Table_8) == 0 ){
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Max waiters assigned to table! (5 Waiters is max) </html>","Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
 			removeDuplicatesAndAdd(Waiters_for_Table_8,WaiterList);
 			Waiters_for_Table_8.setSelectedItem(WaiterList.getSelectedItem());
-			CommunicateWaiterStatusChange(Waiters_for_Table_8,8);
+			h.CommunicateWaiterStatusChange(Waiters_for_Table_8,8);
+			}
 		}
 		if(x == "Table 9"){
+			if (checkIfFull(Waiters_for_Table_9) == 0 ){
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Max waiters assigned to table! (5 Waiters is max) </html>","Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
 			removeDuplicatesAndAdd(Waiters_for_Table_9,WaiterList);
 			Waiters_for_Table_9.setSelectedItem(WaiterList.getSelectedItem());
-			CommunicateWaiterStatusChange(Waiters_for_Table_9,9);
+			h.CommunicateWaiterStatusChange(Waiters_for_Table_9,9);
+			}
+			
 		}
 		if(x == "Table 10"){
+			if (checkIfFull(Waiters_for_Table_10) == 0 ){
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Max waiters assigned to table! (5 Waiters is max) </html>","Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else {
 			removeDuplicatesAndAdd(Waiters_for_Table_10,WaiterList);
 			Waiters_for_Table_9.setSelectedItem(WaiterList.getSelectedItem());
-			CommunicateWaiterStatusChange(Waiters_for_Table_10,10);
+			h.CommunicateWaiterStatusChange(Waiters_for_Table_10,10);
+			}
+			
 		}
 		
 		// Any waiters occupy the table -> Green Indicator. Else -> Red Indicator
@@ -926,54 +1002,94 @@ public class Host_GUI extends JFrame implements ActionListener{
 	{
 		String x = (String)combobox_waiter.getSelectedItem();
 		if(x == "Table 1"){
+			if (checkIfFull(Waiters_for_Table_1) == 5 ){
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Can't remove waiter! No waiters are assigned to the table! </html>","Error", JOptionPane.ERROR_MESSAGE);
+				}
+			else {
 			removeItem(Waiters_for_Table_1,WaiterList);
-			CommunicateWaiterStatusChange(Waiters_for_Table_1,1);
-			
+			h.CommunicateWaiterStatusChange(Waiters_for_Table_1,1);
+			}
 		}
 		if(x == "Table 2"){
+			if (checkIfFull(Waiters_for_Table_2) == 5 ){
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Can't remove waiter! No waiters are assigned to the table! </html>","Error", JOptionPane.ERROR_MESSAGE);
+				}
+			else {
 			removeItem(Waiters_for_Table_2,WaiterList);
-			CommunicateWaiterStatusChange(Waiters_for_Table_2,2);
-			
+			h.CommunicateWaiterStatusChange(Waiters_for_Table_2,2);
+			}
 		}
 		if(x == "Table 3"){
+			if (checkIfFull(Waiters_for_Table_3) == 5 ){
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Can't remove waiter! No waiters are assigned to the table! </html>","Error", JOptionPane.ERROR_MESSAGE);
+				}
+			else {
 			removeItem(Waiters_for_Table_3,WaiterList);
-			CommunicateWaiterStatusChange(Waiters_for_Table_3,3);
-			
+			h.CommunicateWaiterStatusChange(Waiters_for_Table_3,3);
+			}
 		}
 		if(x == "Table 4"){
+			if (checkIfFull(Waiters_for_Table_4) == 5 ){
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Can't remove waiter! No waiters are assigned to the table! </html>","Error", JOptionPane.ERROR_MESSAGE);
+				}
+			else {
 			removeItem(Waiters_for_Table_4,WaiterList);
-			CommunicateWaiterStatusChange(Waiters_for_Table_4,4);
-			
+			h.CommunicateWaiterStatusChange(Waiters_for_Table_4,4);
+			}
 		}
 		if(x == "Table 5"){
+			if (checkIfFull(Waiters_for_Table_5) == 5 ){
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Can't remove waiter! No waiters are assigned to the table! </html>","Error", JOptionPane.ERROR_MESSAGE);
+				}
+			else {
 			removeItem(Waiters_for_Table_5,WaiterList);
-			CommunicateWaiterStatusChange(Waiters_for_Table_5,5);
-			
+			h.CommunicateWaiterStatusChange(Waiters_for_Table_5,5);
+			}
 		}
 		if(x == "Table 6"){
+			if (checkIfFull(Waiters_for_Table_6) == 5 ){
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Can't remove waiter! No waiters are assigned to the table! </html>","Error", JOptionPane.ERROR_MESSAGE);
+				}
+			else {
 			removeItem(Waiters_for_Table_6,WaiterList);
-			CommunicateWaiterStatusChange(Waiters_for_Table_6,6);
-			
+			h.CommunicateWaiterStatusChange(Waiters_for_Table_6,6);
+			}
 		}
 		if(x == "Table 7"){
+			if (checkIfFull(Waiters_for_Table_7) == 5 ){
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Can't remove waiter! No waiters are assigned to the table! </html>","Error", JOptionPane.ERROR_MESSAGE);
+				}
+			else {
 			removeItem(Waiters_for_Table_7,WaiterList);
-			CommunicateWaiterStatusChange(Waiters_for_Table_7,7);
-			
+			h.CommunicateWaiterStatusChange(Waiters_for_Table_7,7);
+			}
 		}
 		if(x == "Table 8"){
+			if (checkIfFull(Waiters_for_Table_8) == 5 ){
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Can't remove waiter! No waiters are assigned to the table! </html>","Error", JOptionPane.ERROR_MESSAGE);
+				}
+			else {
 			removeItem(Waiters_for_Table_8,WaiterList);
-			CommunicateWaiterStatusChange(Waiters_for_Table_8,8);
-			
+			h.CommunicateWaiterStatusChange(Waiters_for_Table_8,8);
+			}
 		}
 		if(x == "Table 9"){
+			if (checkIfFull(Waiters_for_Table_9) == 5 ){
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Can't remove waiter! No waiters are assigned to the table! </html>","Error", JOptionPane.ERROR_MESSAGE);
+				}
+			else {
 			removeItem(Waiters_for_Table_9,WaiterList);
-			CommunicateWaiterStatusChange(Waiters_for_Table_9,9);
-			
+			h.CommunicateWaiterStatusChange(Waiters_for_Table_9,9);
+			}
 		}
 		if(x == "Table 10"){
+			if (checkIfFull(Waiters_for_Table_10) == 5 ){
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Can't remove waiter! No waiters are assigned to the table! </html>","Error", JOptionPane.ERROR_MESSAGE);
+				}
+			else {
 			removeItem(Waiters_for_Table_10,WaiterList);
-			CommunicateWaiterStatusChange(Waiters_for_Table_10,10);
-			
+			h.CommunicateWaiterStatusChange(Waiters_for_Table_10,10);
+			}
 		}
 		
 		// Any waiters occupy the table -> Green Indicator. Else -> Red Indicator
@@ -1003,7 +1119,6 @@ public class Host_GUI extends JFrame implements ActionListener{
 		}
 	}
 	
-	
 
 	}
 	
@@ -1013,7 +1128,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		 for (int index = 0; index < WaitersAtTables.getItemCount() && !exists; index++) { 
 			   if (WaitersToBeSelected.getSelectedItem().equals(WaitersAtTables.getItemAt(index))) { 
 			     exists = true;
-			     JOptionPane.showMessageDialog(rootPanel, "Waiter already exists at selected table!");
+			     JOptionPane.showMessageDialog(rootPanel, "Waiter already exists at selected table!","Error", JOptionPane.ERROR_MESSAGE);
 			   }
 			 }
 			 if (!exists) {
@@ -1043,60 +1158,15 @@ public class Host_GUI extends JFrame implements ActionListener{
 	public void CheckColorAndSetRed(JButton x ){
 		if (x.getBackground() == Color.RED){
 				System.out.println("Cannot unassign customer(s) from a table that has no customers!");
-				JOptionPane.showMessageDialog(rootPanel, "<htmL> Cannot unassign customer(s) from a table that has no customers! </html>");
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Cannot unassign customer(s) from a table that has no customers! </html>","Error", JOptionPane.ERROR_MESSAGE);
 		} else {x.setBackground(Color.RED);}
 	}
 	public void CheckColorAndSetGreen(JButton x ){
 		if (x.getBackground() == Color.GREEN){
 				System.out.println("Customer(s) already assigned to table!");
-				JOptionPane.showMessageDialog(rootPanel, "<htmL> Customer(s) already assigned to table! </html>");
+				JOptionPane.showMessageDialog(rootPanel, "<htmL> Customer(s) already assigned to table! </html>","Error", JOptionPane.ERROR_MESSAGE);
 		} else {x.setBackground(Color.GREEN);}
 	}
-	
-	
-	
-	 public void CommunicateWaiterStatusChange(JComboBox Waiters_for_table,int Table_ID){ 
-		 h.tell("Select * from MAINDB.Table_Statuses Order by Table_ID;");
-		 h.update("UPDATE MAINDB.Table_Statuses SET EMP_ID_1 = '"+ Waiters_for_table.getItemAt(0)+"' WHERE TABLE_ID = "+Table_ID+";");
-		 h.tell("Select * from MAINDB.Table_Statuses Order by Table_ID;");
-		 h.update("UPDATE MAINDB.Table_Statuses SET EMP_ID_2 = '"+ Waiters_for_table.getItemAt(1)+"' WHERE TABLE_ID = "+Table_ID+";");
-		 h.tell("Select * from MAINDB.Table_Statuses Order by Table_ID;");
-		 h.update("UPDATE MAINDB.Table_Statuses SET EMP_ID_3 = '"+ Waiters_for_table.getItemAt(2)+"' WHERE TABLE_ID = "+Table_ID+";");
-		 h.tell("Select * from MAINDB.Table_Statuses Order by Table_ID;");
-		 h.update("UPDATE MAINDB.Table_Statuses SET EMP_ID_4 = '"+ Waiters_for_table.getItemAt(3)+"' WHERE TABLE_ID = "+Table_ID+";");
-		 h.tell("Select * from MAINDB.Table_Statuses Order by Table_ID;");
-		 h.update("UPDATE MAINDB.Table_Statuses SET EMP_ID_5 = '"+ Waiters_for_table.getItemAt(4)+"' WHERE TABLE_ID = "+Table_ID+";");
-		 h.tell("Select * from MAINDB.Table_Statuses Order by Table_ID;");
-	 }
-	 
-	
-	 public void addInitialWaiters(JComboBox WaitersAtTables,int index){
-		 try {
-				 if(h.Emp_ID_1().get(index) != null){
-					 WaitersAtTables.addItem(h.Emp_ID_1().get(index));
-				 }
-				 if(h.Emp_ID_2().get(index) != null){
-					 WaitersAtTables.addItem(h.Emp_ID_2().get(index));
-				 }
-				 if(h.Emp_ID_3().get(index) != null){
-					 WaitersAtTables.addItem(h.Emp_ID_3().get(index));
-				 }
-				 if(h.Emp_ID_4().get(index) != null){
-					 WaitersAtTables.addItem(h.Emp_ID_4().get(index));
-				 }
-				 if(h.Emp_ID_5().get(index) != null){
-					 WaitersAtTables.addItem(h.Emp_ID_5().get(index));
-				 }
-			 
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} 
-		 
-		 
-	 }
-	
-	
 	
 	
 	public void checkIfFull(JComboBox WaitersAtTables,JButton W){
@@ -1105,57 +1175,17 @@ public class Host_GUI extends JFrame implements ActionListener{
 				W.setBackground(Color.RED);
 		}else{W.setBackground(Color.GREEN);}
 	}
-	/**
-	 * OLD FUNCTION
-	 * @param Tablenumber
-	 * @param index
-	 */
-	/*
+	
 	public void TableStatusInitialIndicator(JButton Tablenumber,int index){
 		Border border_BLACK = new LineBorder(Color.BLACK,3); //Clean
 		Border border_YELLOW = new LineBorder(Color.YELLOW,6); //Unclean
 		try {
-			if(h.TableStatusList().get(index).toString().equals("Unclean")){//Tablenumber.setBorder(border_YELLOW);
-		        Timer timer = new Timer(500, new ActionListener() {
-                private int counter = 0;
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    counter++;
-                    if (counter % 2 == 0) {
-                        Tablenumber.setBorder(border_YELLOW);
-                    } else {
-                        Tablenumber.setBorder(border_BLACK);
-                    }
-                }
-            });
-            timer.start();
-		         
-			}
-			if(h.TableStatusList().get(index).toString().equals("Clean")){
-				Tablenumber.setBorder(border_BLACK);
-			}
-			
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
-	*/
-	/**
-	 * NEW FUNCTION
-	 * @param Tablenumber
-	 * @param index
-	 */
-	public void TableStatusInitialIndicator(JButton Tablenumber,int index){
-		Border border_BLACK = new LineBorder(Color.BLACK,3); //Clean
-		Border border_YELLOW = new LineBorder(Color.YELLOW,6); //Unclean
-		try {
-			if(h.TableStatusList().get(index).toString().equals("Unclean")){//Tablenumber.setBorder(border_YELLOW);
+			if(h.returnList("T_Status").get(index).toString().equals("Unclean")){//Tablenumber.setBorder(border_YELLOW);
 				if(!dirtyTables.contains(Tablenumber)){
 					dirtyTables.add(Tablenumber);
 				}
 			}
-			if(h.TableStatusList().get(index).toString().equals("Clean")){
+			if(h.returnList("T_Status").get(index).toString().equals("Clean")){
 				dirtyTables.remove(Tablenumber);
 			}
 			if(dirtyTables.isEmpty()){
@@ -1171,41 +1201,29 @@ public class Host_GUI extends JFrame implements ActionListener{
 			e.printStackTrace();
 		}
 	}
+	public void TableStatusIndicatorFinal(JButton Tablenumber){
+		Border border_BLACK = new LineBorder(Color.BLACK,3);
+		dirtyTables.remove(Tablenumber);
+		Tablenumber.setBorder(border_BLACK);
+		
+	}
 	
-	public void reservedTableIndicator(JButton Indicator,int index){
-		Border border_BLACK = new LineBorder(Color.BLACK,3); //Not Reserved
-		Border border_BLUE = new LineBorder(Color.BLUE,4); //Reserved
-		try {
-			if(h.ReservedList().get(index).toString().equals("Reserved")){
-				Indicator.setBorder(border_BLUE);
-				}
-			if(h.ReservedList().get(index).toString().equals("Not Reserved")){
-				Indicator.setBorder(border_BLACK);
-				}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public void print(ArrayList<String> Array){
+		for(int i =0; i < Array.size(); i ++){
+			System.out.println(" " + Array.get(i));
 		}
 	}
 	
-	public void setBorderBlack_Not_Reserved(JButton Indicator,int Table_ID){
-		h.tell("USE MAINDB;");
-		h.tell("Select * from MAINDB.Table_Statuses Order by Table_ID;");
-		Border border_BLACK = new LineBorder(Color.BLACK,3); 
-		Indicator.setBorder(border_BLACK);
-		h.update("UPDATE MAINDB.Table_Statuses SET R_Status = 'Not Reserved' WHERE TABLE_ID = "+Table_ID+";");
+	public int checkIfFull(JComboBox Waiters_at_table){
+		int counter = 0;
+		for(int i  = 0; i < Waiters_at_table.getItemCount();i++){
+			if (Waiters_at_table.getItemAt(i).toString().equals("-")){
+				counter++;
+			}	
+		}
+		return counter;
 	}
 	
-	public void setBorderBlue_Reserved(JButton Indicator,int Table_ID){
-		h.tell("USE MAINDB;");
-		h.tell("Select * from MAINDB.Table_Statuses Order by Table_ID;");
-		Border border_BLUE = new LineBorder(Color.BLUE,4); 
-		Indicator.setBorder(border_BLUE);
-		h.update("UPDATE MAINDB.Table_Statuses SET R_Status = 'Reserved' WHERE TABLE_ID = "+Table_ID+";");
-	}
-	public void initialCustomerStatus(){
-		
-	}
 	}
 		
 	
