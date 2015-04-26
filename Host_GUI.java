@@ -69,7 +69,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 			public JPanel TableStatus;
 			public GradientButton AssignWaiter,UnassignWaiter,Reserve,UnReserve;
 			public JButton Table1,Table2,Table3,Table4,Table5,Table6,Table7,Table8,Table9,Table10;
-			public GradientButton Assign,Unassign,Clean;
+			public GradientButton Assign,Unassign,Unclean;
 			public JComboBox combobox_customer,combobox_waiter, WaiterList;
 			public JComboBox Waiters_for_Table_2;
 			public JComboBox Waiters_for_Table_4;
@@ -225,20 +225,20 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Assign = new GradientButton("Assign");
 		Assign.addActionListener(this);
 		Assign.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Assign.setBounds(55, 149, 175, 51);
+		Assign.setBounds(43, 149, 187, 51);
 		TableStatus.add(Assign);
 		
 		Unassign = new GradientButton("Unassign");
 		Unassign.addActionListener(this);
 		Unassign.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Unassign.setBounds(55, 213, 175, 51);
+		Unassign.setBounds(43, 213, 187, 51);
 		TableStatus.add(Unassign);
 		
 		String[] Tables_for_customer = {"Table 1","Table 2", "Table 3", "Table 4", "Table 5", "Table 6","Table 7","Table 8","Table 9","Table 10"};
 		combobox_customer = new JComboBox(Tables_for_customer);
 		combobox_customer.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		//combobox_customer.setSelectedIndex(0);
-		combobox_customer.setBounds(55, 85, 172, 51);
+		combobox_customer.setBounds(43, 84, 187, 51);
 		TableStatus.add(combobox_customer);
 		Render(combobox_customer);
 		
@@ -467,23 +467,23 @@ public class Host_GUI extends JFrame implements ActionListener{
 		Reserve = new GradientButton("Reserve");
 		Reserve.setText("Reserve");
 		Reserve.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Reserve.setBounds(55, 277, 175, 51);
+		Reserve.setBounds(43, 277, 187, 51);
 		TableStatus.add(Reserve);
 		Reserve.addActionListener(this);
 		
 		UnReserve = new GradientButton("Don't Reserve");
 		UnReserve.setText("Don't Reserve");
 		UnReserve.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		UnReserve.setBounds(55, 345, 175, 51);
+		UnReserve.setBounds(43, 345, 187, 51);
 		TableStatus.add(UnReserve);
 		UnReserve.addActionListener(this);
 		
-		Clean = new GradientButton("Don't Reserve");
-		Clean.setText("Mark as clean");
-		Clean.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		Clean.setBounds(55, 409, 175, 51);
-		TableStatus.add(Clean);
-		Clean.addActionListener(this);
+		Unclean = new GradientButton("Unclean");
+		Unclean.setText("Mark as unclean");
+		Unclean.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		Unclean.setBounds(43, 409, 187, 51);
+		TableStatus.add(Unclean);
+		Unclean.addActionListener(this);
 		
 		Help = new GradientButton("HELP");
 		Help.addActionListener(this);
@@ -743,7 +743,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 			}
 			
 		}
-	if (a == Clean){
+	if (a == Unclean){
 		String s = (String)combobox_customer.getSelectedItem();
 		if(s == "Table 1"){
 			h.markTableAsClean(1);
@@ -1272,17 +1272,10 @@ public class Host_GUI extends JFrame implements ActionListener{
 		}
 	}
 	public void TableStatusIndicatorFinal(JButton Tablenumber){
-		Border border_BLACK = new LineBorder(Color.BLACK,3);
-		dirtyTables.remove(Tablenumber);
-		Tablenumber.setBorder(border_BLACK);
+		dirtyTables.add(Tablenumber);
 		
 	}
 	
-	public void print(ArrayList<String> Array){
-		for(int i =0; i < Array.size(); i ++){
-			System.out.println(" " + Array.get(i));
-		}
-	}
 	
 	public int checkIfFull(JComboBox Waiters_at_table){
 		int counter = 0;

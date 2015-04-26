@@ -143,7 +143,7 @@ public class Host_Handler extends DatabaseCommunicator{
 	public void markTableAsClean(int Table_ID){
 		tell("USE MAINDB;");
 		tell("Select * from MAINDB.Table_Statuses Order by Table_ID;");
-		update("UPDATE MAINDB.Table_Statuses SET T_Status = 'Clean' WHERE TABLE_ID = "+Table_ID+";");
+		update("UPDATE MAINDB.Table_Statuses SET T_Status = 'Unclean' WHERE TABLE_ID = "+Table_ID+";");
 		}
 	
 	public ArrayList<String> returnFromEmployeeList(String NameOfListFromEmplyeeList) throws SQLException{
