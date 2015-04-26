@@ -673,47 +673,75 @@ public class Host_GUI extends JFrame implements ActionListener{
 	if(a == Help)
 		{
 			int optionChoice = 0;
-			String[] optionsAvailable = {"Customer Status", "Table Status", "Waiter Status", "Indicators at Tables", "Logout"};
-			optionChoice = JOptionPane.showOptionDialog(new JFrame(), "Which function would you like help with?", "Help",JOptionPane.DEFAULT_OPTION , JOptionPane.QUESTION_MESSAGE, null, optionsAvailable, 0);
+			String[] optionsAvailable = {"Customer Status", "Table Status", "Waiter Status", "Indicators at Tables", "Logout","Notifications"};
+			optionChoice = JOptionPane.showOptionDialog(new JFrame(), "<html><body><div width='350px' align='right'>Which function would you like help with?</div></body></html>", "Help",JOptionPane.DEFAULT_OPTION , JOptionPane.QUESTION_MESSAGE, null, optionsAvailable, 0);
 			switch(optionChoice){
 			case 0: // Customer Status Help
-				JOptionPane.showMessageDialog(this, "To change the customer status, simply select "
-						+ "at table under the 'Customer/Table' title, and select either the 'Assign' or the 'Unassign' option. "
-						+ "\n If the 'Assign' button is selected, observe that the color of the Table will change to green, indicating"
-						+ "that it is currently occupied by a customer. \n If the 'Unassign' button is selected, observe that the color of"
-						+ "the table will change to red, indicating that it is currently unoccupied by a customer.");
+				JOptionPane.showMessageDialog(this, ""
+						+ "To change the customer status, simply select at table under the 'Customer/Table' title, and"
+						+ "\n select either the 'Assign' or the 'Unassign' option. If the 'Assign' button is selected,"
+						+ "\n observe that the color of the Table will change to green, indicating that it is currently"
+						+ "\n occupied by a customer. If the 'Unassign' button is selected, observe that the color of"
+						+ "\n the table will change to red, indicating that it is currently unoccupied by a customer.");
 				break;
 			case 1: // Table Status Help
 				JOptionPane.showMessageDialog(this, ""
-						+ "Under the 'Table Status' title, observe the table arrangement of the restaurant.Each table"
-						+ "\n has several indicators which change based on changes made throughout the interface"
-						+ "\n ");
+						+ "Under the 'Table Status' title, observe the table arrangement of the restaurant. Each "
+						+ "\n table has several indicators which change based on changes made throughout the interface."
+						+ "\n More information on these indicators can be found by selecting the 'Indicators at Tables'"
+						+ "\n help option at the Help menu. Under each table is a list which displays the waiters currently"
+						+ "\n assigned to said table. Select the list to open it and view the Waiters assigned ot the table."
+						+ "\n A dash ('-') represents an unassigned waiter to the table. The option of reserving a table or"
+						+ "\n not reserving a table for customers is available through the 'Reserve' and 'Don't reserve' options."
+						+ "\n A table can also be marked as clean by selecting the 'Mark as clean' option after selecting a"
+						+ "\n table from thet able list. Indicators will be activates once the previous options have been"
+						+ "\n selected, and more information on these indicators can be found by selecting the 'Inidcators at"
+						+ "\n tables' option at the Help menu.");
+				break;
+			case 2: // Waiter Status
+				JOptionPane.showMessageDialog(this,""
+						+ "Under the 'Waiters' title, observe the Table seleciton list, as well as the waiter selection"
+						+ "\n list below the Table selection list. To change the assignment of a waiter, simply select "
+						+ "\n a table from the Table seleciton list, then select a waiter of intrest to said table."
+						+ "\n After wards, select the 'Assign Waiter' option to assign said waiter to the table, or the"
+						+ "\n 'Unassign Waiter' otion to unassign the waiter from the table. The limit of waiters to one"
+						+ "\n table is 5, so if more than 5 waiters are assigned to a table, an error will be displayed"
+						+ "\n on the interface addressing the situation. If no waiters are assigned to a table, and an "
+						+ "\n attempt to unassign waiters from said table is maid, an error will be displayed addressing"
+						+ "\n the situation. Once a waiter has been assigned to a table, observe a small indicator next to"
+						+ "\n the Table name in the table arrangement area of the interface glow a bright green. This represents"
+						+ "\n a situation where waiter(s) have been assigned to a table. If no waiters have been assigned to"
+						+ "\n a table, the indicator will glow red.");
+				break;
+			case 3: // Indicators at Tables Status
+				JOptionPane.showMessageDialog(this,""
+						+ "The indicators for tables can be seen for each table under the 'Table Status' title. When a customer"
+						+ "\n is assigned or unassigned to a table, the said table indicator will glow green or red (respectively)."
+						+ "\n This particular table indicator is the largest for said table. A table which is unclean will flicker"
+						+ "\n a yellow color. If a table is marked as clean by the 'Mark as Clean' button, it the yellow indicator"
+						+ "\n will no longer flicker yellow, but rather stay a solid black color. If a waiter(s) is assigned to a"
+						+ "\n table, a smaller indicator to the right of the Table name will glow green. If a waiter(s) is not"
+						+ "\n assigned to a table, the indicator will glow red. If the table is marked as reserved by the host,"
+						+ "\n the border around the waiter indicator will glow blue. If it is not reserved, then the border will"
+						+ "\n have a dark color. ");
+				break;
+			case 4: // Logout
+				JOptionPane.showMessageDialog(this,""
+						+ "Upon selection of this button, the interface will disconnect.");
+				break;
+			case 5: // Notifications
+				JOptionPane.showMessageDialog(this,""
+						+ "The notifications can be found at the top right corner of the interface. Simply hover over the clock"
+						+ "\n and select the 'Notificaitons' label. A list of outgoing and incoming messages will be displayed."
+						+ "\n To use these notifications, first select the 'Send message' option, select 'Private' or 'Public'."
+						+ "\n Selecting 'Private' option will make the message visible only to the employee the message is sent to"
+						+ "\n Selecting the 'Public' option will make the message visible to all employees. Type in an Employee ID"
+						+ "\n or the position of the employee to send a message typed in under the 'Message' option. If the position"
+						+ "\n of the Employee is selected, the message will be sent to all employees of the position.");
+				break;	
+							
 			}
-		/*
-		 if(a == helpButton)
-			{
-				int choice=0;
-				String[] options={"Emergency","Send Message","Order Ready"};
-				choice=JOptionPane.showOptionDialog(new JFrame(), " Which function would you like help with?","Help Button",JOptionPane.DEFAULT_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,0);
-				switch(choice)
-				{
-					case 0: 
-						JOptionPane.showMessageDialog(this, "After clicking the button. Type in emergency message. It will send it to all the employee.");
-						break;
-					case 1:
-						JOptionPane.showMessageDialog(this, "Open the notification box by clicking on the clock and  then press Send Message.");
-						break;
-					case 2:
-						JOptionPane.showMessageDialog(this, "Select the row for the item that was completed. Then click the button.");
-						break;
-				}
 			
-				
-			} 
-		 
-		 
-		 */
-		
 		}
 	if (a == Clean){
 		String s = (String)combobox_customer.getSelectedItem();
