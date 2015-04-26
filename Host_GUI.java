@@ -31,6 +31,7 @@ import java.util.Date;
 import java.util.LinkedList;
 
 
+
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
@@ -671,7 +672,48 @@ public class Host_GUI extends JFrame implements ActionListener{
 		}
 	if(a == Help)
 		{
-			JOptionPane.showMessageDialog(rootPanel, "<htmL>For customer: Select assign to assign a customer to a table, unassign to unassign a customer from a table. <br><br>For waiter: Select a table, then select a waiter to occupy that table. If the indicator glows green, waiters occupy the table. To unnocpy a waiter, simply select the waiter and unassign him/her.<br></html>");
+			int optionChoice = 0;
+			String[] optionsAvailable = {"Customer Status", "Table Status", "Waiter Status", "Indicators at Tables", "Logout"};
+			optionChoice = JOptionPane.showOptionDialog(new JFrame(), "Which function would you like help with?", "Help",JOptionPane.DEFAULT_OPTION , JOptionPane.QUESTION_MESSAGE, null, optionsAvailable, 0);
+			switch(optionChoice){
+			case 0: // Customer Status Help
+				JOptionPane.showMessageDialog(this, "To change the customer status, simply select "
+						+ "at table under the 'Customer/Table' title, and select either the 'Assign' or the 'Unassign' option. "
+						+ "\n If the 'Assign' button is selected, observe that the color of the Table will change to green, indicating"
+						+ "that it is currently occupied by a customer. \n If the 'Unassign' button is selected, observe that the color of"
+						+ "the table will change to red, indicating that it is currently unoccupied by a customer.");
+				break;
+			case 1: // Table Status Help
+				JOptionPane.showMessageDialog(this, ""
+						+ "Under the 'Table Status' title, observe the table arrangement of the restaurant.Each table"
+						+ "\n has several indicators which change based on changes made throughout the interface"
+						+ "\n ");
+			}
+		/*
+		 if(a == helpButton)
+			{
+				int choice=0;
+				String[] options={"Emergency","Send Message","Order Ready"};
+				choice=JOptionPane.showOptionDialog(new JFrame(), " Which function would you like help with?","Help Button",JOptionPane.DEFAULT_OPTION,JOptionPane.QUESTION_MESSAGE,null,options,0);
+				switch(choice)
+				{
+					case 0: 
+						JOptionPane.showMessageDialog(this, "After clicking the button. Type in emergency message. It will send it to all the employee.");
+						break;
+					case 1:
+						JOptionPane.showMessageDialog(this, "Open the notification box by clicking on the clock and  then press Send Message.");
+						break;
+					case 2:
+						JOptionPane.showMessageDialog(this, "Select the row for the item that was completed. Then click the button.");
+						break;
+				}
+			
+				
+			} 
+		 
+		 
+		 */
+		
 		}
 	if (a == Clean){
 		String s = (String)combobox_customer.getSelectedItem();
