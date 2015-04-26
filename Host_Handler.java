@@ -4,7 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import Manager.EmpObj;
+//import Manager.EmpObj;
+import Manager.ManagerCommunicator.*;
+import Manager.ManagerGUIs.*;
+import Manager.ManagerCommunicator.*;
 import Shared.Communicator.DatabaseCommunicator;
 
 public class Host_Handler extends DatabaseCommunicator{
