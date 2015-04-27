@@ -32,6 +32,7 @@ import java.util.LinkedList;
 
 
 
+
 import javax.swing.BorderFactory;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
@@ -52,8 +53,7 @@ import javax.swing.JSeparator;
 import javax.swing.JComboBox;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-@SuppressWarnings("unused")
-
+@SuppressWarnings({"unused","rawtypes","unchecked"})
 public class HostGUI extends JFrame implements ActionListener{
 	//Swing Variables
 			//Notification GUI
@@ -91,7 +91,7 @@ public class HostGUI extends JFrame implements ActionListener{
 			private Timer blinkTimer;
 			
 			private HostCommunicator h = new HostCommunicator();
-			private HostHandler handler = new HostHandler();
+			private HostHandler Hhandler = new HostHandler();
 			
 			
 	public HostGUI() {
@@ -521,50 +521,22 @@ public class HostGUI extends JFrame implements ActionListener{
 		TableStatusInitialIndicator(Table10,9);
 		
 		//************************************************
-		//INITIAL TABLE STATUS , CUSTOMER STATUSES (At table),WAITERS at table (FROM DATABASE)
+		//INITIAL TABLE STATUS (Reserved or not Reserved)
 		//************************************************
 		
-		h.reservedTableIndicator(W_1,0);
-		h.reservedTableIndicator(W_2,1);
-		h.reservedTableIndicator(W_3,2);
-		h.reservedTableIndicator(W_4,3);
-		h.reservedTableIndicator(W_5,4);
-		h.reservedTableIndicator(W_6,5);
-		h.reservedTableIndicator(W_7,6);
-		h.reservedTableIndicator(W_8,7);
-		h.reservedTableIndicator(W_9,8);
-		h.reservedTableIndicator(W_10,9);
-		
+		Hhandler.reservedTableIndicator(createReservedList());
+	
 		//*************************************
 		//INITIAL CUSTOMER STATUSES (At table)
 		//*************************************
 		
-		h.CustomerStatus(Table1,0);
-		h.CustomerStatus(Table2,1);
-		h.CustomerStatus(Table3,2);
-		h.CustomerStatus(Table4,3);
-		h.CustomerStatus(Table5,4);
-		h.CustomerStatus(Table6,5);
-		h.CustomerStatus(Table7,6);
-		h.CustomerStatus(Table8,7);
-		h.CustomerStatus(Table9,8);
-		h.CustomerStatus(Table10,9);
+		Hhandler.CustomerStatus(createCustomerList());
 		
 		//*********************************************
 		//INITIAL WAITERS at table (FROM DATABASE)
 		//*********************************************
 
-		h.addInitialWaiters(Waiters_for_Table_1,0);
-		h.addInitialWaiters(Waiters_for_Table_2,1);
-		h.addInitialWaiters(Waiters_for_Table_3,2);
-		h.addInitialWaiters(Waiters_for_Table_4,3);
-		h.addInitialWaiters(Waiters_for_Table_5,4);
-		h.addInitialWaiters(Waiters_for_Table_6,5);
-		h.addInitialWaiters(Waiters_for_Table_7,6);
-		h.addInitialWaiters(Waiters_for_Table_8,7);
-		h.addInitialWaiters(Waiters_for_Table_9,8);
-		h.addInitialWaiters(Waiters_for_Table_10,9);
-		
+		Hhandler.addInitialWaiters(createInitialWaiterList());
 		
 		//**********************************************************
 		//INITIAL WAITER STATUS AT TABLE (OCCUPIED BY WAITER OR NOT?)
@@ -579,8 +551,6 @@ public class HostGUI extends JFrame implements ActionListener{
 		checkIfFull(Waiters_for_Table_8,W_8);
 		checkIfFull(Waiters_for_Table_9,W_9);
 		checkIfFull(Waiters_for_Table_10,W_10);
-		
-		
 		
 		//*************************************
 
@@ -656,7 +626,6 @@ public class HostGUI extends JFrame implements ActionListener{
 		
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void actionPerformed(ActionEvent e) {
 	Object a = e.getSource();
 	if(a == logoutButton)
@@ -1287,8 +1256,29 @@ public class HostGUI extends JFrame implements ActionListener{
 		}
 		return counter;
 	}
-	
+	public ArrayList<JButton> createReservedList(){
+		ArrayList<JButton> Buttons = new ArrayList<JButton>();
+		Buttons.add(W_1);Buttons.add(W_2);Buttons.add(W_3);Buttons.add(W_4);Buttons.add(W_5);
+		Buttons.add(W_6);Buttons.add(W_7);Buttons.add(W_8);Buttons.add(W_9);Buttons.add(W_10);
+		return Buttons;
 	}
+	
+	public ArrayList<JButton> createCustomerList(){
+		ArrayList<JButton> Buttons = new ArrayList<JButton>();
+		Buttons.add(Table1);Buttons.add(Table2);Buttons.add(Table3);Buttons.add(Table4);Buttons.add(Table5);
+		Buttons.add(Table6);Buttons.add(Table7);Buttons.add(Table8);Buttons.add(Table9);Buttons.add(Table10);
+		return Buttons;
+	}
+	
+	public ArrayList<JComboBox> createInitialWaiterList(){
+		ArrayList<JComboBox> JComboBox = new ArrayList<JComboBox>();
+		JComboBox.add(Waiters_for_Table_1);JComboBox.add(Waiters_for_Table_2);JComboBox.add(Waiters_for_Table_3);JComboBox.add(Waiters_for_Table_4);JComboBox.add(Waiters_for_Table_5);
+		JComboBox.add(Waiters_for_Table_6);JComboBox.add(Waiters_for_Table_7);JComboBox.add(Waiters_for_Table_8);JComboBox.add(Waiters_for_Table_9);JComboBox.add(Waiters_for_Table_10);
+		return JComboBox;
+	}
+	
+	
+}
 		
 	
 
