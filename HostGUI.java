@@ -54,7 +54,7 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 @SuppressWarnings("unused")
 
-public class Host_GUI extends JFrame implements ActionListener{
+public class HostGUI extends JFrame implements ActionListener{
 	//Swing Variables
 			//Notification GUI
 			private NotificationGUI notification;
@@ -90,10 +90,11 @@ public class Host_GUI extends JFrame implements ActionListener{
 			private Border border_YELLOW = new LineBorder(Color.YELLOW,6); //Unclean
 			private Timer blinkTimer;
 			
-			private Host_Handler h = new Host_Handler();
+			private HostCommunicator h = new HostCommunicator();
+			private HostHandler handler = new HostHandler();
 			
 			
-	public Host_GUI() {
+	public HostGUI() {
 		
 		super();
 		// New blinker timer for dirty tables
@@ -520,7 +521,7 @@ public class Host_GUI extends JFrame implements ActionListener{
 		TableStatusInitialIndicator(Table10,9);
 		
 		//************************************************
-		//INITIAL TABLE STATUS (Reserved OR Not Reserved?)
+		//INITIAL TABLE STATUS , CUSTOMER STATUSES (At table),WAITERS at table (FROM DATABASE)
 		//************************************************
 		
 		h.reservedTableIndicator(W_1,0);
