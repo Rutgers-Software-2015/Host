@@ -53,11 +53,11 @@ import javax.swing.JSeparator;
 import javax.swing.JComboBox;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
-@SuppressWarnings({"unused","rawtypes","unchecked"})
+@SuppressWarnings({"unused","rawtypes","unchecked", "serial"})
 public class HostGUI extends JFrame implements ActionListener{
 	//Swing Variables
 			//Notification GUI
-			private NotificationGUI notification;
+			public NotificationGUI notification;
 			private JPanel rootPanel,titlePanel;
 			private GradientPanel MainPanel;
 			private GradientButton logoutButton;
@@ -90,7 +90,7 @@ public class HostGUI extends JFrame implements ActionListener{
 			private Border border_YELLOW = new LineBorder(Color.YELLOW,6); //Unclean
 			private Timer blinkTimer;
 			
-			private HostCommunicator h = new HostCommunicator();
+			public HostCommunicator h = new HostCommunicator();
 			private HostHandler Hhandler = new HostHandler();
 			
 			
@@ -502,7 +502,6 @@ public class HostGUI extends JFrame implements ActionListener{
 		// ************************************
 		// ************************************
 		
-		
 		// Initial Statuses
 		
 		//*************************************
@@ -716,43 +715,43 @@ public class HostGUI extends JFrame implements ActionListener{
 	if (a == Unclean){
 		String s = (String)combobox_customer.getSelectedItem();
 		if(s == "Table 1"){
-			h.markTableAsClean(1);
+			h.markTableAsUnClean(1);
 			TableStatusIndicatorFinal(Table1);
 		}
 		if(s == "Table 2"){
-			h.markTableAsClean(2);
+			h.markTableAsUnClean(2);
 			TableStatusIndicatorFinal(Table2);
 		}
 		if(s == "Table 3"){
-			h.markTableAsClean(3);	
+			h.markTableAsUnClean(3);	
 			TableStatusIndicatorFinal(Table3);
 		}
 		if(s == "Table 4"){
-			h.markTableAsClean(4);
+			h.markTableAsUnClean(4);
 			TableStatusIndicatorFinal(Table4);
 		}
 		if(s == "Table 5"){
-			h.markTableAsClean(5);
+			h.markTableAsUnClean(5);
 			TableStatusIndicatorFinal(Table5);
 		}
 		if(s == "Table 6"){
-			h.markTableAsClean(6);
+			h.markTableAsUnClean(6);
 			TableStatusIndicatorFinal(Table6);
 		}
 		if(s == "Table 7"){
-			h.markTableAsClean(7);
+			h.markTableAsUnClean(7);
 			TableStatusIndicatorFinal(Table7);
 		}
 		if(s == "Table 8"){
-			h.markTableAsClean(8);
+			h.markTableAsUnClean(8);
 			TableStatusIndicatorFinal(Table8);
 		}
 		if(s == "Table 9"){
-			h.markTableAsClean(9);
+			h.markTableAsUnClean(9);
 			TableStatusIndicatorFinal(Table9);
 		}
 		if(s == "Table 10"){
-			h.markTableAsClean(10);
+			h.markTableAsUnClean(10);
 			TableStatusIndicatorFinal(Table10);
 		}
 	}
@@ -1019,7 +1018,7 @@ public class HostGUI extends JFrame implements ActionListener{
 			}
 			else {
 			removeDuplicatesAndAdd(Waiters_for_Table_10,WaiterList);
-			Waiters_for_Table_9.setSelectedItem(WaiterList.getSelectedItem());
+			Waiters_for_Table_10.setSelectedItem(WaiterList.getSelectedItem());
 			h.CommunicateWaiterStatusChange(Waiters_for_Table_10,10);
 			}
 			
