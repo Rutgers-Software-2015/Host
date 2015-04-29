@@ -1314,12 +1314,11 @@ public class HostGUI extends JFrame implements ActionListener{
 	}
 
 	/**
-	 * This function will indicate if a table is marked as dirty in the database.
-     * If it is, then a yellow indicator will start to blink at said table, else,
-     * the indicator will not blink
+	 * This function will be used to flicker the yellow indicator around a table
+	 *  if a table is marked as unclean
 	 * 
 	 * @return none
-	 * @param JButton, Int
+	 * @param JButton
 	 * 
 	 */
 	
