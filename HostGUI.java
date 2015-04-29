@@ -55,7 +55,19 @@ import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 @SuppressWarnings({"unused","rawtypes","unchecked", "serial"})
 public class HostGUI extends JFrame implements ActionListener{
-	//Swing Variables
+			
+		/**
+		 * Class created for using the Host System
+		 * Uses DB as required throughout the code, 
+		 * and Java Swing Library to create a user interface
+		 * 
+		 * @author David Arakelyan
+		 * @tester David Arakelyan
+		 * @debugger David Arakelyan
+		 * 
+		 */
+	
+			//Swing Variables
 			//Notification GUI
 			public NotificationGUI notification;
 			private JPanel rootPanel,titlePanel;
@@ -1161,6 +1173,16 @@ public class HostGUI extends JFrame implements ActionListener{
 
 	}
 	
+	/**
+	 * This function will add waiters from the initial waiter list to a table, depending
+	 * on which individual waiter is selected. If a waiter already exists at a table,
+	 * an error will be displayed, and the waiter will not be added. 
+	 * 
+	 * @return none
+	 * @param JComboBox, JComboBox
+	 * 
+	 */
+	
 	public void removeDuplicatesAndAdd(JComboBox WaitersAtTables, JComboBox WaitersToBeSelected){
 		String a = "-";
 		boolean exists = false;
@@ -1182,6 +1204,15 @@ public class HostGUI extends JFrame implements ActionListener{
 		}
 	}
 	
+	/**
+	 * This function will remove a waiter at a table, depending on which waiter is 
+	 * selected from the initial waiter list.
+	 * 
+	 * @return none
+	 * @param JComboBox, JComboBox
+	 * 
+	 */
+	
 	public void removeItem(JComboBox WaitersAtTables, JComboBox WaitersToBeSelected){
 		String Selected = (String) WaitersToBeSelected.getSelectedItem();
 		for(int index = 0; index < WaitersAtTables.getItemCount();index++){
@@ -1191,8 +1222,18 @@ public class HostGUI extends JFrame implements ActionListener{
 				break;
 			}
 		}
-		//WaitersAtTables.removeItem((String) WaitersToBeSelected.getSelectedItem());
 	}
+
+	/**
+	 * This function will set the color of a table to red if it is not red already,
+	 * indicating that customers do not occupy the table and if it is already set to 
+	 * red, it will throw an error stating that customers have already been unassigned
+     * from the table. 
+	 * 
+	 * @return none 
+	 * @param  JButton
+	 * 
+	 */
 	
 	public void CheckColorAndSetRed(JButton x ){
 		if (x.getBackground() == Color.RED){
@@ -1200,13 +1241,33 @@ public class HostGUI extends JFrame implements ActionListener{
 				JOptionPane.showMessageDialog(rootPanel, "<htmL> Cannot unassign customer(s) from a table that has no customers! </html>","Error", JOptionPane.ERROR_MESSAGE);
 		} else {x.setBackground(Color.RED);}
 	}
+
+	/**
+	 * This function will set the color of a table to green, indicating that customers	
+	 * occupy the table. IF the table is already set to green, an error will be
+	 * thrown stating that the table already has customers assigned to it.
+	 * 
+	 * @return none 
+	 * @param JButton
+	 * 
+	 */
+	
 	public void CheckColorAndSetGreen(JButton x ){
 		if (x.getBackground() == Color.GREEN){
 				System.out.println("Customer(s) already assigned to table!");
 				JOptionPane.showMessageDialog(rootPanel, "<htmL> Customer(s) already assigned to table! </html>","Error", JOptionPane.ERROR_MESSAGE);
 		} else {x.setBackground(Color.GREEN);}
 	}
-	
+
+	/**
+	 * Checks if the maximum amount of waiters has been assigned to a table already.	
+	 * If the maximum has been reached, an indicator (next to the table name) will glow
+	 * green, else it will glow red.
+	 * 
+	 * @return none
+	 * @param JComboBox, JButton
+	 * 
+	 */
 	
 	public void checkIfFull(JComboBox WaitersAtTables,JButton W){
 		if (WaitersAtTables.getItemAt(0).equals("-") && WaitersAtTables.getItemAt(1).equals("-") && WaitersAtTables.getItemAt(2).equals("-")
@@ -1214,6 +1275,16 @@ public class HostGUI extends JFrame implements ActionListener{
 				W.setBackground(Color.RED);
 		}else{W.setBackground(Color.GREEN);}
 	}
+
+	/**
+	 * This function will indicate if a table is marked as dirty in the database.
+     * If it is, then a yellow indicator will start to blink at said table, else,
+     * the indicator will not blink
+	 * 
+	 * @return none
+	 * @param JButton, Int
+	 * 
+	 */
 	
 	public void TableStatusInitialIndicator(JButton Tablenumber,int index){
 		Border border_BLACK = new LineBorder(Color.BLACK,3); //Clean
@@ -1240,11 +1311,32 @@ public class HostGUI extends JFrame implements ActionListener{
 			e.printStackTrace();
 		}
 	}
+
+	/**
+	 * This function will indicate if a table is marked as dirty in the database.
+     * If it is, then a yellow indicator will start to blink at said table, else,
+     * the indicator will not blink
+	 * 
+	 * @return none
+	 * @param JButton, Int
+	 * 
+	 */
+	
 	public void TableStatusIndicatorFinal(JButton Tablenumber){
 		dirtyTables.add(Tablenumber);
 		
 	}
-	
+
+	/**
+	 * This function will check if a table is marked as full. If it is, it will 
+	 * return an integer which will later be used in the GUI to test if a maximum
+	 * amount of waiters has been reached, so no more waiters can be assigned to
+	 * said table.
+	 * 
+	 * @return int
+	 * @param JComboBox
+	 * 
+	 */
 	
 	public int checkIfFull(JComboBox Waiters_at_table){
 		int counter = 0;
@@ -1255,12 +1347,33 @@ public class HostGUI extends JFrame implements ActionListener{
 		}
 		return counter;
 	}
+
+	/**
+	 * This function is used to push all reserved table indicator buttons to an
+	 * array list so that they can later be used for testing. Indiviual buttons
+	 * can be pulled from this list by using an index.
+	 * 
+	 * @return none
+	 * @param ArrayList<JButton>
+	 * 
+	 */
+	
 	public ArrayList<JButton> createReservedList(){
 		ArrayList<JButton> Buttons = new ArrayList<JButton>();
 		Buttons.add(W_1);Buttons.add(W_2);Buttons.add(W_3);Buttons.add(W_4);Buttons.add(W_5);
 		Buttons.add(W_6);Buttons.add(W_7);Buttons.add(W_8);Buttons.add(W_9);Buttons.add(W_10);
 		return Buttons;
 	}
+
+	/**
+	 * This function is used to push all customer table indicator buttons to an
+	 * array list so that they can later be used for testing. Indiviual buttons
+	 * can be pulled from this list by using an index.
+	 * 
+	 * @return none 
+	 * @param ArrayList<JButton>
+	 * 
+	 */
 	
 	public ArrayList<JButton> createCustomerList(){
 		ArrayList<JButton> Buttons = new ArrayList<JButton>();
@@ -1268,6 +1381,16 @@ public class HostGUI extends JFrame implements ActionListener{
 		Buttons.add(Table6);Buttons.add(Table7);Buttons.add(Table8);Buttons.add(Table9);Buttons.add(Table10);
 		return Buttons;
 	}
+	
+
+	/**
+	 * This function is used to push all initial waiter lists at tables into an
+	 * Array List. They can later be pulled from the list via an index.
+	 * 
+	 * @return none
+	 * @param ArrayList<JComboBox>
+	 * 
+	 */
 	
 	public ArrayList<JComboBox> createInitialWaiterList(){
 		ArrayList<JComboBox> JComboBox = new ArrayList<JComboBox>();
