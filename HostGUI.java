@@ -1222,6 +1222,7 @@ public class HostGUI extends JFrame implements ActionListener{
 				break;
 			}
 		}
+		WaitersToBeSelected.getSelectedItem();
 	}
 
 	/**
