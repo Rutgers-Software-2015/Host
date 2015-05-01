@@ -40,8 +40,8 @@ public class HostHandler {
 	 * @return nothing
 	 * 
 	 */
-		public HostHandler(){
-			this.h = new HostCommunicator();
+		public HostHandler(HostCommunicator h){
+			this.h = h;
 			this.h.connect("admin","gradMay17");
 			this.h.tell("use MAINDB;");
 		}

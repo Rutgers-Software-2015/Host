@@ -103,7 +103,7 @@ public class HostGUI extends JFrame implements ActionListener{
 			private Timer blinkTimer;
 			
 			public HostCommunicator h = new HostCommunicator();
-			private HostHandler Hhandler = new HostHandler();
+			private HostHandler Hhandler = new HostHandler(h);
 			
 			
 	public HostGUI() {
